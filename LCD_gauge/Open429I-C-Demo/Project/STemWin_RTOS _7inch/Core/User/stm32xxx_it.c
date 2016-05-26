@@ -51,7 +51,7 @@ extern __IO uint32_t PeriodValue;
 extern __IO uint32_t CaptureNumber;
 uint16_t tmpCC4[2] = {0, 0};
 /* Private function prototypes -----------------------------------------------*/
-extern void USB_OTG_BSP_TimerIRQ (void);
+//extern void USB_OTG_BSP_TimerIRQ (void);
 extern void xPortSysTickHandler( void );
 extern void LTDC_ISR_Handler(void);
 extern void DMA2D_ISR_Handler(void);
@@ -147,6 +147,15 @@ void PendSV_Handler(void)
   * @param  None
   * @retval None
   */
+static __IO uint32_t TimingDelay;	
+void TimingDelay_Decrement(void)
+{
+  if (TimingDelay != 0x00)
+  { 
+    TimingDelay--;
+  }
+}
+	
 void SysTick_Handler(void)
 {
 if(demo_mode == 0)
@@ -175,7 +184,7 @@ void EXTI0_IRQHandler(void)
 
 void TIM2_IRQHandler(void)
 {
-  USB_OTG_BSP_TimerIRQ();
+  //USB_OTG_BSP_TimerIRQ();
 }
 
 /**
@@ -183,17 +192,17 @@ void TIM2_IRQHandler(void)
   * @param  None
   * @retval None
   */
-void OTG_HS_IRQHandler(void)
-{
-  if(demo_mode == 0)
-  {
-    USBH_OTG_ISR_Handler (&USB_OTG_Core);
-  }
-  else
-  {
-    USBD_OTG_ISR_Handler (&USB_OTG_dev);
-  }
-}
+//void OTG_HS_IRQHandler(void)
+//{
+//  if(demo_mode == 0)
+//  {
+//    USBH_OTG_ISR_Handler (&USB_OTG_Core);
+//  }
+//  else
+//  {
+//    USBD_OTG_ISR_Handler (&USB_OTG_dev);
+//  }
+//}
 
 /**
   * @brief  This function handles TIM5 global interrupt request.

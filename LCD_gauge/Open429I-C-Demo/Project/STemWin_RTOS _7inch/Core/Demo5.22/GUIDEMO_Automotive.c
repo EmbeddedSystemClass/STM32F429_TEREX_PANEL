@@ -59,6 +59,7 @@ Purpose     : Automotive samples
 
 
 #include "GUIDEMO.h"
+#include "GUI.h"
 
 #if GUI_WINSUPPORT
   #include "WM.h"
@@ -81,7 +82,7 @@ extern GUI_COLOR _Colorspicto1_2[];
 #define LOGO_DIST    5
 #define YSIZE_SCALE 380	//98
 
-#define FONT_GEAR &GUI_FontRounded22
+//#define FONT_GEAR &GUI_FontRounded22
 #define STR_MSEC "msec/picture:\n"
 #define STR_GEAR "Gear    1"
 
@@ -290,24 +291,24 @@ static void _DrawBk(int Logo) {
   //
   // Draw Logo
   //
-  if (Logo) {
-    GUI_DrawBitmap(&bmSTLogo70x35, LOGO_DIST, LOGO_DIST);
-  }
+//  if (Logo) {
+//    GUI_DrawBitmap(&bmSTLogo70x35, LOGO_DIST, LOGO_DIST);
+//  }
   //
   // Draw msec/picture
   //
-  if (_ShowMSec) {
-    GUI_SetFont(&GUI_FontRounded16);
-    GUI_DispStringAt(STR_MSEC, 10, ySize - MSP_DIST_BOTTOM);
-    GUI_DispDecAt(0, 10, ySize - MSP_DIST_BOTTOM + 17, 3);
-  }
-  //
-  // Draw gear
-  //
-  if (_ShowGear) {
-    GUI_SetFont(FONT_GEAR);
-    GUI_DispStringHCenterAt(STR_GEAR, xSize >> 1, (ySize - GUI_GetFontDistY()) >> 1);
-  }
+//  if (_ShowMSec) {
+//    GUI_SetFont(&GUI_FontRounded16);
+//    GUI_DispStringAt(STR_MSEC, 10, ySize - MSP_DIST_BOTTOM);
+//    GUI_DispDecAt(0, 10, ySize - MSP_DIST_BOTTOM + 17, 3);
+//  }
+//  //
+//  // Draw gear
+//  //
+//  if (_ShowGear) {
+//    GUI_SetFont(FONT_GEAR);
+//    GUI_DispStringHCenterAt(STR_GEAR, xSize >> 1, (ySize - GUI_GetFontDistY()) >> 1);
+//  }
 }
 
 /*********************************************************************
@@ -319,17 +320,17 @@ static void _DrawBk(int Logo) {
 static void _WriteGear(int Gear) {
   int xSize, ySize;
 
-  if (_ShowGear) {
-    if (_OldGear != Gear) {
-      xSize = LCD_GetXSize();
-      ySize = LCD_GetYSize();
-      _OldGear = Gear;
-      GUI_SetColor(GUI_WHITE);
-      GUI_SetTextMode(GUI_TM_NORMAL);
-      GUI_SetFont(FONT_GEAR);
-      GUI_DispDecAt(Gear, ((xSize + GUI_GetStringDistX(STR_GEAR) + 1) >> 1) - GUI_GetCharDistX('1'), (ySize - GUI_GetFontDistY()) >> 1, 1);
-    }
-  }
+//  if (_ShowGear) {
+//    if (_OldGear != Gear) {
+//      xSize = LCD_GetXSize();
+//      ySize = LCD_GetYSize();
+//      _OldGear = Gear;
+//      GUI_SetColor(GUI_WHITE);
+//      GUI_SetTextMode(GUI_TM_NORMAL);
+//      GUI_SetFont(FONT_GEAR);
+//      GUI_DispDecAt(Gear, ((xSize + GUI_GetStringDistX(STR_GEAR) + 1) >> 1) - GUI_GetCharDistX('1'), (ySize - GUI_GetFontDistY()) >> 1, 1);
+//    }
+//  }
 }
 
 /*********************************************************************
@@ -454,31 +455,31 @@ static void _Draw_0(void * p) {
 *       _Draw_1
 */
 static void _Draw_1(void * p) {
-  PARAM * pParam = (PARAM *)p;
-  int     xSize;
+//  PARAM * pParam = (PARAM *)p;
+//  int     xSize;
 
-  xSize = LCD_GetXSize();
-  //
-  // Fixed background
-  //
-  if (pParam->AutoDevInfo.DrawFixed) {
-    GUI_ClearRect ((xSize - _bmScaleR140.XSize) >> 1, 2 * (_ySpace + _bmScaleR140.YSize), ((xSize - _bmScaleR140.XSize) >> 1) + _bmScaleR140.XSize - 1, 2 * (_ySpace + YSIZE_SCALE));
-    GUI_DrawBitmap(&_bmScaleR140, (xSize - _bmScaleR140.XSize) >> 1, (2 * _ySpace) + YSIZE_SCALE);
-  }
-  //
-  // Moving needle
-  //
-  GUI_SetColor(GUI_WHITE);
-  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_1), MAG * (xSize >> 1), MAG * ((2 * (_ySpace + YSIZE_SCALE)) + NEEDLE_OFF_Y));
-  //
-  // Fixed foreground
-  //
-  if (pParam->AutoDevInfo.DrawFixed) {
-    GUI_SetTextMode(GUI_TM_TRANS);
-    GUI_SetColor(GUI_RED);
-    GUI_SetFont(&GUI_FontRounded22);
-    GUI_DispStringHCenterAt("MPH / 10", xSize >> 1, (2 * _ySpace) + YSIZE_SCALE + _bmScaleR140.YSize + 5);
-  }
+//  xSize = LCD_GetXSize();
+//  //
+//  // Fixed background
+//  //
+//  if (pParam->AutoDevInfo.DrawFixed) {
+//    GUI_ClearRect ((xSize - _bmScaleR140.XSize) >> 1, 2 * (_ySpace + _bmScaleR140.YSize), ((xSize - _bmScaleR140.XSize) >> 1) + _bmScaleR140.XSize - 1, 2 * (_ySpace + YSIZE_SCALE));
+//    GUI_DrawBitmap(&_bmScaleR140, (xSize - _bmScaleR140.XSize) >> 1, (2 * _ySpace) + YSIZE_SCALE);
+//  }
+//  //
+//  // Moving needle
+//  //
+//  GUI_SetColor(GUI_WHITE);
+//  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_1), MAG * (xSize >> 1), MAG * ((2 * (_ySpace + YSIZE_SCALE)) + NEEDLE_OFF_Y));
+//  //
+//  // Fixed foreground
+//  //
+//  if (pParam->AutoDevInfo.DrawFixed) {
+//    GUI_SetTextMode(GUI_TM_TRANS);
+//    GUI_SetColor(GUI_RED);
+//    GUI_SetFont(&GUI_FontRounded22);
+//    GUI_DispStringHCenterAt("MPH / 10", xSize >> 1, (2 * _ySpace) + YSIZE_SCALE + _bmScaleR140.YSize + 5);
+//  }
 }
 
 /*********************************************************************
@@ -506,7 +507,7 @@ static void _AutomotiveDemo(void) {
 
   tDiff = 0;
   ySize = LCD_GetYSize();
-  _WriteGear(1);
+ // _WriteGear(1);
   //
   // Create GUI_AUTODEV-objects
   //
@@ -529,15 +530,15 @@ static void _AutomotiveDemo(void) {
   //
   // Run sample
   //
-  t0 = GUIDEMO_GetTime();       // Get current time
+  t0 = GUI_GetTime();       // Get current time
 //  for (Cnt = 0; ((tDiff = GUIDEMO_GetTime() - t0) < 15000) && !GUIDEMO_CheckCancel(); Cnt++) {
 	Cnt = 0;
 	tBlinkNext=1000;
 	while(1){
-		if((tDiff = GUIDEMO_GetTime() - t0) > TIME_4_2){
+		if((tDiff = GUI_GetTime() - t0) > TIME_4_2){
 			Cnt=0;
 			tBlinkNext=1000;
-			t0 = GUIDEMO_GetTime();       // Get current time
+			t0 = GUI_GetTime();       // Get current time
 		}
 		if(tDiff > tBlinkNext){
 			tBlinkNext+=1000;
@@ -552,29 +553,29 @@ static void _AutomotiveDemo(void) {
       aParam[i].Angle = _pfGetAngle[i](tDiff) * DEG2RAD;
       if (aAngleOld[i] != aParam[i].Angle) {
         aAngleOld[i] = aParam[i].Angle;
-        t1           = GUIDEMO_GetTime();
+        t1           = GUI_GetTime();
         GUI_RotatePolygon(aParam[i].aPoints, _aNeedle[i].pPolygon, _aNeedle[i].NumPoints, aParam[i].Angle);
         GUI_MEMDEV_DrawAuto(&aAutoDev[i], &aParam[i].AutoDevInfo, _pfDraw[i], &aParam[i]);
-        atDiff[i]    = GUIDEMO_GetTime() - t1;
+        atDiff[i]    = GUI_GetTime() - t1;
       }
     }
     //
     // Display used time
     //
-    if (_ShowMSec) {
-      if (!(Cnt % 20)) {
-        GUI_SetColor(GUI_WHITE);
-        GUI_SetTextMode(GUI_TM_NORMAL);
-        GUI_SetFont(&GUI_FontRounded16);
-        for (i = 0; i < NUM_SCALES; i++) {
-          if (atDiff[i] != atDiffOld[i]) {
-            GUI_ClearRect(10, ySize - MSP_DIST_BOTTOM + 17, ySize >> 1, ySize - MSP_DIST_BOTTOM + 17 + GUI_FontRounded16.YSize);
-            GUI_DispDecAt(atDiff[i], 10, ySize - MSP_DIST_BOTTOM + 17, 3);
-            atDiffOld[i] = atDiff[i];
-          }
-        }
-      }
-    }
+//    if (_ShowMSec) {
+//      if (!(Cnt % 20)) {
+//        GUI_SetColor(GUI_WHITE);
+//        GUI_SetTextMode(GUI_TM_NORMAL);
+//        GUI_SetFont(&GUI_FontRounded16);
+//        for (i = 0; i < NUM_SCALES; i++) {
+//          if (atDiff[i] != atDiffOld[i]) {
+//            GUI_ClearRect(10, ySize - MSP_DIST_BOTTOM + 17, ySize >> 1, ySize - MSP_DIST_BOTTOM + 17 + GUI_FontRounded16.YSize);
+//            GUI_DispDecAt(atDiff[i], 10, ySize - MSP_DIST_BOTTOM + 17, 3);
+//            atDiffOld[i] = atDiff[i];
+//          }
+//        }
+//      }
+//    }
 
 		GUI_DrawBitmap(&bmpicto1_2, 120, 150);
 
@@ -600,38 +601,16 @@ static void _AutomotiveDemo(void) {
 *       GUIDEMO_Automotive
 */
 void GUIDEMO_Automotive(void) {
-  const GUI_FONT * pFontOld;
-  int              xSize, ySize;
-  int              DrawLogo = 0;
+//  const GUI_FONT * pFontOld;
+//  int              xSize, ySize;
 
-//  GUIDEMO_ShowIntro("Automotive samples",
-//                    "Examples for the\n"
-//                    "automotive industrie");
-  xSize = LCD_GetXSize();
-  ySize = LCD_GetYSize();
-  _ySpace = (ySize - (NUM_SCALES * YSIZE_SCALE)) / (NUM_SCALES + 1); // Space between scales
-  //
-  // Determine if additional information can be shown (depending on display size)
-  //
-  if ((bmSTLogo70x35.XSize + LOGO_DIST < (xSize - _bmScaleR140.XSize) >> 1) || ((bmSTLogo70x35.YSize + LOGO_DIST) < _ySpace)) {
-//    DrawLogo = 1;
-  }
-  DrawLogo = 0;
-  
-  if ((GUI_GetStringDistX(STR_MSEC) < (xSize - _bmScaleR140.XSize) >> 1) || ((2 * (_ySpace + YSIZE_SCALE)) < (ySize - MSP_DIST_BOTTOM))) {
-    _ShowMSec = 1;
-  }
-  pFontOld = GUI_SetFont(FONT_GEAR);
-  if (_ySpace > (GUI_GetFontDistY() + 1)) {
-    _ShowGear = 1;
-  }
-  _ShowGear = 0;
+//  xSize = LCD_GetXSize();
+//  ySize = LCD_GetYSize();
+//  _ySpace = (ySize - (NUM_SCALES * YSIZE_SCALE)) / (NUM_SCALES + 1); // Space between scales
 
-  GUI_SetFont(pFontOld);
-  _DrawBk(DrawLogo);
-  //
-  // Enable high resolution for antialiasing
-  //
+
+//  GUI_SetFont(pFontOld);
+
   GUI_AA_EnableHiRes();
   GUI_AA_SetFactor(MAG);
   _AutomotiveDemo();

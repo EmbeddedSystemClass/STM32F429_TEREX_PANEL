@@ -1603,7 +1603,7 @@ void vTaskSwitchContext( void )
 	}
 	else
 	{
-		traceTASK_SWITCHED_OUT();
+//		traceTASK_SWITCHED_OUT();
 	
 		#if ( configGENERATE_RUN_TIME_STATS == 1 )
 		{
@@ -1639,7 +1639,7 @@ void vTaskSwitchContext( void )
 		same priority get an equal share of the processor time. */
 		listGET_OWNER_OF_NEXT_ENTRY( pxCurrentTCB, &( pxReadyTasksLists[ uxTopReadyPriority ] ) );
 	
-		traceTASK_SWITCHED_IN();
+//		traceTASK_SWITCHED_IN();
 	}
 }
 /*-----------------------------------------------------------*/

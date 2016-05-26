@@ -10,12 +10,12 @@
       <TargetName>STM32F429I-Discovery_Demo</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060061::V5.06 update 1 (build 61)::ARMCC</pCCUsed>
+      <pCCUsed>5060020::V5.06 (build 20)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F429ZI</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F4xx_DFP.2.3.0</PackID>
+          <PackID>Keil.STM32F4xx_DFP.2.5.0</PackID>
           <PackURL>http://www.keil.com/pack</PackURL>
           <Cpu>IROM(0x08000000,0x200000) IRAM(0x20000000,0x30000) IRAM2(0x10000000,0x10000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -422,11 +422,6 @@
               <FilePath>.\..\Core\User\bsp.c</FilePath>
             </File>
             <File>
-              <FileName>fatfs_drv.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\Core\User\fatfs_drv.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\..\Core\User\main.c</FilePath>
@@ -447,29 +442,9 @@
               <FilePath>.\..\Core\Devices\STM32F4xx\system_stm32f4xx.c</FilePath>
             </File>
             <File>
-              <FileName>usb_bsp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\Core\User\usb_bsp.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_usr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\Core\User\usbh_usr.c</FilePath>
-            </File>
-            <File>
-              <FileName>cpu_utils.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\Core\Lib\cpu_utils.c</FilePath>
-            </File>
-            <File>
               <FileName>file_utils.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\..\Core\Lib\file_utils.c</FilePath>
-            </File>
-            <File>
-              <FileName>str_utils.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\Core\Lib\str_utils.c</FilePath>
             </File>
             <File>
               <FileName>time_utils.c</FileName>
@@ -485,21 +460,6 @@
               <FileName>TouchPanel.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\User\TouchPanel\TouchPanel.c</FilePath>
-            </File>
-            <File>
-              <FileName>test_program.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Test_Program\test_program.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbd_desc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Test_Program\usbd_desc.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbd_usr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Test_Program\usbd_usr.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -537,94 +497,9 @@
               <FilePath>.\..\..\..\Utilities\STM32F429I-Discovery\stm32f429i_discovery_sdram.c</FilePath>
             </File>
             <File>
-              <FileName>usbd_hid_core.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_Device_Library\Class\hid\src\usbd_hid_core.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbd_core.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_Device_Library\Core\src\usbd_core.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbd_ioreq.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_Device_Library\Core\src\usbd_ioreq.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbd_req.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_Device_Library\Core\src\usbd_req.c</FilePath>
-            </File>
-            <File>
-              <FileName>usb_core.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_OTG_Driver\src\usb_core.c</FilePath>
-            </File>
-            <File>
-              <FileName>usb_dcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_OTG_Driver\src\usb_dcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>usb_dcd_int.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_OTG_Driver\src\usb_dcd_int.c</FilePath>
-            </File>
-            <File>
-              <FileName>usb_hcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_OTG_Driver\src\usb_hcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>usb_hcd_int.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_OTG_Driver\src\usb_hcd_int.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_msc_bot.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_HOST_Library\Class\MSC\src\usbh_msc_bot.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_msc_core.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_HOST_Library\Class\MSC\src\usbh_msc_core.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_msc_scsi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_HOST_Library\Class\MSC\src\usbh_msc_scsi.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_core.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_HOST_Library\Core\src\usbh_core.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_hcs.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_HOST_Library\Core\src\usbh_hcs.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_ioreq.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_HOST_Library\Core\src\usbh_ioreq.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_stdreq.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32_USB_HOST_Library\Core\src\usbh_stdreq.c</FilePath>
-            </File>
-            <File>
               <FileName>misc.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_dcmi.c</FileName>
@@ -692,11 +567,6 @@
               <FilePath>.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_sdio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
@@ -726,21 +596,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\Libraries\STemWinLibrary522_4x9i\Config\GUIDRV_stm32f429i_discovery.c</FilePath>
             </File>
-            <File>
-              <FileName>stm32f429i_discovery_l3gd20.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\Utilities\STM32F429I-Discovery\stm32f429i_discovery_l3gd20.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Utilities</GroupName>
           <Files>
-            <File>
-              <FileName>ff.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Utilities\Third_Party\fat_fs\src\ff.c</FilePath>
-            </File>
             <File>
               <FileName>syscall.c</FileName>
               <FileType>1</FileType>
@@ -792,74 +652,14 @@
               <FilePath>..\Core\Demo5.22\GUIDEMO.c</FilePath>
             </File>
             <File>
-              <FileName>GUIDEMO_AntialiasedText.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_AntialiasedText.c</FilePath>
-            </File>
-            <File>
               <FileName>GUIDEMO_Automotive.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Demo5.22\GUIDEMO_Automotive.c</FilePath>
             </File>
             <File>
-              <FileName>GUIDEMO_BarGraph.c</FileName>
+              <FileName>picto1_2.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_BarGraph.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_Bitmap.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_Bitmap.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_ColorBar.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_ColorBar.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_Conf.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_Conf.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_Cursor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_Cursor.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_Fading.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_Fading.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_Graph.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_Graph.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_IconView.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_IconView.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_ImageFlow.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_ImageFlow.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_Intro.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_Intro.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_Listview.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_Listview.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_RadialMenu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_RadialMenu.c</FilePath>
+              <FilePath>..\Core\Demo5.22\picto1_2.c</FilePath>
             </File>
             <File>
               <FileName>GUIDEMO_Resource.c</FileName>
@@ -867,54 +667,9 @@
               <FilePath>..\Core\Demo5.22\GUIDEMO_Resource.c</FilePath>
             </File>
             <File>
-              <FileName>GUIDEMO_Skinning.c</FileName>
+              <FileName>GUIDEMO_Conf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_Skinning.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_Speed.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_Speed.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_Speedometer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_Speedometer.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_Start.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_Start.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_TransparentDialog.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_TransparentDialog.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_Treeview.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_Treeview.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_VScreen.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_VScreen.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_WashingMachine.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_WashingMachine.c</FilePath>
-            </File>
-            <File>
-              <FileName>GUIDEMO_ZoomAndRotate.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_ZoomAndRotate.c</FilePath>
-            </File>
-            <File>
-              <FileName>picto1_2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\picto1_2.c</FilePath>
+              <FilePath>..\Core\Demo5.22\GUIDEMO_Conf.c</FilePath>
             </File>
           </Files>
         </Group>

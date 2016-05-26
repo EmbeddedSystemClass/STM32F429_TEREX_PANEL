@@ -47,7 +47,7 @@ xTimerHandle                  TouchScreenTimer;
 
 uint32_t demo_mode = 0;
 
-extern WM_HWIN  ALARM_hWin;
+//extern WM_HWIN  ALARM_hWin;
 
 /* Private function prototypes -----------------------------------------------*/
 static void Background_Task(void * pvParameters);
@@ -65,68 +65,7 @@ extern void ALARM_BackgroundProcess (void);
   */ 
 int main(void)
 { 
-//   GPIO_InitTypeDef GPIO_InitStructure;
 
-//   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
-//   
-//   
-//   /* Setup SysTick Timer for 1 msec interrupts.*/
-//   if (SysTick_Config(SystemCoreClock / 1000))
-//   { 
-//     /* Capture error */ 
-//     while (1);
-//   }
-//   
-//   /* Enable the BUTTON Clock */
-//   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-
-//   /* Configure Button pin as Output */
-//   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-//   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-//   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-//   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-//   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
-//   GPIO_Init(GPIOA, &GPIO_InitStructure);
-//   
-//   /* Force capacity to be charged quickly */
-//   GPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_RESET);
-//   demo_mode = 1;
-//   Delay (25);
-//   demo_mode = 0;
-// // 	  /* LCD initialization */
-// //   LCD_Init();
-// //   
-// //   /* LCD Layer initialization */
-// //   LCD_LayerInit();
-// //     
-// //   /* Enable the LTDC */
-// //   LTDC_Cmd(ENABLE);
-// // 	LCD_SetLayer(LCD_FOREGROUND_LAYER);
-// // 	
-// // 	LCD_Clear(LCD_COLOR_YELLOW);
-//   
-// //   /* Init the STemWin GUI Library */
-// // 	GUI_Init();
-// // 	  /* Activate the use of memory device feature */
-// //  WM_SetCreateFlags(WM_CF_MEMDEV);
-// //    
-// //  GUI_Clear();
-// //  GUI_SetFont(&GUI_Font20_1);
-// //  GUI_DispStringAt("Hello world!", (LCD_GetXSize()-100)/2, (LCD_GetYSize()-20)/2);
-// 	
-
-//   /* Check whether the test mode should be started */
-//   STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_GPIO); 
-//     
-//   if (STM_EVAL_PBGetState(BUTTON_USER) != Bit_RESET)
-//   {
-//     demo_mode = 1;
-//     while (STM_EVAL_PBGetState(BUTTON_USER) != Bit_RESET);
-//     start_test();    
-//   }
-
-  
-  /* Create background task */
   xTaskCreate(Background_Task,
               (signed char const*)"BK_GND",
               Background_Task_STACK,
@@ -134,19 +73,7 @@ int main(void)
               Background_Task_PRIO,
               &Task_Handle);
 
-//   LowLevel_Init();
-//   
-//   /* Init the STemWin GUI Library */
-//   GUI_Init();
-//   GUI_DispStringAt("Hello world!", 0, 0);  	
-//   GUI_SetBkColor(GUI_TRANSPARENT);
-//   GUI_SelectLayer(1);
-//   GUI_Clear();
-//   GUI_SetBkColor(GUI_TRANSPARENT); 
-//   GUI_SelectLayer(0);	
-	
 
-  /* Start the FreeRTOS scheduler */
   vTaskStartScheduler();
 }
 
@@ -166,12 +93,12 @@ static void Background_Task(void * pvParameters)
   BSP_TS_Init(); 
   /* Init the STemWin GUI Library */
   GUI_Init();
-  GUI_DispStringAt("Hello world!", 0, 0);  
-  GUI_SetBkColor(GUI_TRANSPARENT);
-  GUI_SelectLayer(1);
-  GUI_Clear();
-  GUI_SetBkColor(GUI_TRANSPARENT); 
-  GUI_SelectLayer(0);	
+//  GUI_DispStringAt("Hello world!", 0, 0);  
+//  GUI_SetBkColor(GUI_TRANSPARENT);
+//  GUI_SelectLayer(1);
+//  GUI_Clear();
+//  GUI_SetBkColor(GUI_TRANSPARENT); 
+//  GUI_SelectLayer(0);	
 	
   /* Create demo task */
   xTaskCreate(Demo_Task,
@@ -182,32 +109,19 @@ static void Background_Task(void * pvParameters)
               &Demo_Handle);
 
   /* Launch Touchscreen Timer */
-  TouchScreenTimer = xTimerCreate ("Timer", 50, pdTRUE, ( void * ) 1, vTimerCallback );
-  
-  if( TouchScreenTimer != NULL )
-  {
-    if( xTimerStart( TouchScreenTimer, 0 ) != pdPASS )
-    {
-      /* The timer could not be set into the Active state. */
-    }
-  }
+//  TouchScreenTimer = xTimerCreate ("Timer", 50, pdTRUE, ( void * ) 1, vTimerCallback );
+//  
+//  if( TouchScreenTimer != NULL )
+//  {
+//    if( xTimerStart( TouchScreenTimer, 0 ) != pdPASS )
+//    {
+//      /* The timer could not be set into the Active state. */
+//    }
+//  }
     
   /* Run the background task */
   while (1)
   {
-//     if(ticks++ > 10)
-//     {
-//       ticks = 0;
-//       /* toggle LED3 each 100ms */
-//       STM_EVAL_LEDToggle(LED3);
-//     }
-//     
-//     /* Handle USB Host background process */
-//     USBH_USR_BackgroundProcess();
-//     
-//     /* Handle ALARM background process */
-//      ALARM_BackgroundProcess();
-//     /* This task is handled periodically, each 10 mS */
     vTaskDelay(10);
   }
 }
@@ -220,27 +134,18 @@ static void Background_Task(void * pvParameters)
   */
 static void Demo_Task(void * pvParameters)
 {  
-//   /* Change Skin */
-//   PROGBAR_SetDefaultSkin(PROGBAR_SKIN_FLEX);
-//   RADIO_SetDefaultSkin(RADIO_SKIN_FLEX);
-//   SCROLLBAR_SetDefaultSkin(SCROLLBAR_SKIN_FLEX);
-//   SLIDER_SetDefaultSkin(SLIDER_SKIN_FLEX);
-//   SPINBOX_SetDefaultSkin(SPINBOX_SKIN_FLEX);
-//   BUTTON_SetDefaultSkin(BUTTON_SKIN_FLEX);
+
   
   /* Setup layer configuration during startup */
-  GUI_SetBkColor(GUI_TRANSPARENT);
+	GUI_SelectLayer(0);
+  GUI_SetBkColor(GUI_BLACK);
   GUI_SelectLayer(1);
   GUI_Clear();
-  GUI_SetBkColor(GUI_TRANSPARENT); 
-  GUI_SelectLayer(0);
+  GUI_SetBkColor(GUI_BLACK); 
+  //GUI_SelectLayer(0);
 	
-	GUIDEMO_Main();
-//   /* Run the Startup frame */
-//   DEMO_Starup();
-//   
-//   /* Show the main menu */
-//   DEMO_MainMenu();
+	//GUIDEMO_Main();
+GUIDEMO_Automotive();
 }
 
 

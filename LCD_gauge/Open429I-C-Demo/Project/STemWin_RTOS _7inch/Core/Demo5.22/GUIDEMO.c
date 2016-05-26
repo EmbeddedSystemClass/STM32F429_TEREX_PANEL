@@ -124,11 +124,11 @@ static void _ClearHalt(void) {
 *       _DrawBkSimple
 */
 static void _DrawBkSimple(int DrawLogo) {
-  GUI_SetBkColor(BK_COLOR_1);
-  GUI_Clear();
-  if (DrawLogo) {
-    GUI_DrawBitmap(&bmSTLogo70x35, 5, 5);
-  }
+//  GUI_SetBkColor(GUI_ORANGE);
+//  GUI_Clear();
+////  if (DrawLogo) {
+////    GUI_DrawBitmap(&bmSTLogo70x35, 5, 5);
+////  }
 }
 
 #if GUIDEMO_USE_AUTO_BK
@@ -138,15 +138,15 @@ static void _DrawBkSimple(int DrawLogo) {
 *       _DrawBk
 */
 static void _DrawBk(int DrawLogo) {
-  int xSize;
-  int ySize;
+//  int xSize;
+//  int ySize;
 
-  xSize = LCD_GetXSize();
-  ySize = LCD_GetYSize();
-  GUI_DrawGradientV(0, 0, xSize, ySize, BK_COLOR_0, BK_COLOR_1);
-  if (DrawLogo) {
-    GUI_DrawBitmap(&bmSTLogo70x35, 5, 5);
-  }
+//  xSize = LCD_GetXSize();
+//  ySize = LCD_GetYSize();
+//  GUI_DrawGradientV(0, 0, xSize, ySize, BK_COLOR_0, BK_COLOR_1);
+//  if (DrawLogo) {
+//    GUI_DrawBitmap(&bmSTLogo70x35, 5, 5);
+//  }
 }
 
 /*********************************************************************
@@ -207,9 +207,9 @@ static void _DrawBkCircle(int DrawLogo) {
     GUI_MEMDEV_Select(hMemOld);
   }
   GUI_MEMDEV_Write(hMemStretch);
-  if (DrawLogo) {
-    GUI_DrawBitmap(&bmSTLogo70x35, LOGO_DIST_BORDER, LOGO_DIST_BORDER);
-  }
+//  if (DrawLogo) {
+//    GUI_DrawBitmap(&bmSTLogo70x35, LOGO_DIST_BORDER, LOGO_DIST_BORDER);
+//  }
 }
 
 #endif
@@ -406,52 +406,35 @@ static void _Main(void) {
 
   WM_SelectWindow(WM_HBKWIN);
   GUI_Clear();
-  #if (GUI_SUPPORT_CURSOR | GUI_SUPPORT_TOUCH)
-    GUI_CURSOR_Show();
-  #endif
-  //
-  // Create and configure Control and Information window
-  //
-  xSize           = LCD_GetXSize();
-  ySize           = LCD_GetYSize();
-  _hDialogControl = GUI_CreateDialogBox(_aFrameWinControl, GUI_COUNTOF(_aFrameWinControl), &_cbFrameWinControl, WM_HBKWIN, xSize - CONTROL_SIZE_X, ySize - CONTROL_SIZE_Y);
-  _hDialogInfo    = GUI_CreateDialogBox(_aFrameWinInfo,    GUI_COUNTOF(_aFrameWinInfo),    &_cbFrameWinInfo,    WM_HBKWIN, (xSize >> 1) - 1,       0);
-  WM_HideWindow(_hDialogInfo);
+
+//  xSize           = LCD_GetXSize();
+//  ySize           = LCD_GetYSize();
+//  _hDialogControl = GUI_CreateDialogBox(_aFrameWinControl, GUI_COUNTOF(_aFrameWinControl), &_cbFrameWinControl, WM_HBKWIN, xSize - CONTROL_SIZE_X, ySize - CONTROL_SIZE_Y);
+//  _hDialogInfo    = GUI_CreateDialogBox(_aFrameWinInfo,    GUI_COUNTOF(_aFrameWinInfo),    &_cbFrameWinInfo,    WM_HBKWIN, (xSize >> 1) - 1,       0);
+//  WM_HideWindow(_hDialogInfo);
   //
   // Show Intro
   //
-  WM_InvalidateWindow(_hDialogControl);
+ //WM_InvalidateWindow(_hDialogControl);
   WM_DisableMemdev(WM_HBKWIN);
   GUI_Exec();
   WM_EnableMemdev(WM_HBKWIN);
   
-  GUI_SetBkColor(GUI_RED);
-  GUI_Clear();
-  GUI_SetBkColor(GUI_GREEN);
-  GUI_Clear();
-  GUI_SetBkColor(GUI_BLUE);
-  GUI_Clear();
+//  GUI_SetBkColor(GUI_RED);
+//  GUI_Clear();
+//  GUI_SetBkColor(GUI_GREEN);
+//  GUI_Clear();
+//  GUI_SetBkColor(GUI_BLUE);
+//  GUI_Clear();
   
-  //GUIDEMO_Intro();
-  //
-  // Run the demos
-  //
-  for (_iDemo = 0; _GUIDemoConfig.apFunc[_iDemo]; _iDemo++) {
-    _ClearHalt();
-    GUIDEMO_UpdateControlText();
-    (*_GUIDemoConfig.apFunc[_iDemo])();
-    _iDemoMinor = 0;
-    _Pressed    = 0;
-  }
-  _iDemo = 0;
+GUIDEMO_Automotive();
   //
   // Cleanup
   //
-  WM_DeleteWindow(_hDialogControl);
-  WM_DeleteWindow(_hDialogInfo);
-  #if (GUI_SUPPORT_CURSOR | GUI_SUPPORT_TOUCH)
-    GUI_CURSOR_Hide();
-  #endif
+//  WM_DeleteWindow(_hDialogControl);
+//  WM_DeleteWindow(_hDialogInfo);
+
+
 }
 
 /*********************************************************************
@@ -774,29 +757,7 @@ void GUIDEMO_Main(void) {
   HEADER_SetDefaultSkin    (HEADER_SKIN_FLEX);
   GUI_SetTextMode          (GUI_TM_TRANS);
   GUIDEMO_Config(&_GUIDemoConfig);
-  #if GUIDEMO_USE_VNC
-    if (GUIDEMO_GetConfFlag(GUIDEMO_CF_USE_VNC)) {
-      _GUIDemoConfig.pGUI_VNC_X_StartServer(0, 0);
-    }
-  #endif
-  #if GUIDEMO_USE_AUTO_BK
-    //
-    // Determine if HW has enough memory to draw the gradient circle as background
-    //
-    BitsPerPixel = LCD_GetBitsPerPixel();
-    if ((BitsPerPixel >= 16) && GUIDEMO_GetConfFlag(GUIDEMO_CF_USE_AUTO_BK)) {
-      NumFreeBytes = GUI_ALLOC_GetNumFreeBytes();
-      if (NumFreeBytes > NUMBYTES_NEEDED) {
-        _pfDrawBk = _DrawBkCircle;
-      } else {
-        _pfDrawBk = _DrawBk;
-      }
-    } else
-  #endif
-    {
-      _pfDrawBk = _DrawBkSimple;
-    }
-  GUIDEMO_SetDrawLogo(1);
+  
   while (1) {
     _Main();
   }
