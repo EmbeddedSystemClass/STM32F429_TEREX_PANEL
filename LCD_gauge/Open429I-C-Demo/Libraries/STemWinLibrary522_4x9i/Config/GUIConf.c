@@ -68,7 +68,7 @@ Purpose     : Display controller initialization
 // Define the available number of bytes available for the GUI
 //
 
-#define GUI_NUMBYTES  (1024 * 110)    // x KByte
+#define GUI_NUMBYTES  (1024 * 1024)    // x KByte
 
 /*********************************************************************
 *
@@ -78,7 +78,7 @@ Purpose     : Display controller initialization
 */
 #if defined ( __CC_ARM   ) 
 //  U32 HeapMem[1024 * 1024] __attribute__((at(0xD0100000))); 
-  U32 HeapMem[1024 * 1] ;//__attribute__((at(0xD0100000))); 
+  U32 HeapMem[1024 * 1024] __attribute__((at(0xD0100000))); 
 #elif defined ( __ICCARM__ ) 
   #pragma location=0xD0100000
   static __no_init U32 HeapMem[1024 * 1024];
@@ -87,7 +87,7 @@ Purpose     : Display controller initialization
 #endif
 
 //U32 extMem[GUI_NUMBYTES / 4];
-U32 extMem[GUI_NUMBYTES / 4];// __attribute__((at(0xD0500000)));
+U32 extMem[GUI_NUMBYTES / 4] __attribute__((at(0xD0500000)));
 
 /*********************************************************************
 *

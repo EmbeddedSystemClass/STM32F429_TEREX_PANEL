@@ -93,14 +93,7 @@ static void Background_Task(void * pvParameters)
   BSP_TS_Init(); 
   /* Init the STemWin GUI Library */
   GUI_Init();
-//  GUI_DispStringAt("Hello world!", 0, 0);  
-//  GUI_SetBkColor(GUI_TRANSPARENT);
-//  GUI_SelectLayer(1);
-//  GUI_Clear();
-//  GUI_SetBkColor(GUI_TRANSPARENT); 
-//  GUI_SelectLayer(0);	
-	
-  /* Create demo task */
+
   xTaskCreate(Demo_Task,
               (signed char const*)"GUI_DEMO",
               Demo_Task_STACK,
@@ -108,18 +101,7 @@ static void Background_Task(void * pvParameters)
               Demo_Task_PRIO,
               &Demo_Handle);
 
-  /* Launch Touchscreen Timer */
-//  TouchScreenTimer = xTimerCreate ("Timer", 50, pdTRUE, ( void * ) 1, vTimerCallback );
-//  
-//  if( TouchScreenTimer != NULL )
-//  {
-//    if( xTimerStart( TouchScreenTimer, 0 ) != pdPASS )
-//    {
-//      /* The timer could not be set into the Active state. */
-//    }
-//  }
-    
-  /* Run the background task */
+
   while (1)
   {
     vTaskDelay(10);
@@ -134,17 +116,12 @@ static void Background_Task(void * pvParameters)
   */
 static void Demo_Task(void * pvParameters)
 {  
-
-  
-  /* Setup layer configuration during startup */
 	GUI_SelectLayer(0);
   GUI_SetBkColor(GUI_BLACK);
   GUI_SelectLayer(1);
   GUI_Clear();
   GUI_SetBkColor(GUI_BLACK); 
-  //GUI_SelectLayer(0);
-	
-	//GUIDEMO_Main();
+
 GUIDEMO_Automotive();
 }
 

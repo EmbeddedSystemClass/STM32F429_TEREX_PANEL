@@ -22,25 +22,31 @@ Dialog DLL:      TCM.DLL V1.14.5.0
  
 <h2>Project:</h2>
 D:\PROJECTS\GIT_REPOSITORY\STM32\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\STM32F429I-Discovery_Demo.uvprojx
-Project File Date:  05/26/2016
+Project File Date:  05/27/2016
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 (build 20)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32F429I-Discovery_Demo'
-compiling main.c...
-..\Core\User\main.c(93): warning:  #223-D: function "BSP_TS_Init" declared implicitly
-    BSP_TS_Init(); 
-..\Core\User\main.c(88): warning:  #177-D: variable "ticks" was declared but never referenced
-    uint32_t ticks = 0;
-..\Core\User\main.c(148): warning:  #223-D: function "GUIDEMO_Automotive" declared implicitly
-  GUIDEMO_Automotive();
-..\Core\User\main.c(157): warning:  #177-D: function "vTimerCallback" was declared but never referenced
-  static void vTimerCallback( xTimerHandle pxTimer )
-..\Core\User\main.c: 4 warnings, 0 errors
+compiling GUIDEMO_Automotive.c...
+..\Core\Demo5.22\GUIDEMO_Automotive.c(212): warning:  #550-D: variable "xSize" was set but never used
+    int     xSize, ySize;
+..\Core\Demo5.22\GUIDEMO_Automotive.c(235): warning:  #550-D: variable "xSize" was set but never used
+    int     xSize, ySize;
+..\Core\Demo5.22\GUIDEMO_Automotive.c(336): warning:  #128-D: loop is not reachable
+    for (i = 0; i < NUM_SCALES; i++) {
+..\Core\Demo5.22\GUIDEMO_Automotive.c(268): warning:  #550-D: variable "atDiff" was set but never used
+    int         atDiff   [NUM_SCALES];
+..\Core\Demo5.22\GUIDEMO_Automotive.c(269): warning:  #177-D: variable "atDiffOld" was declared but never referenced
+    int         atDiffOld[NUM_SCALES] = {0};
+..\Core\Demo5.22\GUIDEMO_Automotive.c(272): warning:  #550-D: variable "ySize" was set but never used
+    int         ySize;
+..\Core\Demo5.22\GUIDEMO_Automotive.c(82): warning:  #177-D: variable "_OldGear" was declared but never referenced
+  static int _OldGear = 0;
+..\Core\Demo5.22\GUIDEMO_Automotive.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=61340 RO-data=197732 RW-data=900 ZI-data=184780  
+Program Size: Code=62056 RO-data=138060 RW-data=928 ZI-data=5310928  
 FromELF: creating hex file...
-".\STM32F429I-Discovery_Demo\STM32F429I-Discovery_Demo.axf" - 0 Error(s), 4 Warning(s).
+".\STM32F429I-Discovery_Demo\STM32F429I-Discovery_Demo.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -58,7 +64,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:4.1.0
-Build Time Elapsed:  00:00:05
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
