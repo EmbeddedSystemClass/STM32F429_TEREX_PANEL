@@ -7,15 +7,11 @@ extern GUI_COLOR _Colorspicto1_2[];
 
 #define MAG         3
 #define NUM_SCALES  3
-#define LOGO_DIST    5
-#define YSIZE_SCALE 380	//98
+
+
 
 //#define FONT_GEAR &GUI_FontRounded22
-#define STR_MSEC "msec/picture:\n"
-#define STR_GEAR "Gear    1"
 
-#define MSP_DIST_BOTTOM 40
-#define NEEDLE_OFF_Y -120 //40
 
 #define DEG2RAD      (3.1415926f / 180)
 
@@ -29,23 +25,17 @@ extern GUI_COLOR _Colorspicto1_2[];
 *
 **********************************************************************
 */
-/*static GUI_POINT _aNeedle_0[] = {
-  { MAG * ( 0), MAG * (  0 + 125)},
-  { MAG * (-3), MAG * (-15 + 125)},
-  { MAG * (-3), MAG * (-65 + 125)},
-  { MAG * ( 3), MAG * (-65 + 125)},
-  { MAG * ( 3), MAG * (-15 + 125)},
-};*/
-#define NEEDLE_LEN_VISIO	175
-#define NEEDLE_CENTER_TO_VISIO 15	// расстояние от центра вращения до видимой части
-#define NEEDLE_LEN_ALL	NEEDLE_LEN_VISIO+NEEDLE_CENTER_TO_VISIO		//общая длина стрелки
+
+#define TAHOMETERSCALE_NEEDLE_LEN_VISIO	175
+#define TAHOMETERSCALE_NEEDLE_CENTER_TO_VISIO 15	// расстояние от центра вращения до видимой части
+#define TAHOMETERSCALE_NEEDLE_LEN_ALL	TAHOMETERSCALE_NEEDLE_LEN_VISIO + TAHOMETERSCALE_NEEDLE_CENTER_TO_VISIO		//общая длина стрелки
 
 static GUI_POINT _aNeedle_0[] = { //tahometer needle
-  { MAG * ( 0), MAG * (  0 + NEEDLE_LEN_ALL)},
-  { MAG * (-3), MAG * (-15 + NEEDLE_LEN_ALL)},
-  { MAG * (-3), MAG * (-NEEDLE_LEN_VISIO + NEEDLE_LEN_ALL)},
-  { MAG * ( 3), MAG * (-NEEDLE_LEN_VISIO + NEEDLE_LEN_ALL)},
-  { MAG * ( 3), MAG * (-15 + NEEDLE_LEN_ALL)},
+  { MAG * ( 0), MAG * (  0 + TAHOMETERSCALE_NEEDLE_LEN_ALL)},
+  { MAG * (-3), MAG * (-15 + TAHOMETERSCALE_NEEDLE_LEN_ALL)},
+  { MAG * (-3), MAG * (-TAHOMETERSCALE_NEEDLE_LEN_VISIO + TAHOMETERSCALE_NEEDLE_LEN_ALL)},
+  { MAG * ( 3), MAG * (-TAHOMETERSCALE_NEEDLE_LEN_VISIO + TAHOMETERSCALE_NEEDLE_LEN_ALL)},
+  { MAG * ( 3), MAG * (-15 + TAHOMETERSCALE_NEEDLE_LEN_ALL)},
 };
 
 
@@ -60,7 +50,18 @@ static GUI_POINT _aNeedle_1[] = { //other needles
   { MAG * ( 3), MAG * (-15 + FUELSCALE_NEEDLE_LEN_ALL)},
 };
 
-static int _ySpace;
+
+#define TEMPERATURESCALE_NEEDLE_LEN_VISIO	95
+#define TEMPERATURESCALE_NEEDLE_CENTER_TO_VISIO 5	// расстояние от центра вращения до видимой части
+#define TEMPERATURESCALE_NEEDLE_LEN_ALL	TEMPERATURESCALE_NEEDLE_LEN_VISIO + TEMPERATURESCALE_NEEDLE_CENTER_TO_VISIO		//общая длина стрелки
+static GUI_POINT _aNeedle_2[] = { //other needles
+  { MAG * ( 0), MAG * (  0 + TEMPERATURESCALE_NEEDLE_LEN_ALL)},
+  { MAG * (-3), MAG * (-15 + TEMPERATURESCALE_NEEDLE_LEN_ALL)},
+  { MAG * (-3), MAG * (-TEMPERATURESCALE_NEEDLE_LEN_VISIO + TEMPERATURESCALE_NEEDLE_LEN_ALL)},
+  { MAG * ( 3), MAG * (-TEMPERATURESCALE_NEEDLE_LEN_VISIO + TEMPERATURESCALE_NEEDLE_LEN_ALL)},
+  { MAG * ( 3), MAG * (-15 + TEMPERATURESCALE_NEEDLE_LEN_ALL)},
+};
+
 
 /*********************************************************************
 *
@@ -84,7 +85,7 @@ static int _OldGear = 0;
 static NEEDLE _aNeedle[NUM_SCALES] = { 
   { _aNeedle_0, GUI_COUNTOF(_aNeedle_0) },
   { _aNeedle_1, GUI_COUNTOF(_aNeedle_1) },
-	{ _aNeedle_1, GUI_COUNTOF(_aNeedle_1) },
+	{ _aNeedle_1, GUI_COUNTOF(_aNeedle_2) },
 };
 
 /*********************************************************************
@@ -177,6 +178,11 @@ static float (* _pfGetAngle[NUM_SCALES])(int tDiff) = {
 *
 *       _Draw_0
 */
+#define TAHOMETERSCALE_POS_X					(xSize - bmtahometerScale.XSize)	
+#define TAHOMETERSCALE_POS_Y					(0)	
+#define TAHOMETERSCALE_NEEDLE_POS_X		(xSize -(bmtahometerScale.XSize>>1))
+#define TAHOMETERSCALE_NEEDLE_POS_Y		(bmtahometerScale.YSize-80)
+
 static void _Draw_0(void * p) {
   PARAM * pParam = (PARAM *)p;
   int     xSize;
@@ -186,14 +192,14 @@ static void _Draw_0(void * p) {
   // Fixed background
   //
   if (pParam->AutoDevInfo.DrawFixed) {
-    GUI_ClearRect ((xSize - bmtahometerScale.XSize) , _ySpace + bmtahometerScale.YSize, ((xSize - bmtahometerScale.XSize) >> 1) + bmtahometerScale.XSize - 1, _ySpace + YSIZE_SCALE);
-    GUI_DrawBitmap(&bmtahometerScale, (xSize - bmtahometerScale.XSize) , _ySpace);
+    GUI_ClearRect (TAHOMETERSCALE_POS_X ,TAHOMETERSCALE_POS_Y, TAHOMETERSCALE_POS_X + bmtahometerScale.XSize - 1,TAHOMETERSCALE_POS_Y+ bmtahometerScale.YSize - 1);
+    GUI_DrawBitmap(&bmtahometerScale, TAHOMETERSCALE_POS_X , TAHOMETERSCALE_POS_Y);
   }
   //
   // Moving needle
   //
   GUI_SetColor(GUI_WHITE);
-  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_0), MAG * (xSize -(bmtahometerScale.XSize>>1)), MAG * (_ySpace + YSIZE_SCALE + NEEDLE_OFF_Y));
+  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_0),  MAG*TAHOMETERSCALE_NEEDLE_POS_X,  MAG*TAHOMETERSCALE_NEEDLE_POS_Y);
 
 }
 
@@ -202,10 +208,10 @@ static void _Draw_0(void * p) {
 *       _Draw_1
 */
 
-#define FUELSCALE_POS_X					250	
-#define FUELSCALE_POS_Y					ySize-bmfuelScale.YSize	
-#define FUELSCALE_NEEDLE_POS_X	FUELSCALE_POS_X+80
-#define FUELSCALE_NEEDLE_POS_Y	30
+#define FUELSCALE_POS_X					(250)	
+#define FUELSCALE_POS_Y					(ySize-bmfuelScale.YSize)	
+#define FUELSCALE_NEEDLE_POS_X	(FUELSCALE_POS_X+150)
+#define FUELSCALE_NEEDLE_POS_Y	(ySize-60)
 
 static void _Draw_1(void * p) {
   PARAM * pParam = (PARAM *)p;
@@ -220,15 +226,18 @@ static void _Draw_1(void * p) {
   }
   // Moving needle
   GUI_SetColor(GUI_WHITE);
-  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_1),  FUELSCALE_NEEDLE_POS_X,  FUELSCALE_NEEDLE_POS_Y);
+  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_1),  MAG * FUELSCALE_NEEDLE_POS_X,  MAG * FUELSCALE_NEEDLE_POS_Y);
 
 }
 
-
-#define TEMPERATURESCALE_POS_X	570	
-#define TEMPERATURESCALE_POS_Y	ySize-bmtemperatureScale.YSize	
-#define TEMPERATURESCALE_NEEDLE_POS_X	TEMPERATURESCALE_POS_X+80
-#define TEMPERATURESCALE_NEEDLE_POS_Y	30
+/*********************************************************************
+*
+*       _Draw_2
+*/
+#define TEMPERATURESCALE_POS_X	(570)	
+#define TEMPERATURESCALE_POS_Y	(ySize-bmtemperatureScale.YSize)	
+#define TEMPERATURESCALE_NEEDLE_POS_X	(TEMPERATURESCALE_POS_X+150)
+#define TEMPERATURESCALE_NEEDLE_POS_Y	(ySize-60)
 
 static void _Draw_2(void * p) {
   PARAM * pParam = (PARAM *)p;
@@ -242,8 +251,8 @@ static void _Draw_2(void * p) {
     GUI_DrawBitmap(&bmtemperatureScale, TEMPERATURESCALE_POS_X , TEMPERATURESCALE_POS_Y);
   }
   // Moving needle
- // GUI_SetColor(GUI_WHITE);
- // GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_1), MAG * (xSize >> 1), MAG * ((2 * (_ySpace + YSIZE_SCALE)) + NEEDLE_OFF_Y));
+  GUI_SetColor(GUI_WHITE);
+  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_2), MAG * TEMPERATURESCALE_NEEDLE_POS_X, MAG * TEMPERATURESCALE_NEEDLE_POS_Y);
 
 }
 

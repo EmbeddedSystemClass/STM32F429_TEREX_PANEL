@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\STM32F429I-Discovery_Demo\STM32F429I-Discovery_Demo.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\STM32F429I-Discovery_Demo\STM32F429I-Discovery_Demo.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Fri May 27 15:41:59 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Fri May 27 16:50:44 2016
 <BR><P>
 <H3>Maximum Stack Usage =       1300 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -991,7 +991,8 @@ Global Symbols
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_AA_Init
 <LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_AA_Exit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Draw_1
+<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Draw_2
+<LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Draw_1
 <LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Draw_0
 </UL>
 
@@ -2028,6 +2029,7 @@ Global Symbols
 <LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Lock
 </UL>
 <BR>[Called By]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_Exec
+<LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Draw_2
 <LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Draw_1
 <LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Draw_0
 <LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GL_SetDefault
@@ -5009,7 +5011,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUIDEMO_Automotive
 </UL>
 
-<P><STRONG><a name="[2]"></a>_Draw_0</STRONG> (Thumb, 122 bytes, Stack size 24 bytes, guidemo_automotive.o(i._Draw_0))
+<P><STRONG><a name="[2]"></a>_Draw_0</STRONG> (Thumb, 106 bytes, Stack size 24 bytes, guidemo_automotive.o(i._Draw_0))
 <BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = _Draw_0 &rArr; GUI_AA_FillPolygon &rArr; GUI_AA_Init &rArr; GUI_ALLOC_GetFixedBlock &rArr; _InitOnce &rArr; _EnlargeBlocks &rArr; GUI_Lock &rArr; GUI_X_Lock &rArr; GUI_X_InitOS &rArr; xQueueCreateMutex &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetXSize
@@ -5020,7 +5022,7 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> guidemo_automotive.o(.data)
 </UL>
-<P><STRONG><a name="[3]"></a>_Draw_1</STRONG> (Thumb, 102 bytes, Stack size 24 bytes, guidemo_automotive.o(i._Draw_1))
+<P><STRONG><a name="[3]"></a>_Draw_1</STRONG> (Thumb, 108 bytes, Stack size 24 bytes, guidemo_automotive.o(i._Draw_1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = _Draw_1 &rArr; GUI_AA_FillPolygon &rArr; GUI_AA_Init &rArr; GUI_ALLOC_GetFixedBlock &rArr; _InitOnce &rArr; _EnlargeBlocks &rArr; GUI_Lock &rArr; GUI_X_Lock &rArr; GUI_X_InitOS &rArr; xQueueCreateMutex &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetYSize
@@ -5032,13 +5034,15 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> guidemo_automotive.o(.data)
 </UL>
-<P><STRONG><a name="[4]"></a>_Draw_2</STRONG> (Thumb, 84 bytes, Stack size 24 bytes, guidemo_automotive.o(i._Draw_2))
-<BR><BR>[Stack]<UL><LI>Max Depth = 312<LI>Call Chain = _Draw_2 &rArr; GUI_DrawBitmap &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
+<P><STRONG><a name="[4]"></a>_Draw_2</STRONG> (Thumb, 112 bytes, Stack size 24 bytes, guidemo_automotive.o(i._Draw_2))
+<BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = _Draw_2 &rArr; GUI_AA_FillPolygon &rArr; GUI_AA_Init &rArr; GUI_ALLOC_GetFixedBlock &rArr; _InitOnce &rArr; _EnlargeBlocks &rArr; GUI_Lock &rArr; GUI_X_Lock &rArr; GUI_X_InitOS &rArr; xQueueCreateMutex &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetYSize
 <LI><a href="#[1f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetXSize
+<LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetColor
 <LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DrawBitmap
 <LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ClearRect
+<LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_AA_FillPolygon
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> guidemo_automotive.o(.data)
 </UL>
