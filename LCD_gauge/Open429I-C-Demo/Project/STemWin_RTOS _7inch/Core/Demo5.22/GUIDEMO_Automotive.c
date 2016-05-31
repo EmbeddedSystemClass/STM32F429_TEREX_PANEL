@@ -72,13 +72,13 @@ typedef enum
 #define TAHOMETERSCALE_VALUE_MIN	0
 #define TAHOMETERSCALE_VALUE_MAX	2500
 
-#define FUELSCALE_ANGLE_MIN	290
-#define FUELSCALE_ANGLE_MAX	180
+#define FUELSCALE_ANGLE_MIN	270
+#define FUELSCALE_ANGLE_MAX	198
 #define FUELSCALE_VALUE_MIN	0
 #define FUELSCALE_VALUE_MAX	100
 
-#define TEMPERATURESCALE_ANGLE_MIN	290
-#define TEMPERATURESCALE_ANGLE_MAX	180
+#define TEMPERATURESCALE_ANGLE_MIN	270
+#define TEMPERATURESCALE_ANGLE_MAX	198
 #define TEMPERATURESCALE_VALUE_MIN	0
 #define TEMPERATURESCALE_VALUE_MAX	120
 
@@ -117,8 +117,8 @@ static GUI_POINT _aNeedle_0[] = { //tahometer needle
 };
 
 
-#define FUELSCALE_NEEDLE_LEN_VISIO	95
-#define FUELSCALE_NEEDLE_CENTER_TO_VISIO 5	// расстояние от центра вращения до видимой части
+#define FUELSCALE_NEEDLE_LEN_VISIO	100
+#define FUELSCALE_NEEDLE_CENTER_TO_VISIO 50	// расстояние от центра вращения до видимой части
 #define FUELSCALE_NEEDLE_LEN_ALL	FUELSCALE_NEEDLE_LEN_VISIO + FUELSCALE_NEEDLE_CENTER_TO_VISIO		//общая длина стрелки
 static GUI_POINT _aNeedle_1[] = { //other needles
   { MAG * ( 0), MAG * (  0 + FUELSCALE_NEEDLE_LEN_ALL)},
@@ -129,8 +129,8 @@ static GUI_POINT _aNeedle_1[] = { //other needles
 };
 
 
-#define TEMPERATURESCALE_NEEDLE_LEN_VISIO	95
-#define TEMPERATURESCALE_NEEDLE_CENTER_TO_VISIO 5	// расстояние от центра вращения до видимой части
+#define TEMPERATURESCALE_NEEDLE_LEN_VISIO	100
+#define TEMPERATURESCALE_NEEDLE_CENTER_TO_VISIO 50	// расстояние от центра вращения до видимой части
 #define TEMPERATURESCALE_NEEDLE_LEN_ALL	TEMPERATURESCALE_NEEDLE_LEN_VISIO + TEMPERATURESCALE_NEEDLE_CENTER_TO_VISIO		//общая длина стрелки
 static GUI_POINT _aNeedle_2[] = { //other needles
   { MAG * ( 0), MAG * (  0 + TEMPERATURESCALE_NEEDLE_LEN_ALL)},
@@ -163,7 +163,7 @@ static int _OldGear = 0;
 static NEEDLE _aNeedle[NUM_SCALES] = { 
   { _aNeedle_0, GUI_COUNTOF(_aNeedle_0) },
   { _aNeedle_1, GUI_COUNTOF(_aNeedle_1) },
-	{ _aNeedle_1, GUI_COUNTOF(_aNeedle_2) },
+	{ _aNeedle_2, GUI_COUNTOF(_aNeedle_2) },
 };
 
 GUI_AUTODEV aAutoDev [NUM_SCALES];               // Object for banding memory device
@@ -318,8 +318,8 @@ static void _Draw_0(void * p) {
 
 #define FUELSCALE_POS_X					(250)	
 #define FUELSCALE_POS_Y					(ySize-bmfuelScale.YSize)	
-#define FUELSCALE_NEEDLE_POS_X	(FUELSCALE_POS_X+150)
-#define FUELSCALE_NEEDLE_POS_Y	(ySize-65)
+#define FUELSCALE_NEEDLE_POS_X	(FUELSCALE_POS_X+200)
+#define FUELSCALE_NEEDLE_POS_Y	(ySize-25)
 
 static void _Draw_1(void * p) {
   PARAM * pParam = (PARAM *)p;
@@ -329,7 +329,7 @@ static void _Draw_1(void * p) {
 	ySize = LCD_GetYSize();
   // Fixed background
   if (pParam->AutoDevInfo.DrawFixed) {
-    GUI_ClearRect (FUELSCALE_POS_X, FUELSCALE_POS_Y,FUELSCALE_POS_X+ bmfuelScale.XSize - 1,FUELSCALE_POS_Y+ bmfuelScale.YSize - 1);
+    GUI_ClearRect (FUELSCALE_POS_X, FUELSCALE_POS_Y,/*FUELSCALE_POS_X+ bmfuelScale.XSize - 1*/FUELSCALE_NEEDLE_POS_X+5,FUELSCALE_POS_Y+ bmfuelScale.YSize - 1);
     GUI_DrawBitmap(&bmfuelScale, FUELSCALE_POS_X, FUELSCALE_POS_Y);
   }
   // Moving needle
@@ -344,8 +344,8 @@ static void _Draw_1(void * p) {
 */
 #define TEMPERATURESCALE_POS_X	(570)	
 #define TEMPERATURESCALE_POS_Y	(ySize-bmtemperatureScale.YSize)	
-#define TEMPERATURESCALE_NEEDLE_POS_X	(TEMPERATURESCALE_POS_X+150)
-#define TEMPERATURESCALE_NEEDLE_POS_Y	(ySize-65)
+#define TEMPERATURESCALE_NEEDLE_POS_X	(TEMPERATURESCALE_POS_X+200)
+#define TEMPERATURESCALE_NEEDLE_POS_Y	(ySize-25)
 
 static void _Draw_2(void * p) {
   PARAM * pParam = (PARAM *)p;
@@ -355,7 +355,7 @@ static void _Draw_2(void * p) {
 	ySize = LCD_GetYSize();
   // Fixed background
   if (pParam->AutoDevInfo.DrawFixed) {
-    GUI_ClearRect (TEMPERATURESCALE_POS_X,TEMPERATURESCALE_POS_Y, TEMPERATURESCALE_POS_X + bmtemperatureScale.XSize - 1, TEMPERATURESCALE_POS_Y + bmtemperatureScale.YSize - 1);
+    GUI_ClearRect (TEMPERATURESCALE_POS_X,TEMPERATURESCALE_POS_Y, /*TEMPERATURESCALE_POS_X + bmtemperatureScale.XSize - 1*/TEMPERATURESCALE_NEEDLE_POS_X+5, TEMPERATURESCALE_POS_Y + bmtemperatureScale.YSize - 1);
     GUI_DrawBitmap(&bmtemperatureScale, TEMPERATURESCALE_POS_X , TEMPERATURESCALE_POS_Y);
   }
   // Moving needle
