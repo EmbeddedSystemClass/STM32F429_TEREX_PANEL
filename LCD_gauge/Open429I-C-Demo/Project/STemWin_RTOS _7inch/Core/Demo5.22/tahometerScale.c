@@ -27,7 +27,7 @@
   #define GUI_CONST_STORAGE const
 #endif
 
-extern GUI_CONST_STORAGE GUI_BITMAP bmtahometerScale;
+extern  GUI_BITMAP bmtahometerScale;
 
 /*********************************************************************
 *
@@ -42,14 +42,14 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmtahometerScale;
 *    The middle  8 bits represent the Green component.
 *    The highest 8 bits represent the Blue  component.
 */
-static GUI_CONST_STORAGE GUI_COLOR _ColorstahometerScale[] = {
+static  GUI_COLOR _ColorstahometerScale[] = {
   0x000000, 0xFBFBFC, 0x0000FD, 0xCFCFCF,
   0x6D6D6D, 0x2D2D2D, 0x8F8F8F, 0x161616,
   0xB1B1B1, 0x4D4D4D, 0x2E2EFB, 0xCFCFF9,
   0xB2B2FA, 0x5353FA, 0x7171FA, 0x9090FA
 };
 
-static GUI_CONST_STORAGE GUI_LOGPALETTE _PaltahometerScale = {
+static  GUI_LOGPALETTE _PaltahometerScale = {
   16,  // Number of entries
   0,   // No transparency
   &_ColorstahometerScale[0]
@@ -2291,7 +2291,7 @@ static GUI_CONST_STORAGE unsigned char _actahometerScale[] = {
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-GUI_CONST_STORAGE GUI_BITMAP bmtahometerScale = {
+GUI_BITMAP bmtahometerScale = {
   550, // xSize
   319, // ySize
   275, // BytesPerLine

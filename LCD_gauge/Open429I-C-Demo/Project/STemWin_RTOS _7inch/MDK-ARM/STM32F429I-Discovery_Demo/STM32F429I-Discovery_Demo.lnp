@@ -39,7 +39,7 @@
 ".\stm32f429i-discovery_demo\heap_2.o"
 ".\stm32f429i-discovery_demo\port_cm4.o"
 ".\stm32f429i-discovery_demo\guidemo_automotive.o"
-".\stm32f429i-discovery_demo\picto1_2.o"
+".\stm32f429i-discovery_demo\picto.o"
 --library_type=microlib --strict --scatter ".\STM32F429I-Discovery_Demo\STM32F429I-Discovery_Demo.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

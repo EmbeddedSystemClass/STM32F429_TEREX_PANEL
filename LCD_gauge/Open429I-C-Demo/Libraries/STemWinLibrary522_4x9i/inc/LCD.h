@@ -124,7 +124,7 @@ typedef struct { I16 x0,y0,x1,y1; } LCD_RECT;
 typedef struct {
   int              NumEntries;
   char             HasTrans;
-  const LCD_COLOR GUI_UNI_PTR * pPalEntries;
+  LCD_COLOR GUI_UNI_PTR * pPalEntries;
 } LCD_LOGPALETTE;
 
 /* This is used for the simulation only ! */
@@ -135,7 +135,7 @@ typedef struct {
 
 typedef struct {
   int               NumEntries;
-  const LCD_COLOR * pPalEntries;
+  LCD_COLOR * pPalEntries;
 } LCD_PHYSPALETTE;
 
 /*********************************************************************

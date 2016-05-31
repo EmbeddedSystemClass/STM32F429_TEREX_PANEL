@@ -27,7 +27,7 @@
   #define GUI_CONST_STORAGE const
 #endif
 
-extern GUI_CONST_STORAGE GUI_BITMAP bmtemperatureScale;
+extern  GUI_BITMAP bmtemperatureScale;
 
 /*********************************************************************
 *
@@ -42,14 +42,14 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmtemperatureScale;
 *    The middle  8 bits represent the Green component.
 *    The highest 8 bits represent the Blue  component.
 */
-static GUI_CONST_STORAGE GUI_COLOR _ColorstemperatureScale[] = {
+static  GUI_COLOR _ColorstemperatureScale[] = {
   0x000000, 0xF7F7F8, 0x171717, 0x2F2F2F,
   0x080808, 0xDFDFE0, 0xD1D1D2, 0xAEAEAF,
   0x505050, 0x979798, 0xBFBFC0, 0x878787,
   0x646465, 0x7F7F80, 0x787878, 0x6F6F70
 };
 
-static GUI_CONST_STORAGE GUI_LOGPALETTE _PaltemperatureScale = {
+static  GUI_LOGPALETTE _PaltemperatureScale = {
   16,  // Number of entries
   0,   // No transparency
   &_ColorstemperatureScale[0]
@@ -628,7 +628,7 @@ static GUI_CONST_STORAGE unsigned char _actemperatureScale[] = {
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-GUI_CONST_STORAGE GUI_BITMAP bmtemperatureScale = {
+GUI_BITMAP bmtemperatureScale = {
   180, // xSize
   190, // ySize
   90, // BytesPerLine

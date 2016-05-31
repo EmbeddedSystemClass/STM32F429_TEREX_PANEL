@@ -98,7 +98,7 @@ typedef struct {
   U16P BytesPerLine;
   U16P BitsPerPixel;
   const U8 GUI_UNI_PTR * pData;
-  const GUI_LOGPALETTE GUI_UNI_PTR * pPal;
+  GUI_LOGPALETTE GUI_UNI_PTR * pPal;
   const GUI_BITMAP_METHODS * pMethods;
 } GUI_BITMAP;
 

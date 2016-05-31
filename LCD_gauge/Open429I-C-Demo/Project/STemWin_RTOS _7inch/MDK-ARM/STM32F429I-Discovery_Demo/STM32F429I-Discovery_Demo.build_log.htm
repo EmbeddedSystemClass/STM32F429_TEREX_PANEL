@@ -22,12 +22,37 @@ Dialog DLL:      TCM.DLL V1.14.5.0
  
 <h2>Project:</h2>
 D:\PROJECTS\GIT_REPOSITORY\STM32\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\STM32F429I-Discovery_Demo.uvprojx
-Project File Date:  05/27/2016
+Project File Date:  05/30/2016
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 (build 20)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32F429I-Discovery_Demo'
-".\STM32F429I-Discovery_Demo\STM32F429I-Discovery_Demo.axf" - 0 Error(s), 0 Warning(s).
+compiling GUIDEMO_Automotive.c...
+..\Core\Demo5.22\GUIDEMO_Automotive.c(326): warning:  #550-D: variable "xSize" was set but never used
+    int     xSize, ySize;
+..\Core\Demo5.22\GUIDEMO_Automotive.c(352): warning:  #550-D: variable "xSize" was set but never used
+    int     xSize, ySize;
+..\Core\Demo5.22\GUIDEMO_Automotive.c(605): warning:  #128-D: loop is not reachable
+    for (i = 0; i < NUM_SCALES; i++) {
+..\Core\Demo5.22\GUIDEMO_Automotive.c(508): warning:  #550-D: variable "atDiff" was set but never used
+    int         atDiff   [NUM_SCALES];
+..\Core\Demo5.22\GUIDEMO_Automotive.c(509): warning:  #177-D: variable "atDiffOld" was declared but never referenced
+    int         atDiffOld[NUM_SCALES] = {0};
+..\Core\Demo5.22\GUIDEMO_Automotive.c(512): warning:  #550-D: variable "ySize" was set but never used
+    int         ySize;
+..\Core\Demo5.22\GUIDEMO_Automotive.c(135): warning:  #550-D: variable "_aNeedle_2" was set but never used
+  static GUI_POINT _aNeedle_2[] = { //other needles
+..\Core\Demo5.22\GUIDEMO_Automotive.c(161): warning:  #177-D: variable "_OldGear" was declared but never referenced
+  static int _OldGear = 0;
+..\Core\Demo5.22\GUIDEMO_Automotive.c(248): warning:  #177-D: function "_GetRPM" was declared but never referenced
+  static float _GetRPM(int tDiff) {
+..\Core\Demo5.22\GUIDEMO_Automotive.c(279): warning:  #177-D: variable "_pfGetAngle" was declared but never referenced
+  static float (* _pfGetAngle[NUM_SCALES])(int tDiff) = {
+..\Core\Demo5.22\GUIDEMO_Automotive.c: 10 warnings, 0 errors
+linking...
+Program Size: Code=62696 RO-data=169120 RW-data=1740 ZI-data=5311092  
+FromELF: creating hex file...
+".\STM32F429I-Discovery_Demo\STM32F429I-Discovery_Demo.axf" - 0 Error(s), 10 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -45,7 +70,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:4.1.0
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

@@ -1,14 +1,91 @@
 #include "GUIDEMO.h"
 #include "GUI.h"
+#include <stdint.h>
 
+extern GUI_BITMAP bmpicto_H19;
+extern  GUI_LOGPALETTE _Palpicto_H19;
+	
+extern GUI_BITMAP bmpicto_H20;
+extern  GUI_LOGPALETTE _Palpicto_H20;
+	
+extern GUI_BITMAP bmpicto_H21;
+extern  GUI_LOGPALETTE _Palpicto_H21;
+	
+extern GUI_BITMAP bmpicto_H24;
+extern  GUI_LOGPALETTE _Palpicto_H24;	
+	
+extern GUI_BITMAP bmpicto_H35;
+extern  GUI_LOGPALETTE _Palpicto_H35;		
+	
+extern GUI_BITMAP bmpicto_H36;
+extern  GUI_LOGPALETTE _Palpicto_H36;	
 
-extern GUI_CONST_STORAGE GUI_BITMAP bmpicto1_2;
-extern GUI_COLOR _Colorspicto1_2[];
+extern GUI_BITMAP bmpicto_H37;
+extern  GUI_LOGPALETTE _Palpicto_H37;
 
-#define MAG         3
+extern GUI_BITMAP bmpicto_H38;
+extern  GUI_LOGPALETTE _Palpicto_H38;
+
+extern GUI_BITMAP bmpicto_H39;
+extern  GUI_LOGPALETTE _Palpicto_H39;	
+
+extern GUI_BITMAP bmpicto_H40;
+extern  GUI_LOGPALETTE _Palpicto_H40;	
+	
+extern  GUI_COLOR _Colorspicto_gray[];
+extern  GUI_COLOR _Colorspicto_red[];
+
+#define MAG         10
 #define NUM_SCALES  3
 
+typedef enum
+{
+	SCALE_TAHOMETER=0,
+	SCALE_FUEL=1,
+	SCALE_TEMPERATURE=2,
+}enScale;
 
+typedef enum
+{
+	PICTO_H19=0,
+	PICTO_H20,
+	PICTO_H21,
+	PICTO_H24,
+	PICTO_H35,
+	PICTO_H36,
+	PICTO_H37,
+	PICTO_H38,
+	PICTO_H39,
+	PICTO_H40,
+	PICTO_H42,
+}enPictogram;
+
+typedef enum
+{
+	PICTO_STATE_OFF=0,
+	PICTO_STATE_ON,
+}enPictoState;
+
+
+#define TAHOMETERSCALE_ANGLE_MIN	270
+#define TAHOMETERSCALE_ANGLE_MAX	90
+#define TAHOMETERSCALE_VALUE_MIN	0
+#define TAHOMETERSCALE_VALUE_MAX	2500
+
+#define FUELSCALE_ANGLE_MIN	290
+#define FUELSCALE_ANGLE_MAX	180
+#define FUELSCALE_VALUE_MIN	0
+#define FUELSCALE_VALUE_MAX	100
+
+#define TEMPERATURESCALE_ANGLE_MIN	290
+#define TEMPERATURESCALE_ANGLE_MAX	180
+#define TEMPERATURESCALE_VALUE_MIN	0
+#define TEMPERATURESCALE_VALUE_MAX	120
+
+void Set_TahometerScale_Value(float val);
+void Set_FuelScale_Value(float val);
+void Set_TemperatureScale_Value(float val);
+void Set_Pictogram_State(enPictogram pictogram, enPictoState state);
 
 //#define FONT_GEAR &GUI_FontRounded22
 
@@ -19,6 +96,7 @@ extern GUI_COLOR _Colorspicto1_2[];
 #include "tahometerScale.c"
 #include "fuelScale.c"
 #include "temperatureScale.c"
+//#include "picto.c"
 /*********************************************************************
 *
 *       static data, shape of polygons
@@ -87,6 +165,9 @@ static NEEDLE _aNeedle[NUM_SCALES] = {
   { _aNeedle_1, GUI_COUNTOF(_aNeedle_1) },
 	{ _aNeedle_1, GUI_COUNTOF(_aNeedle_2) },
 };
+
+GUI_AUTODEV aAutoDev [NUM_SCALES];               // Object for banding memory device
+PARAM       aParam   [NUM_SCALES] = {0};           // Parameters for drawing routine
 
 /*********************************************************************
 *
@@ -164,13 +245,40 @@ static float _GetAngle_1(int tDiff) {
   return 225 - 90;
 }
 
+static float _GetRPM(int tDiff) {
+
+  if ((tDiff >= 0) && (tDiff < 15000)) 
+	{
+			return ((float)tDiff/15000*2500);
+  }
+  return 2500;
+}
+
+static float _GetFuel(int tDiff) {
+
+  if ((tDiff >= 0) && (tDiff < 15000)) 
+	{
+			return 100- ((float)tDiff/15000*100);
+  }
+  return 0;
+}
+
+static float _GetTemperature(int tDiff) {
+
+  if ((tDiff >= 0) && (tDiff < 15000)) 
+	{
+			return ((float)tDiff/15000*120);
+  }
+  return 120;
+}
+
 /*********************************************************************
 *
 *       DATA - _pfGetAngle[] - Array of function pointers to GetAngle functions
 */
 static float (* _pfGetAngle[NUM_SCALES])(int tDiff) = {
   _GetAngle_0,
-  _GetAngle_1,
+  _GetFuel,
 	_GetAngle_1
 };
 
@@ -180,8 +288,8 @@ static float (* _pfGetAngle[NUM_SCALES])(int tDiff) = {
 */
 #define TAHOMETERSCALE_POS_X					(xSize - bmtahometerScale.XSize)	
 #define TAHOMETERSCALE_POS_Y					(0)	
-#define TAHOMETERSCALE_NEEDLE_POS_X		(xSize -(bmtahometerScale.XSize>>1))
-#define TAHOMETERSCALE_NEEDLE_POS_Y		(bmtahometerScale.YSize-80)
+#define TAHOMETERSCALE_NEEDLE_POS_X		(xSize -(bmtahometerScale.XSize>>1)-12)
+#define TAHOMETERSCALE_NEEDLE_POS_Y		(bmtahometerScale.YSize-68)
 
 static void _Draw_0(void * p) {
   PARAM * pParam = (PARAM *)p;
@@ -211,7 +319,7 @@ static void _Draw_0(void * p) {
 #define FUELSCALE_POS_X					(250)	
 #define FUELSCALE_POS_Y					(ySize-bmfuelScale.YSize)	
 #define FUELSCALE_NEEDLE_POS_X	(FUELSCALE_POS_X+150)
-#define FUELSCALE_NEEDLE_POS_Y	(ySize-60)
+#define FUELSCALE_NEEDLE_POS_Y	(ySize-65)
 
 static void _Draw_1(void * p) {
   PARAM * pParam = (PARAM *)p;
@@ -237,7 +345,7 @@ static void _Draw_1(void * p) {
 #define TEMPERATURESCALE_POS_X	(570)	
 #define TEMPERATURESCALE_POS_Y	(ySize-bmtemperatureScale.YSize)	
 #define TEMPERATURESCALE_NEEDLE_POS_X	(TEMPERATURESCALE_POS_X+150)
-#define TEMPERATURESCALE_NEEDLE_POS_Y	(ySize-60)
+#define TEMPERATURESCALE_NEEDLE_POS_Y	(ySize-65)
 
 static void _Draw_2(void * p) {
   PARAM * pParam = (PARAM *)p;
@@ -266,16 +374,136 @@ void (* _pfDraw[NUM_SCALES])(void * p) = {
 	_Draw_2
 };
 
+
+/*********************************************************************
+*
+*
+*/
+
+void Set_TahometerScale_Value(float val)
+{
+	if(val<TAHOMETERSCALE_VALUE_MIN)
+	{
+			val=TAHOMETERSCALE_VALUE_MIN;
+	}
+	
+	if(val>TAHOMETERSCALE_VALUE_MAX)
+	{
+			val=TAHOMETERSCALE_VALUE_MAX;
+	}
+	
+	aParam[SCALE_TAHOMETER].Angle = ((val-TAHOMETERSCALE_VALUE_MIN)/(TAHOMETERSCALE_VALUE_MAX-TAHOMETERSCALE_VALUE_MIN)*(TAHOMETERSCALE_ANGLE_MAX-TAHOMETERSCALE_ANGLE_MIN)+TAHOMETERSCALE_ANGLE_MIN)*DEG2RAD;
+}
+
+void Set_FuelScale_Value(float val)
+{
+	if(val<FUELSCALE_VALUE_MIN)
+	{
+			val=FUELSCALE_VALUE_MIN;
+	}
+	
+	if(val>FUELSCALE_VALUE_MAX)
+	{
+			val=FUELSCALE_VALUE_MAX;
+	}
+	
+	aParam[SCALE_FUEL].Angle = ((val-FUELSCALE_VALUE_MIN)/(FUELSCALE_VALUE_MAX-FUELSCALE_VALUE_MIN)*(FUELSCALE_ANGLE_MAX-FUELSCALE_ANGLE_MIN)+FUELSCALE_ANGLE_MIN)*DEG2RAD;
+}
+
+void Set_TemperatureScale_Value(float val)
+{
+	if(val<TEMPERATURESCALE_VALUE_MIN)
+	{
+			val=TEMPERATURESCALE_VALUE_MIN;
+	}
+	
+	if(val>TEMPERATURESCALE_VALUE_MAX)
+	{
+			val=TEMPERATURESCALE_VALUE_MAX;
+	}
+	
+	aParam[SCALE_TEMPERATURE].Angle = ((val-TEMPERATURESCALE_VALUE_MIN)/(TEMPERATURESCALE_VALUE_MAX-TEMPERATURESCALE_VALUE_MIN)*(TEMPERATURESCALE_ANGLE_MAX-TEMPERATURESCALE_ANGLE_MIN)+TEMPERATURESCALE_ANGLE_MIN)*DEG2RAD;
+}
+
+
+
+void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
+{
+	switch(pictogram)
+	{
+		case PICTO_H19:
+		{
+		}
+		break;
+		
+		case PICTO_H20:
+		{
+		}
+		break;
+		
+		case PICTO_H21:
+		{
+		}
+		break;
+		
+		case PICTO_H24:
+		{
+		}
+		break;
+		
+		case PICTO_H35:
+		{
+		}
+		break;
+		
+		case PICTO_H36:
+		{
+		}
+		break;	
+
+		case PICTO_H37:
+		{
+		}
+		break;	
+
+		case PICTO_H38:
+		{
+		}
+		break;	
+
+		case PICTO_H39:
+		{
+		}
+		break;	
+
+		case PICTO_H40:
+		{
+		}
+		break;		
+		
+		case PICTO_H42:
+		{
+			if(state==PICTO_STATE_OFF)
+			{
+				
+			}
+			else
+			{
+				
+			}
+		}
+		break;	
+		
+	}
+}
+
 /*********************************************************************
 *
 *       _AutomotiveDemo
 */
-
-
-
 static void _AutomotiveDemo(void) {
-  GUI_AUTODEV aAutoDev [NUM_SCALES];               // Object for banding memory device
-  PARAM       aParam   [NUM_SCALES] = {0};           // Parameters for drawing routine
+//  GUI_AUTODEV aAutoDev [NUM_SCALES];               // Object for banding memory device
+//  PARAM       aParam   [NUM_SCALES] = {0};           // Parameters for drawing routine
   float       aAngleOld[NUM_SCALES];
   int         atDiff   [NUM_SCALES];
   int         atDiffOld[NUM_SCALES] = {0};
@@ -285,62 +513,91 @@ static void _AutomotiveDemo(void) {
 
   tDiff = 0;
   ySize = LCD_GetYSize();
-  //
-  // Create GUI_AUTODEV-objects
-  //
+	
+	static uint8_t blink_flag=0;
+
+
+	Set_TahometerScale_Value(0);
+	Set_FuelScale_Value(0);
+	Set_TemperatureScale_Value(0);	
+	
   for (i = 0; i < NUM_SCALES; i++) {
-    //
-    // Initialize values
-    //
+
     aAngleOld[i] = -1;
-    //
-    // Create Device
-    //
+
     GUI_MEMDEV_CreateAuto(&aAutoDev[i]);
-    //
-    // Pre-draw memory devices to avoid lag on slow targets
-    //
-    aParam[i].Angle = _pfGetAngle[i](tDiff) * DEG2RAD;
     GUI_RotatePolygon(aParam[i].aPoints, _aNeedle[i].pPolygon, _aNeedle[i].NumPoints, aParam[i].Angle);
     GUI_MEMDEV_DrawAuto(&aAutoDev[i], &aParam[i].AutoDevInfo, _pfDraw[i], &aParam[i]);
   }
-  //
-  // Run sample
-  //
+	
+			GUI_DrawBitmap(&bmpicto_H19, 120 ,  20);
+			GUI_DrawBitmap(&bmpicto_H20, 90 , 120);
+			GUI_DrawBitmap(&bmpicto_H21, 60 , 220);
+			GUI_DrawBitmap(&bmpicto_H24, 30 , 320);
+			GUI_DrawBitmap(&bmpicto_H35, 10 , 420);
+			GUI_DrawBitmap(&bmpicto_H36, 220,  20);
+			GUI_DrawBitmap(&bmpicto_H37, 190, 120);
+			GUI_DrawBitmap(&bmpicto_H38, 160, 220);
+			GUI_DrawBitmap(&bmpicto_H39, 130, 320);
+			GUI_DrawBitmap(&bmpicto_H40, 110, 420);
+
   t0 = GUI_GetTime();       // Get current time
 //  for (Cnt = 0; ((tDiff = GUIDEMO_GetTime() - t0) < 15000) && !GUIDEMO_CheckCancel(); Cnt++) {
 	Cnt = 0;
 	tBlinkNext=1000;
-	while(1){
-		if((tDiff = GUI_GetTime() - t0) > TIME_4_2){
+	while(1)
+	{
+				
+		if((tDiff = GUI_GetTime() - t0) > TIME_4_2)
+		{
 			Cnt=0;
 			tBlinkNext=1000;
 			t0 = GUI_GetTime();       // Get current time
 		}
-		if(tDiff > tBlinkNext){
-			tBlinkNext+=1000;
-			_Colorspicto1_2[1] ^= 0xFFFF00;
-/*			if(tBlinkNext < 2000){
-			}*/
-		}
-    //
-    // Get values to display and calculate polygons
-    //
-    for (i = 0; i < NUM_SCALES; i++) {
-      aParam[i].Angle = _pfGetAngle[i](tDiff) * DEG2RAD;
-      if (aAngleOld[i] != aParam[i].Angle) {
-        aAngleOld[i] = aParam[i].Angle;
-        t1           = GUI_GetTime();
-        GUI_RotatePolygon(aParam[i].aPoints, _aNeedle[i].pPolygon, _aNeedle[i].NumPoints, aParam[i].Angle);
-        GUI_MEMDEV_DrawAuto(&aAutoDev[i], &aParam[i].AutoDevInfo, _pfDraw[i], &aParam[i]);
-        atDiff[i]    = GUI_GetTime() - t1;
-      }
-    }
+		
+		
+		if(tDiff > tBlinkNext)
+		{
+				tBlinkNext+=1000;
+				if(blink_flag)
+				{
+						_Palpicto_H19.pPalEntries =&_Colorspicto_gray[0];
+					  GUI_DrawBitmap(&bmpicto_H19, 120 ,  20);
+				}
+				else
+				{
+						_Palpicto_H19.pPalEntries =&_Colorspicto_red[0];
+						GUI_DrawBitmap(&bmpicto_H19, 120 ,  20);
+				}  
+				blink_flag=~blink_flag;			
 
-		GUI_DrawBitmap(&bmpicto1_2, 120, 150);
+			}
 
-    GUI_Exec();
-		Cnt++;	// Bykov
+			
+			//Set_TahometerScale_Value(_GetRPM(tDiff));
+			aParam[SCALE_TAHOMETER].Angle=_GetAngle_0(tDiff)*DEG2RAD;
+			Set_FuelScale_Value(_GetFuel(tDiff));
+			Set_TemperatureScale_Value(_GetTemperature(tDiff));
+			
+			for (i = 0; i < NUM_SCALES; i++) 
+			{
+				if (aAngleOld[i] != aParam[i].Angle)
+				{
+					aAngleOld[i] = aParam[i].Angle;
+					t1           = GUI_GetTime();
+					GUI_RotatePolygon(aParam[i].aPoints, _aNeedle[i].pPolygon, _aNeedle[i].NumPoints, aParam[i].Angle);
+					GUI_MEMDEV_DrawAuto(&aAutoDev[i], &aParam[i].AutoDevInfo, _pfDraw[i], &aParam[i]);
+					atDiff[i]    = GUI_GetTime() - t1;
+				}
+			}
+			
+
+
+//
+
+
+			GUI_Exec();
+			Cnt++;	// Bykov
   }
   
   // Delete GUI_AUTODEV-objects

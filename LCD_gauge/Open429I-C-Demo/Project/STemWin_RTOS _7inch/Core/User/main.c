@@ -27,8 +27,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "bsp.h"
-#include "timers.h "
-//#include "test_program.h"
+#include "timers.h"
 #include <stddef.h>
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,9 +52,6 @@ uint32_t demo_mode = 0;
 static void Background_Task(void * pvParameters);
 static void Demo_Task(void * pvParameters);
 static void vTimerCallback( xTimerHandle pxTimer );
-extern void DEMO_Starup(void);
-extern void DEMO_MainMenu(void);
-extern void ALARM_BackgroundProcess (void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
