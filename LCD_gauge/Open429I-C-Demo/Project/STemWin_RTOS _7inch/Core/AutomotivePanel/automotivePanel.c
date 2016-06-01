@@ -35,6 +35,7 @@ extern  GUI_LOGPALETTE _Palpicto_H40;
 	
 extern  GUI_COLOR _Colorspicto_gray[];
 extern  GUI_COLOR _Colorspicto_red[];
+extern  GUI_COLOR _Colorspicto_green[];
 
 #define MAG         3
 #define NUM_SCALES  3
@@ -65,6 +66,9 @@ typedef enum
 void Set_TahometerScale_Value(float val);
 void Set_FuelScale_Value(float val);
 void Set_TemperatureScale_Value(float val);
+float AutomotivePanel_TahometerScale_Filter (float in);
+float AutomotivePanel_FuelScale_Filter (float in);
+float AutomotivePanel_TemperatureScale_Filter (float in);
 
 
 #define AutomotivePanel_Task_PRIO    ( tskIDLE_PRIORITY  + 9 )
@@ -323,6 +327,7 @@ void (* _pfDraw[NUM_SCALES])(void * p) = {
 
 void Set_TahometerScale_Value(float val)
 {
+	val=AutomotivePanel_TahometerScale_Filter(val);
 	if(val<TAHOMETERSCALE_VALUE_MIN)
 	{
 			val=TAHOMETERSCALE_VALUE_MIN;
@@ -338,6 +343,7 @@ void Set_TahometerScale_Value(float val)
 
 void Set_FuelScale_Value(float val)
 {
+	val=AutomotivePanel_FuelScale_Filter(val);
 	if(val<FUELSCALE_VALUE_MIN)
 	{
 			val=FUELSCALE_VALUE_MIN;
@@ -353,6 +359,7 @@ void Set_FuelScale_Value(float val)
 
 void Set_TemperatureScale_Value(float val)
 {
+	val=AutomotivePanel_TemperatureScale_Filter(val);
 	if(val<TEMPERATURESCALE_VALUE_MIN)
 	{
 			val=TEMPERATURESCALE_VALUE_MIN;
@@ -507,7 +514,7 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 				}
 				else
 				{
-						_Palpicto_H40.pPalEntries =&_Colorspicto_red[0];
+						_Palpicto_H40.pPalEntries =&_Colorspicto_green[0];
 				}	
 				GUI_DrawBitmap(&bmpicto_H40, 110, 420);
 		}
@@ -580,18 +587,20 @@ static void AutomotivePanel_Task(void * pvParameters)
 				if(blink_flag)
 				{
 							Set_Pictogram_State(PICTO_H20,PICTO_STATE_OFF);
+							Set_Pictogram_State(PICTO_H40,PICTO_STATE_ON);
 				}
 				else
 				{
 							Set_Pictogram_State(PICTO_H20,PICTO_STATE_ON);
+							Set_Pictogram_State(PICTO_H40,PICTO_STATE_OFF);
 				}  
 				blink_flag=~blink_flag;			
 
 			}
 
 			
-			//Set_TahometerScale_Value(_GetRPM(tDiff));
-			aParam[SCALE_TAHOMETER].Angle=_GetAngle_0(tDiff)*DEG2RAD;
+			Set_TahometerScale_Value(_GetRPM(tDiff));
+			//aParam[SCALE_TAHOMETER].Angle=_GetAngle_0(tDiff)*DEG2RAD;
 			Set_FuelScale_Value(_GetFuel(tDiff));
 			Set_TemperatureScale_Value(_GetTemperature(tDiff));
 			
@@ -615,4 +624,34 @@ static void AutomotivePanel_Task(void * pvParameters)
 	{
     GUI_MEMDEV_DeleteAuto(&aAutoDev[i]);
   }
+}
+
+#define TAHOMETERSCALE_FILTER_TCONST	10
+#define TAHOMETERSCALE_WLAG 8
+float AutomotivePanel_TahometerScale_Filter (float in)
+{
+		static float lastOut=0;
+		float out = in * (TAHOMETERSCALE_FILTER_TCONST - TAHOMETERSCALE_WLAG) + ((TAHOMETERSCALE_WLAG * lastOut) / TAHOMETERSCALE_FILTER_TCONST);
+		lastOut = out;
+		return (out / TAHOMETERSCALE_FILTER_TCONST); 
+}
+
+#define FUELSCALE_FILTER_TCONST	10
+#define FUELSCALE_WLAG 8
+float AutomotivePanel_FuelScale_Filter (float in)
+{
+		static float lastOut=0;
+		float out = in * (FUELSCALE_FILTER_TCONST - FUELSCALE_WLAG) + ((FUELSCALE_WLAG * lastOut) / FUELSCALE_FILTER_TCONST);
+		lastOut = out;
+		return (out / FUELSCALE_FILTER_TCONST); 
+}
+
+#define TEMPERATURESCALE_FILTER_TCONST	10
+#define TEMPERATURESCALE_WLAG 8
+float AutomotivePanel_TemperatureScale_Filter (float in)
+{
+		static float lastOut=0;
+		float out = in * (TEMPERATURESCALE_FILTER_TCONST - TEMPERATURESCALE_WLAG) + ((TEMPERATURESCALE_WLAG * lastOut) / TEMPERATURESCALE_FILTER_TCONST);
+		lastOut = out;
+		return (out / TEMPERATURESCALE_FILTER_TCONST); 
 }

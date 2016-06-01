@@ -373,7 +373,7 @@
               <MiscControls>--c99 --diag-suppress 111</MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F429_439xx,USE_STM32F429I_DISCO,USE_EMBEDDED_PHY,</Define>
               <Undefine></Undefine>
-              <IncludePath>.\..\Config;.\..\Core\Devices\STM32F4xx;.\..\Core\User;.\..\Core\Demo;.\..\Core\Lib;.\..\Core\Test_Program;.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc;.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;.\..\..\..\Utilities;.\..\..\..\Utilities\Common;.\..\..\..\Utilities\STM32F429i-Discovery;.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F;.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include;.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc;.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config;..\Core\User\TouchPanel;..\..\..\Utilities\STM32F429I_Lib</IncludePath>
+              <IncludePath>.\..\Config;.\..\Core\Devices\STM32F4xx;.\..\Core\User;.\..\Core\Demo;.\..\Core\Lib;.\..\Core\Test_Program;.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc;.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;.\..\..\..\Utilities;.\..\..\..\Utilities\Common;.\..\..\..\Utilities\STM32F429i-Discovery;.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F;.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include;.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc;.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config;..\Core\User\TouchPanel;..\..\..\Utilities\STM32F429I_Lib;..\Core\AutomotivePanel</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
