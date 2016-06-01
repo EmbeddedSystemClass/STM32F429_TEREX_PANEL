@@ -46,27 +46,6 @@ typedef enum
 	SCALE_TEMPERATURE=2,
 }enScale;
 
-typedef enum
-{
-	PICTO_H19=0,
-	PICTO_H20,
-	PICTO_H21,
-	PICTO_H24,
-	PICTO_H35,
-	PICTO_H36,
-	PICTO_H37,
-	PICTO_H38,
-	PICTO_H39,
-	PICTO_H40,
-	PICTO_H42,
-}enPictogram;
-
-typedef enum
-{
-	PICTO_STATE_OFF=0,
-	PICTO_STATE_ON,
-}enPictoState;
-
 
 #define TAHOMETERSCALE_ANGLE_MIN	270
 #define TAHOMETERSCALE_ANGLE_MAX	90
@@ -86,8 +65,11 @@ typedef enum
 void Set_TahometerScale_Value(float val);
 void Set_FuelScale_Value(float val);
 void Set_TemperatureScale_Value(float val);
-void Set_Pictogram_State(enPictogram pictogram, enPictoState state);
 
+
+#define AutomotivePanel_Task_PRIO    ( tskIDLE_PRIORITY  + 9 )
+#define AutomotivePanel_Task_STACK   ( 3048 )
+xTaskHandle                   				AutomotivePanel_Task_Handle;
 static void AutomotivePanel_Task(void * pvParameters);
 
 //#define FONT_GEAR &GUI_FontRounded22
@@ -229,24 +211,6 @@ static float _GetAngle_0(int tDiff) {
 *
 *       _GetAngle_1
 */
-static float _GetAngle_1(int tDiff) {
-  // Gear 1
-  if ((tDiff >=    0) && (tDiff < 1000))  { return 225 -      0.02   *  tDiff;         }
-  if ((tDiff >= 1000) && (tDiff <  1250)) { return 225 - 20;                           }
-  // Gear 2
-  if ((tDiff >= 1250) && (tDiff <  3250)) { return 225 - 20 - 0.01   * (tDiff - 1250); }
-  if ((tDiff >= 3250) && (tDiff <  3500)) { return 225 - 40;                           }
-  // Gear 3
-  if ((tDiff >= 3500) && (tDiff <  6000)) { return 225 - 40 - 0.004  * (tDiff - 3500); }
-  if ((tDiff >= 6000) && (tDiff <  6250)) { return 225 - 50;                           }
-  // Gear 4
-  if ((tDiff >= 6250) && (tDiff <  9250)) { return 225 - 50 - 0.004  * (tDiff - 6250); }
-  if ((tDiff >= 9250) && (tDiff <  9500)) { return 225 - 62;                           }
-  // Gear 5
-  if ((tDiff >= 9500) && (tDiff < 15000)) { return 225 - 62 - 0.0012 * (tDiff - 9500);
-  }
-  return 225 - 90;
-}
 
 static float _GetRPM(int tDiff) {
 
@@ -275,26 +239,13 @@ static float _GetTemperature(int tDiff) {
   return 120;
 }
 
-/*********************************************************************
-*
-*       DATA - _pfGetAngle[] - Array of function pointers to GetAngle functions
-*/
-static float (* _pfGetAngle[NUM_SCALES])(int tDiff) = {
-  _GetAngle_0,
-  _GetFuel,
-	_GetAngle_1
-};
-
-/*********************************************************************
-*
-*       _Draw_0
-*/
+/*********************************************************************/
 #define TAHOMETERSCALE_POS_X					(xSize - bmtahometerScale.XSize)	
 #define TAHOMETERSCALE_POS_Y					(0)	
 #define TAHOMETERSCALE_NEEDLE_POS_X		(xSize -(bmtahometerScale.XSize>>1)-12)
 #define TAHOMETERSCALE_NEEDLE_POS_Y		(bmtahometerScale.YSize-68)
 
-static void _Draw_0(void * p) {
+static void _Draw_TahometerScale(void * p) {
   PARAM * pParam = (PARAM *)p;
   int     xSize;
 
@@ -314,17 +265,14 @@ static void _Draw_0(void * p) {
 
 }
 
-/*********************************************************************
-*
-*       _Draw_1
-*/
+/*********************************************************************/
 
 #define FUELSCALE_POS_X					(250)	
 #define FUELSCALE_POS_Y					(ySize-bmfuelScale.YSize)	
 #define FUELSCALE_NEEDLE_POS_X	(FUELSCALE_POS_X+200)
 #define FUELSCALE_NEEDLE_POS_Y	(ySize-25)
 
-static void _Draw_1(void * p) {
+static void _Draw_FuelScale(void * p) {
   PARAM * pParam = (PARAM *)p;
   int     xSize, ySize;
 
@@ -340,16 +288,13 @@ static void _Draw_1(void * p) {
   GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_1),  MAG * FUELSCALE_NEEDLE_POS_X,  MAG * FUELSCALE_NEEDLE_POS_Y);
 }
 
-/*********************************************************************
-*
-*       _Draw_2
-*/
+/*********************************************************************/
 #define TEMPERATURESCALE_POS_X	(570)	
 #define TEMPERATURESCALE_POS_Y	(ySize-bmtemperatureScale.YSize)	
 #define TEMPERATURESCALE_NEEDLE_POS_X	(TEMPERATURESCALE_POS_X+200)
 #define TEMPERATURESCALE_NEEDLE_POS_Y	(ySize-25)
 
-static void _Draw_2(void * p) {
+static void _Draw_TemperatureScale(void * p) {
   PARAM * pParam = (PARAM *)p;
   int     xSize, ySize;
 
@@ -366,21 +311,15 @@ static void _Draw_2(void * p) {
 
 }
 
-/*********************************************************************
-*
-*       DATA - _pfDraw[] - Array of function pointers to drawing routines
-*/
+/*********************************************************************/
 void (* _pfDraw[NUM_SCALES])(void * p) = {
-  _Draw_0,
-  _Draw_1,
-	_Draw_2
+  _Draw_TahometerScale,
+  _Draw_FuelScale,
+	_Draw_TemperatureScale
 };
 
 
-/*********************************************************************
-*
-*
-*/
+/*********************************************************************/
 
 void Set_TahometerScale_Value(float val)
 {
@@ -434,197 +373,160 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 	{
 		case PICTO_H19:
 		{
+			if(state==PICTO_STATE_OFF)
+			{
+					_Palpicto_H19.pPalEntries =&_Colorspicto_gray[0];
+			}
+			else
+			{
+					_Palpicto_H19.pPalEntries =&_Colorspicto_red[0];
+			}
+			GUI_DrawBitmap(&bmpicto_H19, 120 ,  20);
 		}
 		break;
 		
 		case PICTO_H20:
 		{
+			if(state==PICTO_STATE_OFF)
+			{
+					_Palpicto_H20.pPalEntries =&_Colorspicto_gray[0];
+			}
+			else
+			{
+					_Palpicto_H20.pPalEntries =&_Colorspicto_red[0];
+			}
+			GUI_DrawBitmap(&bmpicto_H20, 90 , 120);
 		}
 		break;
 		
 		case PICTO_H21:
 		{
+				if(state==PICTO_STATE_OFF)
+				{
+						_Palpicto_H21.pPalEntries =&_Colorspicto_gray[0];
+				}
+				else
+				{
+						_Palpicto_H21.pPalEntries =&_Colorspicto_red[0];
+				}
+				GUI_DrawBitmap(&bmpicto_H21, 60 , 220);
+
 		}
 		break;
 		
 		case PICTO_H24:
 		{
+			
+				if(state==PICTO_STATE_OFF)
+				{
+						_Palpicto_H24.pPalEntries =&_Colorspicto_gray[0];
+				}
+				else
+				{
+						_Palpicto_H24.pPalEntries =&_Colorspicto_red[0];
+				}
+				GUI_DrawBitmap(&bmpicto_H24, 30 , 320);
 		}
 		break;
 		
 		case PICTO_H35:
 		{
+				if(state==PICTO_STATE_OFF)
+				{
+						_Palpicto_H35.pPalEntries =&_Colorspicto_gray[0];
+				}
+				else
+				{
+						_Palpicto_H35.pPalEntries =&_Colorspicto_red[0];
+				}
+				GUI_DrawBitmap(&bmpicto_H35, 10 , 420);
 		}
 		break;
 		
 		case PICTO_H36:
 		{
+				if(state==PICTO_STATE_OFF)
+				{
+						_Palpicto_H36.pPalEntries =&_Colorspicto_gray[0];
+				}
+				else
+				{
+						_Palpicto_H36.pPalEntries =&_Colorspicto_red[0];
+				}
+				GUI_DrawBitmap(&bmpicto_H36, 220,  20);
 		}
 		break;	
 
 		case PICTO_H37:
 		{
+				if(state==PICTO_STATE_OFF)
+				{
+						_Palpicto_H37.pPalEntries =&_Colorspicto_gray[0];
+				}
+				else
+				{
+						_Palpicto_H37.pPalEntries =&_Colorspicto_red[0];
+				}	
+				GUI_DrawBitmap(&bmpicto_H37, 190, 120);
 		}
 		break;	
 
 		case PICTO_H38:
 		{
+				if(state==PICTO_STATE_OFF)
+				{
+						_Palpicto_H38.pPalEntries =&_Colorspicto_gray[0];
+				}
+				else
+				{
+						_Palpicto_H38.pPalEntries =&_Colorspicto_red[0];
+				}
+				GUI_DrawBitmap(&bmpicto_H38, 160, 220);
 		}
 		break;	
 
 		case PICTO_H39:
 		{
+				if(state==PICTO_STATE_OFF)
+				{
+						_Palpicto_H39.pPalEntries =&_Colorspicto_gray[0];
+				}
+				else
+				{
+						_Palpicto_H39.pPalEntries =&_Colorspicto_red[0];
+				}
+				GUI_DrawBitmap(&bmpicto_H39, 130, 320);
 		}
 		break;	
 
 		case PICTO_H40:
 		{
+				if(state==PICTO_STATE_OFF)
+				{
+						_Palpicto_H40.pPalEntries =&_Colorspicto_gray[0];
+				}
+				else
+				{
+						_Palpicto_H40.pPalEntries =&_Colorspicto_red[0];
+				}	
+				GUI_DrawBitmap(&bmpicto_H40, 110, 420);
 		}
-		break;		
-		
-		case PICTO_H42:
-		{
-			if(state==PICTO_STATE_OFF)
-			{
-				
-			}
-			else
-			{
-				
-			}
-		}
-		break;	
-		
+		break;				
 	}
 }
 
-///*********************************************************************
-//*
-//*       _AutomotiveDemo
-//*/
-//static void _AutomotiveDemo(void) {
-////  GUI_AUTODEV aAutoDev [NUM_SCALES];               // Object for banding memory device
-////  PARAM       aParam   [NUM_SCALES] = {0};           // Parameters for drawing routine
-//  float       aAngleOld[NUM_SCALES];
-//  int         atDiff   [NUM_SCALES];
-//  int         atDiffOld[NUM_SCALES] = {0};
-//  int         tDiff, t0, t1, tBlinkNext;
-//  int          i;
-//  int         ySize;
 
-//  tDiff = 0;
-//  ySize = LCD_GetYSize();
-//	
-//	static uint8_t blink_flag=0;
-
-
-//	Set_TahometerScale_Value(0);
-//	Set_FuelScale_Value(0);
-//	Set_TemperatureScale_Value(0);	
-//	
-//  for (i = 0; i < NUM_SCALES; i++) {
-
-//    aAngleOld[i] = -1;
-
-//    GUI_MEMDEV_CreateAuto(&aAutoDev[i]);
-//    GUI_RotatePolygon(aParam[i].aPoints, _aNeedle[i].pPolygon, _aNeedle[i].NumPoints, aParam[i].Angle);
-//    GUI_MEMDEV_DrawAuto(&aAutoDev[i], &aParam[i].AutoDevInfo, _pfDraw[i], &aParam[i]);
-//  }
-//	
-//			GUI_DrawBitmap(&bmpicto_H19, 120 ,  20);
-//			GUI_DrawBitmap(&bmpicto_H20, 90 , 120);
-//			GUI_DrawBitmap(&bmpicto_H21, 60 , 220);
-//			GUI_DrawBitmap(&bmpicto_H24, 30 , 320);
-//			GUI_DrawBitmap(&bmpicto_H35, 10 , 420);
-//			GUI_DrawBitmap(&bmpicto_H36, 220,  20);
-//			GUI_DrawBitmap(&bmpicto_H37, 190, 120);
-//			GUI_DrawBitmap(&bmpicto_H38, 160, 220);
-//			GUI_DrawBitmap(&bmpicto_H39, 130, 320);
-//			GUI_DrawBitmap(&bmpicto_H40, 110, 420);
-
-//  t0 = GUI_GetTime();       // Get current time
-
-//	tBlinkNext=1000;
-//	while(1)
-//	{
-//				
-//		if((tDiff = GUI_GetTime() - t0) > TIME_4_2)
-//		{
-//			tBlinkNext=1000;
-//			t0 = GUI_GetTime();       // Get current time
-//		}
-//		
-//		
-//		if(tDiff > tBlinkNext)
-//		{
-//				tBlinkNext+=1000;
-//				if(blink_flag)
-//				{
-//						_Palpicto_H19.pPalEntries =&_Colorspicto_gray[0];
-//					  GUI_DrawBitmap(&bmpicto_H19, 120 ,  20);
-//				}
-//				else
-//				{
-//						_Palpicto_H19.pPalEntries =&_Colorspicto_red[0];
-//						GUI_DrawBitmap(&bmpicto_H19, 120 ,  20);
-//				}  
-//				blink_flag=~blink_flag;			
-
-//			}
-
-//			
-//			//Set_TahometerScale_Value(_GetRPM(tDiff));
-//			aParam[SCALE_TAHOMETER].Angle=_GetAngle_0(tDiff)*DEG2RAD;
-//			Set_FuelScale_Value(_GetFuel(tDiff));
-//			Set_TemperatureScale_Value(_GetTemperature(tDiff));
-//			
-//			for (i = 0; i < NUM_SCALES; i++) 
-//			{
-//				if (aAngleOld[i] != aParam[i].Angle)
-//				{
-//					aAngleOld[i] = aParam[i].Angle;
-//					t1           = GUI_GetTime();
-//					GUI_RotatePolygon(aParam[i].aPoints, _aNeedle[i].pPolygon, _aNeedle[i].NumPoints, aParam[i].Angle);
-//					GUI_MEMDEV_DrawAuto(&aAutoDev[i], &aParam[i].AutoDevInfo, _pfDraw[i], &aParam[i]);
-//					atDiff[i]    = GUI_GetTime() - t1;
-//				}
-//			}			
-//			GUI_Exec();
-//  }
-//  
-//  // Delete GUI_AUTODEV-objects
-//  
-//  for (i = 0; i < NUM_SCALES; i++) {
-//    GUI_MEMDEV_DeleteAuto(&aAutoDev[i]);
-//  }
-//}
-
-///*********************************************************************
-//*
-//*       
-//*/
-//void GUIDEMO_Automotive(void) {
-//  GUI_AA_EnableHiRes();
-//  GUI_AA_SetFactor(MAG);
-//  _AutomotiveDemo();
-////  GUI_AA_DisableHiRes();
-//}
-
-
-#define AutomotivePanel_Task_PRIO    ( tskIDLE_PRIORITY  + 9 )
-#define AutomotivePanel_Task_STACK   ( 3048 )
-xTaskHandle                   				AutomotivePanel_Task_Handle;
 void AutomotivePanel_Init(void)
 {
 	GUI_AA_EnableHiRes();
   GUI_AA_SetFactor(MAG);
 	
-	  xTaskCreate(AutomotivePanel_Task,
-              (signed char const*)"BK_GND",
-              AutomotivePanel_Task_STACK,
-              NULL,
-              AutomotivePanel_Task_PRIO,
-              &AutomotivePanel_Task_Handle);
+	xTaskCreate(AutomotivePanel_Task,
+						(signed char const*)"BK_GND",
+						AutomotivePanel_Task_STACK,
+						NULL,
+						AutomotivePanel_Task_PRIO,
+						&AutomotivePanel_Task_Handle);
 }
 
 static void AutomotivePanel_Task(void * pvParameters)
@@ -654,17 +556,11 @@ static void AutomotivePanel_Task(void * pvParameters)
     GUI_RotatePolygon(aParam[i].aPoints, _aNeedle[i].pPolygon, _aNeedle[i].NumPoints, aParam[i].Angle);
     GUI_MEMDEV_DrawAuto(&aAutoDev[i], &aParam[i].AutoDevInfo, _pfDraw[i], &aParam[i]);
   }
-	
-			GUI_DrawBitmap(&bmpicto_H19, 120 ,  20);
-			GUI_DrawBitmap(&bmpicto_H20, 90 , 120);
-			GUI_DrawBitmap(&bmpicto_H21, 60 , 220);
-			GUI_DrawBitmap(&bmpicto_H24, 30 , 320);
-			GUI_DrawBitmap(&bmpicto_H35, 10 , 420);
-			GUI_DrawBitmap(&bmpicto_H36, 220,  20);
-			GUI_DrawBitmap(&bmpicto_H37, 190, 120);
-			GUI_DrawBitmap(&bmpicto_H38, 160, 220);
-			GUI_DrawBitmap(&bmpicto_H39, 130, 320);
-			GUI_DrawBitmap(&bmpicto_H40, 110, 420);
+		
+	for(i=PICTO_H19;i<=PICTO_H40;i++)
+	{
+			Set_Pictogram_State(i,PICTO_STATE_OFF);
+	}
 
   t0 = GUI_GetTime();       // Get current time
 
@@ -677,20 +573,17 @@ static void AutomotivePanel_Task(void * pvParameters)
 			tBlinkNext=1000;
 			t0 = GUI_GetTime();       // Get current time
 		}
-		
-		
+				
 		if(tDiff > tBlinkNext)
 		{
 				tBlinkNext+=1000;
 				if(blink_flag)
 				{
-						_Palpicto_H19.pPalEntries =&_Colorspicto_gray[0];
-					  GUI_DrawBitmap(&bmpicto_H19, 120 ,  20);
+							Set_Pictogram_State(PICTO_H20,PICTO_STATE_OFF);
 				}
 				else
 				{
-						_Palpicto_H19.pPalEntries =&_Colorspicto_red[0];
-						GUI_DrawBitmap(&bmpicto_H19, 120 ,  20);
+							Set_Pictogram_State(PICTO_H20,PICTO_STATE_ON);
 				}  
 				blink_flag=~blink_flag;			
 
@@ -716,7 +609,6 @@ static void AutomotivePanel_Task(void * pvParameters)
 			GUI_Exec();
   }
   
- 
 	// Delete GUI_AUTODEV-objects
   
   for (i = 0; i < NUM_SCALES; i++) 

@@ -75,57 +75,12 @@ int main(void)
   GUI_Clear();
   GUI_SetBkColor(GUI_BLACK); 
 	AutomotivePanel_Init();
-	
-//  xTaskCreate(Background_Task,
-//              (signed char const*)"BK_GND",
-//              Background_Task_STACK,
-//              NULL,
-//              Background_Task_PRIO,
-//              &Task_Handle);
-
 
   vTaskStartScheduler();
 	while(1)
 	{
 	}
 }
-
-
-/**
-  * @brief  Background task
-  * @param  pvParameters not used
-  * @retval None
-  */
-//static void Background_Task(void * pvParameters)
-//{
-
-
-//  xTaskCreate(Demo_Task,
-//              (signed char const*)"GUI_DEMO",
-//              Demo_Task_STACK,
-//              NULL,
-//              Demo_Task_PRIO,
-//              &Demo_Handle);
-
-
-//  while (1)
-//  {
-//    vTaskDelay(10);
-//  }
-//}
-
-
-///**
-//  * @brief  Demonstration task
-//  * @param  pvParameters not used
-//  * @retval None
-//  */
-//static void Demo_Task(void * pvParameters)
-//{  
-
-
-//GUIDEMO_Automotive();
-//}
 
 
 /**
