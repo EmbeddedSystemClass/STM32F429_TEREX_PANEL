@@ -29,19 +29,20 @@
 #include "bsp.h"
 #include "timers.h"
 #include <stddef.h>
+#include "automotivePanel.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
-#define Background_Task_PRIO    ( tskIDLE_PRIORITY  + 10 )
-#define Background_Task_STACK   ( 512 )
+//#define Background_Task_PRIO    ( tskIDLE_PRIORITY  + 10 )
+//#define Background_Task_STACK   ( 512 )
 
-#define Demo_Task_PRIO          ( tskIDLE_PRIORITY  + 9 )
-#define Demo_Task_STACK         ( 3048 )
+//#define Demo_Task_PRIO          ( tskIDLE_PRIORITY  + 9 )
+//#define Demo_Task_STACK         ( 3048 )
 
-/* Private macro -------------------------------------------------------------*/
-/* Private variables ---------------------------------------------------------*/
-xTaskHandle                   Task_Handle;
-xTaskHandle                   Demo_Handle;
+///* Private macro -------------------------------------------------------------*/
+///* Private variables ---------------------------------------------------------*/
+//xTaskHandle                   Task_Handle;
+//xTaskHandle                   Demo_Handle;
 xTimerHandle                  TouchScreenTimer;
 
 uint32_t demo_mode = 0;
@@ -49,8 +50,8 @@ uint32_t demo_mode = 0;
 //extern WM_HWIN  ALARM_hWin;
 
 /* Private function prototypes -----------------------------------------------*/
-static void Background_Task(void * pvParameters);
-static void Demo_Task(void * pvParameters);
+//static void Background_Task(void * pvParameters);
+//static void Demo_Task(void * pvParameters);
 static void vTimerCallback( xTimerHandle pxTimer );
 /* Private functions ---------------------------------------------------------*/
 
@@ -61,16 +62,32 @@ static void vTimerCallback( xTimerHandle pxTimer );
   */ 
 int main(void)
 { 
-
-  xTaskCreate(Background_Task,
-              (signed char const*)"BK_GND",
-              Background_Task_STACK,
-              NULL,
-              Background_Task_PRIO,
-              &Task_Handle);
+  uint32_t ticks = 0;
+    
+  /* Initialize the BSP layer */
+  LowLevel_Init();
+	
+  /* Init the STemWin GUI Library */
+  GUI_Init();
+	GUI_SelectLayer(0);
+  GUI_SetBkColor(GUI_BLACK);
+  GUI_SelectLayer(1);
+  GUI_Clear();
+  GUI_SetBkColor(GUI_BLACK); 
+	AutomotivePanel_Init();
+	
+//  xTaskCreate(Background_Task,
+//              (signed char const*)"BK_GND",
+//              Background_Task_STACK,
+//              NULL,
+//              Background_Task_PRIO,
+//              &Task_Handle);
 
 
   vTaskStartScheduler();
+	while(1)
+	{
+	}
 }
 
 
@@ -79,46 +96,36 @@ int main(void)
   * @param  pvParameters not used
   * @retval None
   */
-static void Background_Task(void * pvParameters)
-{
-  uint32_t ticks = 0;
-    
-  /* Initialize the BSP layer */
-  LowLevel_Init();
-	
-  /* Init the STemWin GUI Library */
-  GUI_Init();
-
-  xTaskCreate(Demo_Task,
-              (signed char const*)"GUI_DEMO",
-              Demo_Task_STACK,
-              NULL,
-              Demo_Task_PRIO,
-              &Demo_Handle);
+//static void Background_Task(void * pvParameters)
+//{
 
 
-  while (1)
-  {
-    vTaskDelay(10);
-  }
-}
+//  xTaskCreate(Demo_Task,
+//              (signed char const*)"GUI_DEMO",
+//              Demo_Task_STACK,
+//              NULL,
+//              Demo_Task_PRIO,
+//              &Demo_Handle);
 
 
-/**
-  * @brief  Demonstration task
-  * @param  pvParameters not used
-  * @retval None
-  */
-static void Demo_Task(void * pvParameters)
-{  
-	GUI_SelectLayer(0);
-  GUI_SetBkColor(GUI_BLACK);
-  GUI_SelectLayer(1);
-  GUI_Clear();
-  GUI_SetBkColor(GUI_BLACK); 
+//  while (1)
+//  {
+//    vTaskDelay(10);
+//  }
+//}
 
-GUIDEMO_Automotive();
-}
+
+///**
+//  * @brief  Demonstration task
+//  * @param  pvParameters not used
+//  * @retval None
+//  */
+//static void Demo_Task(void * pvParameters)
+//{  
+
+
+//GUIDEMO_Automotive();
+//}
 
 
 /**

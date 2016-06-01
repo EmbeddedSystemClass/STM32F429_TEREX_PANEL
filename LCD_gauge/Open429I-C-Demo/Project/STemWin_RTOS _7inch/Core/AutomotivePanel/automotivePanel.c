@@ -1,5 +1,7 @@
 #include "GUI.h"
 #include <stdint.h>
+#include "automotivePanel.h"
+#include "global_includes.h"
 
 extern GUI_BITMAP bmpicto_H19;
 extern  GUI_LOGPALETTE _Palpicto_H19;
@@ -34,7 +36,7 @@ extern  GUI_LOGPALETTE _Palpicto_H40;
 extern  GUI_COLOR _Colorspicto_gray[];
 extern  GUI_COLOR _Colorspicto_red[];
 
-#define MAG         10
+#define MAG         3
 #define NUM_SCALES  3
 
 typedef enum
@@ -85,6 +87,8 @@ void Set_TahometerScale_Value(float val);
 void Set_FuelScale_Value(float val);
 void Set_TemperatureScale_Value(float val);
 void Set_Pictogram_State(enPictogram pictogram, enPictoState state);
+
+static void AutomotivePanel_Task(void * pvParameters);
 
 //#define FONT_GEAR &GUI_FontRounded22
 
@@ -334,7 +338,6 @@ static void _Draw_1(void * p) {
   // Moving needle
   GUI_SetColor(GUI_WHITE);
   GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_1),  MAG * FUELSCALE_NEEDLE_POS_X,  MAG * FUELSCALE_NEEDLE_POS_Y);
-
 }
 
 /*********************************************************************
@@ -425,7 +428,6 @@ void Set_TemperatureScale_Value(float val)
 }
 
 
-
 void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 {
 	switch(pictogram)
@@ -496,14 +498,138 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 	}
 }
 
-/*********************************************************************
-*
-*       _AutomotiveDemo
-*/
-static void _AutomotiveDemo(void) {
-//  GUI_AUTODEV aAutoDev [NUM_SCALES];               // Object for banding memory device
-//  PARAM       aParam   [NUM_SCALES] = {0};           // Parameters for drawing routine
-  float       aAngleOld[NUM_SCALES];
+///*********************************************************************
+//*
+//*       _AutomotiveDemo
+//*/
+//static void _AutomotiveDemo(void) {
+////  GUI_AUTODEV aAutoDev [NUM_SCALES];               // Object for banding memory device
+////  PARAM       aParam   [NUM_SCALES] = {0};           // Parameters for drawing routine
+//  float       aAngleOld[NUM_SCALES];
+//  int         atDiff   [NUM_SCALES];
+//  int         atDiffOld[NUM_SCALES] = {0};
+//  int         tDiff, t0, t1, tBlinkNext;
+//  int          i;
+//  int         ySize;
+
+//  tDiff = 0;
+//  ySize = LCD_GetYSize();
+//	
+//	static uint8_t blink_flag=0;
+
+
+//	Set_TahometerScale_Value(0);
+//	Set_FuelScale_Value(0);
+//	Set_TemperatureScale_Value(0);	
+//	
+//  for (i = 0; i < NUM_SCALES; i++) {
+
+//    aAngleOld[i] = -1;
+
+//    GUI_MEMDEV_CreateAuto(&aAutoDev[i]);
+//    GUI_RotatePolygon(aParam[i].aPoints, _aNeedle[i].pPolygon, _aNeedle[i].NumPoints, aParam[i].Angle);
+//    GUI_MEMDEV_DrawAuto(&aAutoDev[i], &aParam[i].AutoDevInfo, _pfDraw[i], &aParam[i]);
+//  }
+//	
+//			GUI_DrawBitmap(&bmpicto_H19, 120 ,  20);
+//			GUI_DrawBitmap(&bmpicto_H20, 90 , 120);
+//			GUI_DrawBitmap(&bmpicto_H21, 60 , 220);
+//			GUI_DrawBitmap(&bmpicto_H24, 30 , 320);
+//			GUI_DrawBitmap(&bmpicto_H35, 10 , 420);
+//			GUI_DrawBitmap(&bmpicto_H36, 220,  20);
+//			GUI_DrawBitmap(&bmpicto_H37, 190, 120);
+//			GUI_DrawBitmap(&bmpicto_H38, 160, 220);
+//			GUI_DrawBitmap(&bmpicto_H39, 130, 320);
+//			GUI_DrawBitmap(&bmpicto_H40, 110, 420);
+
+//  t0 = GUI_GetTime();       // Get current time
+
+//	tBlinkNext=1000;
+//	while(1)
+//	{
+//				
+//		if((tDiff = GUI_GetTime() - t0) > TIME_4_2)
+//		{
+//			tBlinkNext=1000;
+//			t0 = GUI_GetTime();       // Get current time
+//		}
+//		
+//		
+//		if(tDiff > tBlinkNext)
+//		{
+//				tBlinkNext+=1000;
+//				if(blink_flag)
+//				{
+//						_Palpicto_H19.pPalEntries =&_Colorspicto_gray[0];
+//					  GUI_DrawBitmap(&bmpicto_H19, 120 ,  20);
+//				}
+//				else
+//				{
+//						_Palpicto_H19.pPalEntries =&_Colorspicto_red[0];
+//						GUI_DrawBitmap(&bmpicto_H19, 120 ,  20);
+//				}  
+//				blink_flag=~blink_flag;			
+
+//			}
+
+//			
+//			//Set_TahometerScale_Value(_GetRPM(tDiff));
+//			aParam[SCALE_TAHOMETER].Angle=_GetAngle_0(tDiff)*DEG2RAD;
+//			Set_FuelScale_Value(_GetFuel(tDiff));
+//			Set_TemperatureScale_Value(_GetTemperature(tDiff));
+//			
+//			for (i = 0; i < NUM_SCALES; i++) 
+//			{
+//				if (aAngleOld[i] != aParam[i].Angle)
+//				{
+//					aAngleOld[i] = aParam[i].Angle;
+//					t1           = GUI_GetTime();
+//					GUI_RotatePolygon(aParam[i].aPoints, _aNeedle[i].pPolygon, _aNeedle[i].NumPoints, aParam[i].Angle);
+//					GUI_MEMDEV_DrawAuto(&aAutoDev[i], &aParam[i].AutoDevInfo, _pfDraw[i], &aParam[i]);
+//					atDiff[i]    = GUI_GetTime() - t1;
+//				}
+//			}			
+//			GUI_Exec();
+//  }
+//  
+//  // Delete GUI_AUTODEV-objects
+//  
+//  for (i = 0; i < NUM_SCALES; i++) {
+//    GUI_MEMDEV_DeleteAuto(&aAutoDev[i]);
+//  }
+//}
+
+///*********************************************************************
+//*
+//*       
+//*/
+//void GUIDEMO_Automotive(void) {
+//  GUI_AA_EnableHiRes();
+//  GUI_AA_SetFactor(MAG);
+//  _AutomotiveDemo();
+////  GUI_AA_DisableHiRes();
+//}
+
+
+#define AutomotivePanel_Task_PRIO    ( tskIDLE_PRIORITY  + 9 )
+#define AutomotivePanel_Task_STACK   ( 3048 )
+xTaskHandle                   				AutomotivePanel_Task_Handle;
+void AutomotivePanel_Init(void)
+{
+	GUI_AA_EnableHiRes();
+  GUI_AA_SetFactor(MAG);
+	
+	  xTaskCreate(AutomotivePanel_Task,
+              (signed char const*)"BK_GND",
+              AutomotivePanel_Task_STACK,
+              NULL,
+              AutomotivePanel_Task_PRIO,
+              &AutomotivePanel_Task_Handle);
+}
+
+static void AutomotivePanel_Task(void * pvParameters)
+{
+	float       aAngleOld[NUM_SCALES];
   int         atDiff   [NUM_SCALES];
   int         atDiffOld[NUM_SCALES] = {0};
   int         tDiff, t0, t1, tBlinkNext;
@@ -590,20 +716,11 @@ static void _AutomotiveDemo(void) {
 			GUI_Exec();
   }
   
-  // Delete GUI_AUTODEV-objects
+ 
+	// Delete GUI_AUTODEV-objects
   
-  for (i = 0; i < NUM_SCALES; i++) {
+  for (i = 0; i < NUM_SCALES; i++) 
+	{
     GUI_MEMDEV_DeleteAuto(&aAutoDev[i]);
   }
-}
-
-/*********************************************************************
-*
-*       
-*/
-void GUIDEMO_Automotive(void) {
-  GUI_AA_EnableHiRes();
-  GUI_AA_SetFactor(MAG);
-  _AutomotiveDemo();
-  GUI_AA_DisableHiRes();
 }
