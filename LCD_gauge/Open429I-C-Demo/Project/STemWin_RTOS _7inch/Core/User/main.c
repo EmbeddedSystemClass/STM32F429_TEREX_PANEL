@@ -86,7 +86,6 @@ static void Background_Task(void * pvParameters)
   /* Initialize the BSP layer */
   LowLevel_Init();
 	
-  BSP_TS_Init(); 
   /* Init the STemWin GUI Library */
   GUI_Init();
 
@@ -129,7 +128,7 @@ GUIDEMO_Automotive();
   */
 static void vTimerCallback( xTimerHandle pxTimer )
 {
-   BSP_Pointer_Update();
+
 }
 
 /**

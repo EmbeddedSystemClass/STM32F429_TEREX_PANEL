@@ -1,0 +1,13 @@
+.\stm32f429i-discovery_demo\automotivepanel.o: ..\Core\AutomotivePanel\automotivePanel.c
+.\stm32f429i-discovery_demo\automotivepanel.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI.h
+.\stm32f429i-discovery_demo\automotivepanel.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_ConfDefaults.h
+.\stm32f429i-discovery_demo\automotivepanel.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\Config\GUIConf.h
+.\stm32f429i-discovery_demo\automotivepanel.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_Type.h
+.\stm32f429i-discovery_demo\automotivepanel.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\LCD.h
+.\stm32f429i-discovery_demo\automotivepanel.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\Global.h
+.\stm32f429i-discovery_demo\automotivepanel.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_Version.h
+.\stm32f429i-discovery_demo\automotivepanel.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\stm32f429i-discovery_demo\automotivepanel.o: ..\Core\AutomotivePanel\tahometerScale.c
+.\stm32f429i-discovery_demo\automotivepanel.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\stm32f429i-discovery_demo\automotivepanel.o: ..\Core\AutomotivePanel\fuelScale.c
+.\stm32f429i-discovery_demo\automotivepanel.o: ..\Core\AutomotivePanel\temperatureScale.c

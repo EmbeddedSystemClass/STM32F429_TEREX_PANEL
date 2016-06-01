@@ -373,7 +373,7 @@
               <MiscControls>--c99 --diag-suppress 111</MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F429_439xx,USE_STM32F429I_DISCO,USE_EMBEDDED_PHY,</Define>
               <Undefine></Undefine>
-              <IncludePath>.\..\Config;.\..\Core\Devices\STM32F4xx;.\..\Core\User;.\..\Core\Demo;.\..\Core\Lib;.\..\Core\Test_Program;.\..\..\..\Libraries\STM32_USB_HOST_Library\Core\inc;.\..\..\..\Libraries\STM32_USB_HOST_Library\Class\MSC\inc;.\..\..\..\Libraries\STM32_USB_Device_Library\Core\inc;.\..\..\..\Libraries\STM32_USB_Device_Library\Class\MSC\inc;.\..\..\..\Libraries\STM32_USB_Device_Library\Class\HID\inc;.\..\..\..\Libraries\STM32_USB_Device_Library\Class\Audio\inc;.\..\..\..\Libraries\STM32_USB_OTG_Driver\inc;.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc;.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;.\..\..\..\Utilities;.\..\..\..\Utilities\Common;.\..\..\..\Utilities\STM32F429i-Discovery;.\..\..\..\Utilities\Third_Party\fat_fs\inc;.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F;.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include;.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc;.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config;..\Core\User\TouchPanel</IncludePath>
+              <IncludePath>.\..\Config;.\..\Core\Devices\STM32F4xx;.\..\Core\User;.\..\Core\Demo;.\..\Core\Lib;.\..\Core\Test_Program;.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc;.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;.\..\..\..\Utilities;.\..\..\..\Utilities\Common;.\..\..\..\Utilities\STM32F429i-Discovery;.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F;.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include;.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc;.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config;..\Core\User\TouchPanel;..\..\..\Utilities\STM32F429I_Lib</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -460,26 +460,6 @@
               <FileName>GUI_X_FreeRTOS.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\..\..\..\Libraries\STemWinLibrary522_4x9i\OS\GUI_X_FreeRTOS.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f429i_discovery.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Utilities\STM32F429I-Discovery\stm32f429i_discovery.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f429i_discovery_ioe.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Utilities\STM32F429I-Discovery\stm32f429i_discovery_ioe.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f429i_discovery_lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Utilities\STM32F429I-Discovery\stm32f429i_discovery_lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f429i_discovery_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Utilities\STM32F429I-Discovery\stm32f429i_discovery_sdram.c</FilePath>
             </File>
             <File>
               <FileName>misc.c</FileName>
@@ -572,9 +552,29 @@
               <FilePath>..\..\..\Libraries\STemWinLibrary522_4x9i\Lib\STemWin522_4x9i_CM4_OS_Keil.lib</FilePath>
             </File>
             <File>
-              <FileName>GUIDRV_stm32f429i_discovery.c</FileName>
+              <FileName>stm32f429i_sdram_lib.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\Libraries\STemWinLibrary522_4x9i\Config\GUIDRV_stm32f429i_discovery.c</FilePath>
+              <FilePath>..\..\..\Utilities\STM32F429I_Lib\stm32f429i_sdram_lib.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f429i_ioe_lib.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Utilities\STM32F429I_Lib\stm32f429i_ioe_lib.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f429i_lcd_lib.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Utilities\STM32F429I_Lib\stm32f429i_lcd_lib.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f429i_lib.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Utilities\STM32F429I_Lib\stm32f429i_lib.c</FilePath>
+            </File>
+            <File>
+              <FileName>GUIDRV.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Libraries\STemWinLibrary522_4x9i\Config\GUIDRV.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -624,173 +624,17 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Demo5.22</GroupName>
+          <GroupName>AutomotivePanel</GroupName>
           <Files>
             <File>
-              <FileName>GUIDEMO_Automotive.c</FileName>
+              <FileName>automotivePanel.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_Automotive.c</FilePath>
-            </File>
-            <File>
-              <FileName>picto1_2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\picto1_2.c</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>0</IncludeInBuild>
-                  <AlwaysBuild>0</AlwaysBuild>
-                  <GenerateAssemblyFile>0</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>0</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules></IncludeLibraryModules>
-                  <ComprImg>1</ComprImg>
-                </CommonProperty>
-                <FileArmAds>
-                  <Cads>
-                    <interw>2</interw>
-                    <Optim>0</Optim>
-                    <oTime>2</oTime>
-                    <SplitLS>2</SplitLS>
-                    <OneElfS>2</OneElfS>
-                    <Strict>2</Strict>
-                    <EnumInt>2</EnumInt>
-                    <PlainCh>2</PlainCh>
-                    <Ropi>2</Ropi>
-                    <Rwpi>2</Rwpi>
-                    <wLevel>2</wLevel>
-                    <uThumb>2</uThumb>
-                    <uSurpInc>2</uSurpInc>
-                    <uC99>2</uC99>
-                    <useXO>2</useXO>
-                    <v6Lang>0</v6Lang>
-                    <v6LangP>0</v6LangP>
-                    <vShortEn>0</vShortEn>
-                    <vShortWch>0</vShortWch>
-                    <VariousControls>
-                      <MiscControls></MiscControls>
-                      <Define></Define>
-                      <Undefine></Undefine>
-                      <IncludePath></IncludePath>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-            </File>
-            <File>
-              <FileName>GUIDEMO_Resource.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\GUIDEMO_Resource.c</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>0</IncludeInBuild>
-                  <AlwaysBuild>0</AlwaysBuild>
-                  <GenerateAssemblyFile>0</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>0</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules></IncludeLibraryModules>
-                  <ComprImg>1</ComprImg>
-                </CommonProperty>
-                <FileArmAds>
-                  <Cads>
-                    <interw>2</interw>
-                    <Optim>0</Optim>
-                    <oTime>2</oTime>
-                    <SplitLS>2</SplitLS>
-                    <OneElfS>2</OneElfS>
-                    <Strict>2</Strict>
-                    <EnumInt>2</EnumInt>
-                    <PlainCh>2</PlainCh>
-                    <Ropi>2</Ropi>
-                    <Rwpi>2</Rwpi>
-                    <wLevel>2</wLevel>
-                    <uThumb>2</uThumb>
-                    <uSurpInc>2</uSurpInc>
-                    <uC99>2</uC99>
-                    <useXO>2</useXO>
-                    <v6Lang>0</v6Lang>
-                    <v6LangP>0</v6LangP>
-                    <vShortEn>0</vShortEn>
-                    <vShortWch>0</vShortWch>
-                    <VariousControls>
-                      <MiscControls></MiscControls>
-                      <Define></Define>
-                      <Undefine></Undefine>
-                      <IncludePath></IncludePath>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-            </File>
-            <File>
-              <FileName>picto_P.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\picto_P.c</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>0</IncludeInBuild>
-                  <AlwaysBuild>0</AlwaysBuild>
-                  <GenerateAssemblyFile>0</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>0</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules></IncludeLibraryModules>
-                  <ComprImg>1</ComprImg>
-                </CommonProperty>
-                <FileArmAds>
-                  <Cads>
-                    <interw>2</interw>
-                    <Optim>0</Optim>
-                    <oTime>2</oTime>
-                    <SplitLS>2</SplitLS>
-                    <OneElfS>2</OneElfS>
-                    <Strict>2</Strict>
-                    <EnumInt>2</EnumInt>
-                    <PlainCh>2</PlainCh>
-                    <Ropi>2</Ropi>
-                    <Rwpi>2</Rwpi>
-                    <wLevel>2</wLevel>
-                    <uThumb>2</uThumb>
-                    <uSurpInc>2</uSurpInc>
-                    <uC99>2</uC99>
-                    <useXO>2</useXO>
-                    <v6Lang>0</v6Lang>
-                    <v6LangP>0</v6LangP>
-                    <vShortEn>0</vShortEn>
-                    <vShortWch>0</vShortWch>
-                    <VariousControls>
-                      <MiscControls></MiscControls>
-                      <Define></Define>
-                      <Undefine></Undefine>
-                      <IncludePath></IncludePath>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
+              <FilePath>..\Core\AutomotivePanel\automotivePanel.c</FilePath>
             </File>
             <File>
               <FileName>picto.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Core\Demo5.22\picto.c</FilePath>
+              <FilePath>..\Core\AutomotivePanel\picto.c</FilePath>
             </File>
           </Files>
         </Group>
