@@ -12,7 +12,7 @@
 .\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h
 .\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\semphr.h
 .\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\queue.h
-.\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery.h
+.\stm32f429i-discovery_demo\stm32xxx_it.o: ..\..\..\Utilities\STM32F429I_Lib\stm32f429i_lib.h
 .\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\stm32f429i-discovery_demo\stm32xxx_it.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm4.h
 .\stm32f429i-discovery_demo\stm32xxx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
@@ -52,11 +52,10 @@
 .\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h
 .\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
 .\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
-.\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_lcd.h
-.\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_sdram.h
-.\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Utilities\STM32F429i-Discovery\../Common/fonts.h
-.\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_ioe.h
-.\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_l3gd20.h
+.\stm32f429i-discovery_demo\stm32xxx_it.o: ..\..\..\Utilities\STM32F429I_Lib\stm32f429i_lcd_lib.h
+.\stm32f429i-discovery_demo\stm32xxx_it.o: ..\..\..\Utilities\STM32F429I_Lib\stm32f429i_sdram_lib.h
+.\stm32f429i-discovery_demo\stm32xxx_it.o: ..\..\..\Utilities\STM32F429I_Lib\../Common/fonts.h
+.\stm32f429i-discovery_demo\stm32xxx_it.o: ..\..\..\Utilities\STM32F429I_Lib\stm32f429i_ioe_lib.h
 .\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI.h
 .\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_ConfDefaults.h
 .\stm32f429i-discovery_demo\stm32xxx_it.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\Config\GUIConf.h

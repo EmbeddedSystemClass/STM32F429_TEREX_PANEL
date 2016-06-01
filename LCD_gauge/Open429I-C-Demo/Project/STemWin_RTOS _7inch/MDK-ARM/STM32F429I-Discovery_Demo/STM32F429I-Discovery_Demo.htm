@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\STM32F429I-Discovery_Demo\STM32F429I-Discovery_Demo.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\STM32F429I-Discovery_Demo\STM32F429I-Discovery_Demo.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Wed Jun 01 10:27:30 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Wed Jun 01 10:54:54 2016
 <BR><P>
 <H3>Maximum Stack Usage =       1148 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -604,9 +604,9 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvCopyDataToQueue
 <LI><a href="#[29f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvCopyDataFromQueue
-<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitmap
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitmap
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_CopyBuffer
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitmap
 <LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_DrawBitmap
 </UL>
 
@@ -911,9 +911,9 @@ Global Symbols
 <P><STRONG><a name="[ee]"></a>GUIMONO_DispChar</STRONG> (Thumb, 308 bytes, Stack size 72 bytes, gui_charm.o(i.GUIMONO_DispChar))
 <BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = GUIMONO_DispChar &rArr; LCD_DrawBitmap &rArr; LCD_FillRect
 </UL>
-<BR>[Calls]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawBitmap
+<BR>[Calls]<UL><LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillRect
+<LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawBitmap
 <LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetDrawMode
-<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillRect
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> f6x8.o(.constdata)
 </UL>
@@ -1056,23 +1056,23 @@ Global Symbols
 <LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_InitOnce
 <LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_AddFreeMemory
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_InitColors
-<LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DEVICE_Create
-<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUITASK_Init
-<LI><a href="#[1c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__GetAlphaBuffer
-<LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_AA_Init
-<LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DEVICE_CreateAndLink
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ShowBuffer
-<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetVis
-<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetVSize
-<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetVRAMAddr
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetSize
+<BR>[Called By]<UL><LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DEVICE_CreateAndLink
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetPos
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetDevFunc
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetAlpha
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Init
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_GetPos
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_CopyBuffer
+<LI><a href="#[1fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_InitColors
+<LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DEVICE_Create
+<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUITASK_Init
+<LI><a href="#[1c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__GetAlphaBuffer
+<LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_AA_Init
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ShowBuffer
+<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetVis
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetVSize
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetVRAMAddr
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetSize
 </UL>
 
 <P><STRONG><a name="[160]"></a>GUI_ALLOC_LockH</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, gui_alloc.o(i.GUI_ALLOC_LockH))
@@ -1269,13 +1269,13 @@ Global Symbols
 <P><STRONG><a name="[139]"></a>GUI_Clear</STRONG> (Thumb, 110 bytes, Stack size 32 bytes, gui_core.o(i.GUI_Clear))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = GUI_Clear &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
-<BR>[Calls]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetDrawMode
+<BR>[Calls]<UL><LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillRect
+<LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetDrawMode
 <LI><a href="#[168]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_GotoXY
 <LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Unlock
 <LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Lock
-<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillRect
 </UL>
 <BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Demo_Task
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cbBackWin
@@ -1284,12 +1284,12 @@ Global Symbols
 <P><STRONG><a name="[169]"></a>GUI_ClearRect</STRONG> (Thumb, 102 bytes, Stack size 32 bytes, gui_core.o(i.GUI_ClearRect))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = GUI_ClearRect &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
-<BR>[Calls]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetDrawMode
+<BR>[Calls]<UL><LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillRect
+<LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetDrawMode
 <LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Unlock
 <LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Lock
-<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillRect
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Draw_2
 <LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Draw_1
@@ -1350,7 +1350,14 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[194]"></a>GUI_DEVICE__GetpDriver</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, gui_device.o(i.GUI_DEVICE__GetpDriver))
-<BR><BR>[Called By]<UL><LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetVYSizeEx
+<BR><BR>[Called By]<UL><LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetVSizeEx
+<LI><a href="#[209]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetVRAMAddrEx
+<LI><a href="#[208]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetSizeEx
+<LI><a href="#[207]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetDevFunc
+<LI><a href="#[1f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetYSizeEx
+<LI><a href="#[1f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetXSizeEx
+<LI><a href="#[1e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetBitsPerPixelEx
+<LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetVYSizeEx
 <LI><a href="#[199]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetVXSizeEx
 <LI><a href="#[1ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetSwapXYEx
 <LI><a href="#[1ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetPalette
@@ -1367,13 +1374,6 @@ Global Symbols
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetVXSizeMax
 <LI><a href="#[1f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetYSize
 <LI><a href="#[1ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetXSize
-<LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetVSizeEx
-<LI><a href="#[209]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetVRAMAddrEx
-<LI><a href="#[208]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetSizeEx
-<LI><a href="#[207]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetDevFunc
-<LI><a href="#[1f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetYSizeEx
-<LI><a href="#[1f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetXSizeEx
-<LI><a href="#[1e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetBitsPerPixelEx
 <LI><a href="#[1ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__ManageCacheEx
 <LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV_CreateEx
 </UL>
@@ -1467,6 +1467,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_X_Config
 <LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_X_Init
+<LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_Config
 <LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;emWin_LCD_Init
 <LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_Init
 <LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_GetDesktopWindow
@@ -1475,7 +1476,6 @@ Global Symbols
 <LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetOrg
 <LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUITASK_Init
 <LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUITASK_CopyContext
-<LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_Config
 </UL>
 <BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Background_Task
 </UL>
@@ -1491,6 +1491,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetBkColor
 <LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SelectLayer
 <LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Clear
+<LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_GetLayerPosEx
+<LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_GetDrawMode
 <LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SelectLCD
 <LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_Exec
 <LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetDrawMode
@@ -1504,8 +1506,6 @@ Global Symbols
 <LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DrawBitmap
 <LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ClearRect
 <LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_AA_FillPolygon
-<LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_GetLayerPosEx
-<LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_GetDrawMode
 <LI><a href="#[1bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_TIMER_GetFlag
 <LI><a href="#[1bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_TIMER_Delete
 <LI><a href="#[246]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_GetParent
@@ -2189,6 +2189,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetBkColor
 <LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SelectLayer
 <LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Clear
+<LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_GetLayerPosEx
+<LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_GetDrawMode
 <LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SelectLCD
 <LI><a href="#[171]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_Exec
 <LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetDrawMode
@@ -2202,8 +2204,6 @@ Global Symbols
 <LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DrawBitmap
 <LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ClearRect
 <LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_AA_FillPolygon
-<LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_GetLayerPosEx
-<LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_GetDrawMode
 <LI><a href="#[1bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_TIMER_GetFlag
 <LI><a href="#[1bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_TIMER_Delete
 <LI><a href="#[246]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_GetParent
@@ -2439,7 +2439,13 @@ Global Symbols
 <P><STRONG><a name="[14f]"></a>GUI__memset</STRONG> (Thumb, 186 bytes, Stack size 8 bytes, gui__memset.o(i.GUI__memset))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = GUI__memset
 </UL>
-<BR>[Called By]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUITASK_Init
+<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetPos
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetDevFunc
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetAlpha
+<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Init
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_GetPos
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_CopyBuffer
+<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUITASK_Init
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OnExit
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_OnExit
 <LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_AA_Init
@@ -2451,12 +2457,6 @@ Global Symbols
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetVSize
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetVRAMAddr
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetSize
-<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetPos
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetDevFunc
-<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetAlpha
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Init
-<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_GetPos
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_CopyBuffer
 </UL>
 
 <P><STRONG><a name="[284]"></a>GUI__memset16</STRONG> (Thumb, 148 bytes, Stack size 12 bytes, gui__memset16.o(i.GUI__memset16))
@@ -2499,9 +2499,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1f4]"></a>LCD_Color2Index</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, lcd.o(i.LCD_Color2Index))
-<BR><BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetpPalConvTableBM
+<BR><BR>[Called By]<UL><LI><a href="#[1f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetpPalConvTable
+<LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetpPalConvTableBM
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetPixelAA
-<LI><a href="#[1f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetpPalConvTable
 <LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_UpdateColorIndices
 </UL>
 
@@ -2566,8 +2566,8 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_LCD_InitController
 <LI><a href="#[285]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_GetBytesPerLine
-<LI><a href="#[1fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_InitLUT
 <LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_Config
+<LI><a href="#[1fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_InitLUT
 </UL>
 
 <P><STRONG><a name="[288]"></a>LCD_GetDevFunc</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, lcd_getex.o(i.LCD_GetDevFunc))
@@ -2653,9 +2653,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DEVICE__GetpDriver
 </UL>
-<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetVSize
+<BR>[Called By]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetOrg
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetVSize
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetSize
-<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetOrg
 </UL>
 
 <P><STRONG><a name="[199]"></a>LCD_GetVXSizeEx</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, lcd_getex.o(i.LCD_GetVXSizeEx))
@@ -2793,12 +2793,12 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = LCD_InitLUT &rArr; GUI_SelectLayer &rArr; GUI_SelectLCD &rArr; GUI_Lock &rArr; GUI_X_Lock &rArr; GUI_X_InitOS &rArr; xQueueCreateMutex &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SelectLayer
+<LI><a href="#[1e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetBitsPerPixelEx
 <LI><a href="#[1fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetLUTEntryEx
 <LI><a href="#[1e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetNumLayers
 <LI><a href="#[1e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetNumColorsEx
 <LI><a href="#[1ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Index2Color
 <LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DEVICE__GetpDriver
-<LI><a href="#[1e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetBitsPerPixelEx
 </UL>
 <BR>[Called By]<UL><LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;emWin_LCD_Init
 </UL>
@@ -2974,11 +2974,7 @@ Global Symbols
 <LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_LCD_InitController
 <LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_GetLayerPosEx
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ShowBuffer
-<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetVis
-<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetVRAMAddr
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetSize
-<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetPos
+<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetPos
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetOrg
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetChromaMode
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetChroma
@@ -2987,6 +2983,10 @@ Global Symbols
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_On
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Off
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Init
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ShowBuffer
+<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetVis
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetVRAMAddr
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_SetSize
 </UL>
 
 <P><STRONG><a name="[1af]"></a>LCD__DrawBitmap_1bpp</STRONG> (Thumb, 496 bytes, Stack size 372 bytes, lcd.o(i.LCD__DrawBitmap_1bpp))
@@ -3925,10 +3925,10 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = emWin_LCD_Init &rArr; LCD_InitColors &rArr; GUI_ALLOC_GetFixedBlock &rArr; _InitOnce &rArr; _EnlargeBlocks &rArr; GUI_Lock &rArr; GUI_X_Lock &rArr; GUI_X_InitOS &rArr; xQueueCreateMutex &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SelectLayer
+<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillRect
 <LI><a href="#[1fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_InitLUT
 <LI><a href="#[1fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_InitColors
 <LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DEVICE__GetpDriver
-<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillRect
 </UL>
 <BR>[Called By]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Init
 </UL>
@@ -5409,9 +5409,9 @@ Local Symbols
 <P><STRONG><a name="[9b]"></a>_Init</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, guidrv_lin_16.o(i._Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = _Init &rArr; LCD_X_DisplayDriver &rArr; _LCD_InitController &rArr; LCD_Init &rArr; SDRAM_Init &rArr; SDRAM_InitSequence &rArr; delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__memset
+<BR>[Calls]<UL><LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
+<LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__memset
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ALLOC_GetFixedBlock
-<LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> guidrv_lin_16.o(i._GetDevFunc)
 </UL>
@@ -5437,9 +5437,9 @@ Local Symbols
 <P><STRONG><a name="[99]"></a>_SetAlpha</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, guidrv_lin_16.o(i._SetAlpha))
 <BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = _SetAlpha &rArr; LCD_X_DisplayDriver &rArr; _LCD_InitController &rArr; LCD_Init &rArr; SDRAM_Init &rArr; SDRAM_InitSequence &rArr; delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__memset
+<BR>[Calls]<UL><LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
+<LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__memset
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ALLOC_GetFixedBlock
-<LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> guidrv_lin_16.o(i._GetDevFunc)
 </UL>
@@ -5475,10 +5475,10 @@ Local Symbols
 <P><STRONG><a name="[df]"></a>_SetOrg</STRONG> (Thumb, 184 bytes, Stack size 32 bytes, guidrv_lin_16.o(i._SetOrg))
 <BR><BR>[Stack]<UL><LI>Max Depth = 324<LI>Call Chain = _SetOrg &rArr; LCD_X_DisplayDriver &rArr; _LCD_InitController &rArr; LCD_Init &rArr; SDRAM_Init &rArr; SDRAM_InitSequence &rArr; delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetSwapXYEx
+<BR>[Calls]<UL><LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
+<LI><a href="#[1ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetSwapXYEx
 <LI><a href="#[1e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetMirrorYEx
 <LI><a href="#[1e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetMirrorXEx
-<LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> guidrv_lin_16.o(.constdata)
 </UL>
@@ -5488,28 +5488,28 @@ Local Symbols
 <P><STRONG><a name="[97]"></a>_SetPos</STRONG> (Thumb, 68 bytes, Stack size 24 bytes, guidrv_lin_16.o(i._SetPos))
 <BR><BR>[Stack]<UL><LI>Max Depth = 316<LI>Call Chain = _SetPos &rArr; LCD_X_DisplayDriver &rArr; _LCD_InitController &rArr; LCD_Init &rArr; SDRAM_Init &rArr; SDRAM_InitSequence &rArr; delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__memset
+<BR>[Calls]<UL><LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
+<LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__memset
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ALLOC_GetFixedBlock
-<LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> guidrv_lin_16.o(i._GetDevFunc)
 </UL>
 <P><STRONG><a name="[96]"></a>_SetSize</STRONG> (Thumb, 90 bytes, Stack size 32 bytes, guidrv_lin_16.o(i._SetSize))
 <BR><BR>[Stack]<UL><LI>Max Depth = 324<LI>Call Chain = _SetSize &rArr; LCD_X_DisplayDriver &rArr; _LCD_InitController &rArr; LCD_Init &rArr; SDRAM_Init &rArr; SDRAM_InitSequence &rArr; delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetSwapXYEx
+<BR>[Calls]<UL><LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
+<LI><a href="#[1ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetSwapXYEx
 <LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__memset
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ALLOC_GetFixedBlock
-<LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> guidrv_lin_16.o(i._GetDevFunc)
 </UL>
 <P><STRONG><a name="[94]"></a>_SetVRAMAddr</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, guidrv_lin_16.o(i._SetVRAMAddr))
 <BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = _SetVRAMAddr &rArr; LCD_X_DisplayDriver &rArr; _LCD_InitController &rArr; LCD_Init &rArr; SDRAM_Init &rArr; SDRAM_InitSequence &rArr; delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__memset
+<BR>[Calls]<UL><LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
+<LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__memset
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ALLOC_GetFixedBlock
-<LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> guidrv_lin_16.o(i._GetDevFunc)
 </UL>
@@ -5525,18 +5525,18 @@ Local Symbols
 <P><STRONG><a name="[9a]"></a>_SetVis</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, guidrv_lin_16.o(i._SetVis))
 <BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = _SetVis &rArr; LCD_X_DisplayDriver &rArr; _LCD_InitController &rArr; LCD_Init &rArr; SDRAM_Init &rArr; SDRAM_InitSequence &rArr; delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__memset
+<BR>[Calls]<UL><LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
+<LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__memset
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ALLOC_GetFixedBlock
-<LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> guidrv_lin_16.o(i._GetDevFunc)
 </UL>
 <P><STRONG><a name="[a2]"></a>_ShowBuffer</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, guidrv_lin_16.o(i._ShowBuffer))
 <BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = _ShowBuffer &rArr; LCD_X_DisplayDriver &rArr; _LCD_InitController &rArr; LCD_Init &rArr; SDRAM_Init &rArr; SDRAM_InitSequence &rArr; delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__memset
+<BR>[Calls]<UL><LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
+<LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__memset
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ALLOC_GetFixedBlock
-<LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_DisplayDriver
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> guidrv_lin_16.o(i._GetDevFunc)
 </UL>

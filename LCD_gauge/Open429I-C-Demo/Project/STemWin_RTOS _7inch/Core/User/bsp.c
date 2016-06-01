@@ -28,8 +28,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "bsp.h"
 #include "rtc.h"
-#include "TouchPanel.h"
-#include "config.h"
+
 
 
 

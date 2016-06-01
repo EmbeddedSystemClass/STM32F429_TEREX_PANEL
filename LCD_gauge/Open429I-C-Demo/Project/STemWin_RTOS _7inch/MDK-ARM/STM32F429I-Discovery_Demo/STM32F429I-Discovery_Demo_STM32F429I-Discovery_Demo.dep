@@ -1,7 +1,7 @@
 Dependencies for Project 'STM32F429I-Discovery_Demo', Target 'STM32F429I-Discovery_Demo': (DO NOT MODIFY !)
-F (.\..\Core\User\bsp.c)(0x574E8E59)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib --c99 --diag-suppress 111-I "D:\PROJECTS\GIT_REPOSITORY\STM32\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="516" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\bsp.o --omf_browse .\stm32f429i-discovery_demo\bsp.crf --depend .\stm32f429i-discovery_demo\bsp.d)
+F (.\..\Core\User\bsp.c)(0x574E8F7D)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib --c99 --diag-suppress 111-I "D:\PROJECTS\GIT_REPOSITORY\STM32\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="516" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\bsp.o --omf_browse .\stm32f429i-discovery_demo\bsp.crf --depend .\stm32f429i-discovery_demo\bsp.d)
 I (..\Core\User\bsp.h)(0x574DB53A)
-I (.\..\Config\global_includes.h)(0x574DBD26)
+I (.\..\Config\global_includes.h)(0x574E926D)
 I (.\..\Config\global_conf.h)(0x528A231A)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x5245699C)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AF3C42)
@@ -14,7 +14,7 @@ I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x5245699C)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x5245699C)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\semphr.h)(0x5245699E)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\queue.h)(0x5245699C)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery.h)(0x574DBBB7)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_lib.h)(0x574DB278)
 I (.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5313F2EE)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm4.h)(0x55098254)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AF3C42)
@@ -53,11 +53,10 @@ I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x527D51
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x527D513A)
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x527D513A)
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x527D5138)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_lcd.h)(0x574DBBB8)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_sdram.h)(0x574DBBB8)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\../Common/fonts.h)(0x52499E90)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_ioe.h)(0x574DBBB7)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_l3gd20.h)(0x574DBBB8)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_lcd_lib.h)(0x574DB1D6)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_sdram_lib.h)(0x53C4FB28)
+I (..\..\..\Utilities\STM32F429I_Lib\../Common/fonts.h)(0x52499E90)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_ioe_lib.h)(0x574DB1CE)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI.h)(0x53CCEBF6)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_ConfDefaults.h)(0x524569BA)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config\GUIConf.h)(0x5746FD57)
@@ -100,12 +99,9 @@ I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\SPINBOX.h)(0x524569BC)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TEXT.h)(0x524569B4)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TREEVIEW.h)(0x524569B8)
 I (..\Core\User\rtc.h)(0x528A2322)
-I (..\Core\User\TouchPanel\TouchPanel.h)(0x574DBBA0)
-I (..\Core\User\TouchPanel\config.h)(0x574DBAF5)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x55AF3C42)
 F (.\..\Core\User\main.c)(0x574E8E59)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib --c99 --diag-suppress 111-I "D:\PROJECTS\GIT_REPOSITORY\STM32\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="516" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\main.o --omf_browse .\stm32f429i-discovery_demo\main.crf --depend .\stm32f429i-discovery_demo\main.d)
 I (..\Core\User\bsp.h)(0x574DB53A)
-I (.\..\Config\global_includes.h)(0x574DBD26)
+I (.\..\Config\global_includes.h)(0x574E926D)
 I (.\..\Config\global_conf.h)(0x528A231A)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x5245699C)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AF3C42)
@@ -118,7 +114,7 @@ I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x5245699C)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x5245699C)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\semphr.h)(0x5245699E)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\queue.h)(0x5245699C)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery.h)(0x574DBBB7)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_lib.h)(0x574DB278)
 I (.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5313F2EE)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm4.h)(0x55098254)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AF3C42)
@@ -157,11 +153,10 @@ I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x527D51
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x527D513A)
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x527D513A)
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x527D5138)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_lcd.h)(0x574DBBB8)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_sdram.h)(0x574DBBB8)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\../Common/fonts.h)(0x52499E90)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_ioe.h)(0x574DBBB7)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_l3gd20.h)(0x574DBBB8)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_lcd_lib.h)(0x574DB1D6)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_sdram_lib.h)(0x53C4FB28)
+I (..\..\..\Utilities\STM32F429I_Lib\../Common/fonts.h)(0x52499E90)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_ioe_lib.h)(0x574DB1CE)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI.h)(0x53CCEBF6)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_ConfDefaults.h)(0x524569BA)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config\GUIConf.h)(0x5746FD57)
@@ -206,7 +201,7 @@ I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TREEVIEW.h)(0x524569B8)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\timers.h)(0x5245699C)
 F (.\..\Core\User\rtc.c)(0x528A2320)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib --c99 --diag-suppress 111-I "D:\PROJECTS\GIT_REPOSITORY\STM32\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="516" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\rtc.o --omf_browse .\stm32f429i-discovery_demo\rtc.crf --depend .\stm32f429i-discovery_demo\rtc.d)
 I (..\Core\User\rtc.h)(0x528A2322)
-I (.\..\Config\global_includes.h)(0x574DBD26)
+I (.\..\Config\global_includes.h)(0x574E926D)
 I (.\..\Config\global_conf.h)(0x528A231A)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x5245699C)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AF3C42)
@@ -219,7 +214,7 @@ I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x5245699C)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x5245699C)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\semphr.h)(0x5245699E)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\queue.h)(0x5245699C)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery.h)(0x574DBBB7)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_lib.h)(0x574DB278)
 I (.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5313F2EE)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm4.h)(0x55098254)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AF3C42)
@@ -258,11 +253,10 @@ I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x527D51
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x527D513A)
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x527D513A)
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x527D5138)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_lcd.h)(0x574DBBB8)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_sdram.h)(0x574DBBB8)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\../Common/fonts.h)(0x52499E90)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_ioe.h)(0x574DBBB7)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_l3gd20.h)(0x574DBBB8)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_lcd_lib.h)(0x574DB1D6)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_sdram_lib.h)(0x53C4FB28)
+I (..\..\..\Utilities\STM32F429I_Lib\../Common/fonts.h)(0x52499E90)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_ioe_lib.h)(0x574DB1CE)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI.h)(0x53CCEBF6)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_ConfDefaults.h)(0x524569BA)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config\GUIConf.h)(0x5746FD57)
@@ -304,8 +298,8 @@ I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\SLIDER.h)(0x524569BC)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\SPINBOX.h)(0x524569BC)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TEXT.h)(0x524569B4)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TREEVIEW.h)(0x524569B8)
-F (.\..\Core\User\stm32xxx_it.c)(0x574DBD5E)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib --c99 --diag-suppress 111-I "D:\PROJECTS\GIT_REPOSITORY\STM32\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="516" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\stm32xxx_it.o --omf_browse .\stm32f429i-discovery_demo\stm32xxx_it.crf --depend .\stm32f429i-discovery_demo\stm32xxx_it.d)
-I (.\..\Config\global_includes.h)(0x574DBD26)
+F (.\..\Core\User\stm32xxx_it.c)(0x574E9294)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib --c99 --diag-suppress 111-I "D:\PROJECTS\GIT_REPOSITORY\STM32\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="516" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\stm32xxx_it.o --omf_browse .\stm32f429i-discovery_demo\stm32xxx_it.crf --depend .\stm32f429i-discovery_demo\stm32xxx_it.d)
+I (.\..\Config\global_includes.h)(0x574E926D)
 I (.\..\Config\global_conf.h)(0x528A231A)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x5245699C)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AF3C42)
@@ -318,7 +312,7 @@ I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x5245699C)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x5245699C)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\semphr.h)(0x5245699E)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\queue.h)(0x5245699C)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery.h)(0x574DBBB7)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_lib.h)(0x574DB278)
 I (.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5313F2EE)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm4.h)(0x55098254)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AF3C42)
@@ -357,11 +351,10 @@ I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x527D51
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x527D513A)
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x527D513A)
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x527D5138)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_lcd.h)(0x574DBBB8)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_sdram.h)(0x574DBBB8)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\../Common/fonts.h)(0x52499E90)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_ioe.h)(0x574DBBB7)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_l3gd20.h)(0x574DBBB8)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_lcd_lib.h)(0x574DB1D6)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_sdram_lib.h)(0x53C4FB28)
+I (..\..\..\Utilities\STM32F429I_Lib\../Common/fonts.h)(0x52499E90)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_ioe_lib.h)(0x574DB1CE)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI.h)(0x53CCEBF6)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_ConfDefaults.h)(0x524569BA)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config\GUIConf.h)(0x5746FD57)
@@ -1301,7 +1294,7 @@ I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x527D
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x527D513A)
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x527D5138)
 F (..\..\..\Libraries\STemWinLibrary522_4x9i\Config\GUIDRV.c)(0x574DB4CD)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib --c99 --diag-suppress 111-I "D:\PROJECTS\GIT_REPOSITORY\STM32\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="516" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\guidrv.o --omf_browse .\stm32f429i-discovery_demo\guidrv.crf --depend .\stm32f429i-discovery_demo\guidrv.d)
-I (.\..\Config\global_includes.h)(0x574DBD26)
+I (.\..\Config\global_includes.h)(0x574E926D)
 I (.\..\Config\global_conf.h)(0x528A231A)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x5245699C)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AF3C42)
@@ -1314,7 +1307,7 @@ I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x5245699C)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x5245699C)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\semphr.h)(0x5245699E)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\queue.h)(0x5245699C)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery.h)(0x574DBBB7)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_lib.h)(0x574DB278)
 I (.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5313F2EE)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm4.h)(0x55098254)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AF3C42)
@@ -1353,11 +1346,10 @@ I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x527D51
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x527D513A)
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x527D513A)
 I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x527D5138)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_lcd.h)(0x574DBBB8)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_sdram.h)(0x574DBBB8)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\../Common/fonts.h)(0x52499E90)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_ioe.h)(0x574DBBB7)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_l3gd20.h)(0x574DBBB8)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_lcd_lib.h)(0x574DB1D6)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_sdram_lib.h)(0x53C4FB28)
+I (..\..\..\Utilities\STM32F429I_Lib\../Common/fonts.h)(0x52499E90)
+I (..\..\..\Utilities\STM32F429I_Lib\stm32f429i_ioe_lib.h)(0x574DB1CE)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI.h)(0x53CCEBF6)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_ConfDefaults.h)(0x524569BA)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config\GUIConf.h)(0x5746FD57)
@@ -1400,106 +1392,6 @@ I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\SPINBOX.h)(0x524569BC)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TEXT.h)(0x524569B4)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TREEVIEW.h)(0x524569B8)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUIDRV_Lin.h)(0x574DB581)
-F (.\..\..\..\Utilities\Third_Party\fat_fs\src\option\syscall.c)(0x574DBBB9)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib --c99 --diag-suppress 111-I "D:\PROJECTS\GIT_REPOSITORY\STM32\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="516" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\syscall.o --omf_browse .\stm32f429i-discovery_demo\syscall.crf --depend .\stm32f429i-discovery_demo\syscall.d)
-I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AF3C42)
-I (.\..\Config\global_includes.h)(0x574DBD26)
-I (.\..\Config\global_conf.h)(0x528A231A)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x5245699C)
-I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AF3C42)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x5245699E)
-I (.\..\Config\FreeRTOSConfig.h)(0x5746CBFB)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x5245699C)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x5245699E)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x5245699C)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x5245699C)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x5245699C)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\semphr.h)(0x5245699E)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\queue.h)(0x5245699C)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery.h)(0x574DBBB7)
-I (.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5313F2EE)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm4.h)(0x55098254)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AF3C42)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmInstr.h)(0x55098254)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmFunc.h)(0x55098254)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmSimd.h)(0x55098254)
-I (.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x527D4F4E)
-I (.\..\Core\Devices\STM32F4xx\stm32f4xx_conf.h)(0x528A231C)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_can.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_crc.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_cryp.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dac.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dbgmcu.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_exti.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_hash.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h)(0x52810EF8)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_i2c.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_iwdg.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_pwr.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rng.h)(0x527D5138)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rtc.h)(0x527D513A)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h)(0x530C600A)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sdio.h)(0x527D513A)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_spi.h)(0x527D513A)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h)(0x527D513A)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x527D513A)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x527D513A)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x527D513A)
-I (.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x527D5138)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_lcd.h)(0x574DBBB8)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_sdram.h)(0x574DBBB8)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\../Common/fonts.h)(0x52499E90)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_ioe.h)(0x574DBBB7)
-I (.\..\..\..\Utilities\STM32F429i-Discovery\stm32f429i_discovery_l3gd20.h)(0x574DBBB8)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI.h)(0x53CCEBF6)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_ConfDefaults.h)(0x524569BA)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config\GUIConf.h)(0x5746FD57)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_Type.h)(0x574D3C99)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\LCD.h)(0x574D3E5A)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\Global.h)(0x524569B8)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_Version.h)(0x524569B8)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\DIALOG.h)(0x524569BE)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\WM.h)(0x524569B2)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\WM_GUI.h)(0x524569BA)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\BUTTON.h)(0x524569B0)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\DIALOG_Intern.h)(0x524569B8)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\WIDGET.h)(0x524569B2)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\WM_Intern.h)(0x524569BA)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_Private.h)(0x524569BA)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\LCD_Protected.h)(0x524569B0)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_Debug.h)(0x524569BA)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\CALENDAR.h)(0x524569B8)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\CHECKBOX.h)(0x524569B4)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\CHOOSECOLOR.h)(0x524569B6)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\CHOOSEFILE.h)(0x524569BA)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\DROPDOWN.h)(0x524569BE)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\LISTBOX.h)(0x524569B4)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\EDIT.h)(0x524569BC)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\FRAMEWIN.h)(0x524569AE)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GRAPH.h)(0x524569BA)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\HEADER.h)(0x524569BE)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\ICONVIEW.h)(0x524569BA)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\IMAGE.h)(0x524569B2)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\LISTVIEW.h)(0x524569B8)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\LISTWHEEL.h)(0x524569BA)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\MENU.h)(0x524569B6)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\MULTIEDIT.h)(0x524569B8)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\MULTIPAGE.h)(0x524569B4)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\PROGBAR.h)(0x524569BE)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\RADIO.h)(0x524569B6)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\SCROLLBAR.h)(0x524569B8)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\SLIDER.h)(0x524569BC)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\SPINBOX.h)(0x524569BC)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TEXT.h)(0x524569B4)
-I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TREEVIEW.h)(0x524569B8)
 F (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\croutine.c)(0x524569A2)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib --c99 --diag-suppress 111-I "D:\PROJECTS\GIT_REPOSITORY\STM32\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="516" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\croutine.o --omf_browse .\stm32f429i-discovery_demo\croutine.crf --depend .\stm32f429i-discovery_demo\croutine.d)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\FreeRTOS.h)(0x5245699C)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AF3C42)
@@ -1594,7 +1486,7 @@ I (..\Core\AutomotivePanel\tahometerScale.c)(0x574D3DB8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AF3C42)
 I (..\Core\AutomotivePanel\fuelScale.c)(0x574D3DC6)
 I (..\Core\AutomotivePanel\temperatureScale.c)(0x574D3DE9)
-F (..\Core\AutomotivePanel\picto.c)(0x574D9429)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib --c99 --diag-suppress 111-I "D:\PROJECTS\GIT_REPOSITORY\STM32\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="516" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\picto.o --omf_browse .\stm32f429i-discovery_demo\picto.crf --depend .\stm32f429i-discovery_demo\picto.d)
+F (..\Core\AutomotivePanel\picto.c)(0x574E94CC)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib --c99 --diag-suppress 111-I "D:\PROJECTS\GIT_REPOSITORY\STM32\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="516" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\picto.o --omf_browse .\stm32f429i-discovery_demo\picto.crf --depend .\stm32f429i-discovery_demo\picto.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AF3C42)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI.h)(0x53CCEBF6)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_ConfDefaults.h)(0x524569BA)

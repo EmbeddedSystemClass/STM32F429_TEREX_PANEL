@@ -582,11 +582,6 @@
           <GroupName>Utilities</GroupName>
           <Files>
             <File>
-              <FileName>syscall.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\..\..\Utilities\Third_Party\fat_fs\src\option\syscall.c</FilePath>
-            </File>
-            <File>
               <FileName>croutine.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\croutine.c</FilePath>

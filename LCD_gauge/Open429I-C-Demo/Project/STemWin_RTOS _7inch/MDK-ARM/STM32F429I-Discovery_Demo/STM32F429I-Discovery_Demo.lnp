@@ -30,7 +30,6 @@
 ".\stm32f429i-discovery_demo\stm32f429i_lcd_lib.o"
 ".\stm32f429i-discovery_demo\stm32f429i_lib.o"
 ".\stm32f429i-discovery_demo\guidrv.o"
-".\stm32f429i-discovery_demo\syscall.o"
 ".\stm32f429i-discovery_demo\croutine.o"
 ".\stm32f429i-discovery_demo\list.o"
 ".\stm32f429i-discovery_demo\queue.o"
