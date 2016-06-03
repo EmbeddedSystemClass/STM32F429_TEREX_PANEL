@@ -36,6 +36,7 @@ extern  GUI_LOGPALETTE _Palpicto_H40;
 extern  GUI_COLOR _Colorspicto_gray[];
 extern  GUI_COLOR _Colorspicto_red[];
 extern  GUI_COLOR _Colorspicto_green[];
+extern  GUI_COLOR _Colorspicto_blue[];
 
 #define MAG         3
 #define NUM_SCALES  3
@@ -388,7 +389,7 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 			{
 					_Palpicto_H19.pPalEntries =&_Colorspicto_red[0];
 			}
-			GUI_DrawBitmap(&bmpicto_H19, 120 ,  20);
+			GUI_DrawBitmap(&bmpicto_H19, 120 ,  10);
 		}
 		break;
 		
@@ -400,9 +401,9 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 			}
 			else
 			{
-					_Palpicto_H20.pPalEntries =&_Colorspicto_red[0];
+					_Palpicto_H20.pPalEntries =&_Colorspicto_green[0];
 			}
-			GUI_DrawBitmap(&bmpicto_H20, 90 , 120);
+			GUI_DrawBitmap(&bmpicto_H20, 90 , 110);
 		}
 		break;
 		
@@ -414,9 +415,9 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 				}
 				else
 				{
-						_Palpicto_H21.pPalEntries =&_Colorspicto_red[0];
+						_Palpicto_H21.pPalEntries =&_Colorspicto_blue[0];
 				}
-				GUI_DrawBitmap(&bmpicto_H21, 60 , 220);
+				GUI_DrawBitmap(&bmpicto_H21, 60 , 210);
 
 		}
 		break;
@@ -432,7 +433,7 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 				{
 						_Palpicto_H24.pPalEntries =&_Colorspicto_red[0];
 				}
-				GUI_DrawBitmap(&bmpicto_H24, 30 , 320);
+				GUI_DrawBitmap(&bmpicto_H24, 30 , 310);
 		}
 		break;
 		
@@ -444,9 +445,9 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 				}
 				else
 				{
-						_Palpicto_H35.pPalEntries =&_Colorspicto_red[0];
+						_Palpicto_H35.pPalEntries =&_Colorspicto_green[0];
 				}
-				GUI_DrawBitmap(&bmpicto_H35, 10 , 420);
+				GUI_DrawBitmap(&bmpicto_H35, 10 , 410);
 		}
 		break;
 		
@@ -458,9 +459,9 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 				}
 				else
 				{
-						_Palpicto_H36.pPalEntries =&_Colorspicto_red[0];
+						_Palpicto_H36.pPalEntries =&_Colorspicto_blue[0];
 				}
-				GUI_DrawBitmap(&bmpicto_H36, 220,  20);
+				GUI_DrawBitmap(&bmpicto_H36, 220,  10);
 		}
 		break;	
 
@@ -474,7 +475,7 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 				{
 						_Palpicto_H37.pPalEntries =&_Colorspicto_red[0];
 				}	
-				GUI_DrawBitmap(&bmpicto_H37, 190, 120);
+				GUI_DrawBitmap(&bmpicto_H37, 190, 110);
 		}
 		break;	
 
@@ -486,9 +487,9 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 				}
 				else
 				{
-						_Palpicto_H38.pPalEntries =&_Colorspicto_red[0];
+						_Palpicto_H38.pPalEntries =&_Colorspicto_green[0];
 				}
-				GUI_DrawBitmap(&bmpicto_H38, 160, 220);
+				GUI_DrawBitmap(&bmpicto_H38, 160, 210);
 		}
 		break;	
 
@@ -500,9 +501,9 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 				}
 				else
 				{
-						_Palpicto_H39.pPalEntries =&_Colorspicto_red[0];
+						_Palpicto_H39.pPalEntries =&_Colorspicto_blue[0];
 				}
-				GUI_DrawBitmap(&bmpicto_H39, 130, 320);
+				GUI_DrawBitmap(&bmpicto_H39, 130, 310);
 		}
 		break;	
 
@@ -514,9 +515,9 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 				}
 				else
 				{
-						_Palpicto_H40.pPalEntries =&_Colorspicto_green[0];
+						_Palpicto_H40.pPalEntries =&_Colorspicto_red[0];
 				}	
-				GUI_DrawBitmap(&bmpicto_H40, 110, 420);
+				GUI_DrawBitmap(&bmpicto_H40, 110, 410);
 		}
 		break;				
 	}
@@ -575,28 +576,46 @@ static void AutomotivePanel_Task(void * pvParameters)
 	while(1)
 	{
 				
-		if((tDiff = GUI_GetTime() - t0) > TIME_4_2)
+		if((tDiff = GUI_GetTime() - t0) > 15000)
 		{
 			tBlinkNext=1000;
 			t0 = GUI_GetTime();       // Get current time
 		}
+	
 				
 		if(tDiff > tBlinkNext)
 		{
 				tBlinkNext+=1000;
 				if(blink_flag)
 				{
-							Set_Pictogram_State(PICTO_H20,PICTO_STATE_OFF);
-							Set_Pictogram_State(PICTO_H40,PICTO_STATE_ON);
+						Set_Pictogram_State(PICTO_H19,PICTO_STATE_OFF);
+						Set_Pictogram_State(PICTO_H20,PICTO_STATE_ON);
+						Set_Pictogram_State(PICTO_H21,PICTO_STATE_OFF);
+						Set_Pictogram_State(PICTO_H24,PICTO_STATE_ON);
+						Set_Pictogram_State(PICTO_H35,PICTO_STATE_OFF);
+						Set_Pictogram_State(PICTO_H36,PICTO_STATE_ON);
+						Set_Pictogram_State(PICTO_H37,PICTO_STATE_OFF);
+						Set_Pictogram_State(PICTO_H38,PICTO_STATE_ON);
+						Set_Pictogram_State(PICTO_H39,PICTO_STATE_OFF);
+						Set_Pictogram_State(PICTO_H40,PICTO_STATE_ON);					
 				}
 				else
 				{
-							Set_Pictogram_State(PICTO_H20,PICTO_STATE_ON);
-							Set_Pictogram_State(PICTO_H40,PICTO_STATE_OFF);
+						Set_Pictogram_State(PICTO_H19,PICTO_STATE_ON);
+						Set_Pictogram_State(PICTO_H20,PICTO_STATE_OFF);
+						Set_Pictogram_State(PICTO_H21,PICTO_STATE_ON);
+						Set_Pictogram_State(PICTO_H24,PICTO_STATE_OFF);
+						Set_Pictogram_State(PICTO_H35,PICTO_STATE_ON);
+						Set_Pictogram_State(PICTO_H36,PICTO_STATE_OFF);
+						Set_Pictogram_State(PICTO_H37,PICTO_STATE_ON);
+						Set_Pictogram_State(PICTO_H38,PICTO_STATE_OFF);
+						Set_Pictogram_State(PICTO_H39,PICTO_STATE_ON);
+						Set_Pictogram_State(PICTO_H40,PICTO_STATE_OFF);	
 				}  
 				blink_flag=~blink_flag;			
 
 			}
+
 
 			
 			Set_TahometerScale_Value(_GetRPM(tDiff));
@@ -614,6 +633,8 @@ static void AutomotivePanel_Task(void * pvParameters)
 					GUI_MEMDEV_DrawAuto(&aAutoDev[i], &aParam[i].AutoDevInfo, _pfDraw[i], &aParam[i]);
 					atDiff[i]    = GUI_GetTime() - t1;
 				}
+				
+
 			}			
 			GUI_Exec();
   }
