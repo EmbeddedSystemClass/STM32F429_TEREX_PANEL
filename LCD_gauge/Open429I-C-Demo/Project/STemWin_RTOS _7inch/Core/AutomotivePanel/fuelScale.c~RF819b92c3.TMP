@@ -27,7 +27,7 @@
   #define GUI_CONST_STORAGE const
 #endif
 
-extern  GUI_BITMAP bmfuelScale;
+extern GUI_CONST_STORAGE GUI_BITMAP bmfuelScale;
 
 /*********************************************************************
 *
@@ -42,14 +42,14 @@ extern  GUI_BITMAP bmfuelScale;
 *    The middle  8 bits represent the Green component.
 *    The highest 8 bits represent the Blue  component.
 */
-static  GUI_COLOR _ColorsfuelScale[] = {
+static GUI_CONST_STORAGE GUI_COLOR _ColorsfuelScale[] = {
   0x000000, 0x00002A, 0x2F2F2F, 0x000045,
   0x000069, 0x505050, 0x6F6F70, 0x000097,
   0x7F7F80, 0x0000FD, 0x909091, 0xAFAFB0,
   0xBFBFC0, 0xD1D1D2, 0xDFDFE0, 0xFAFAFA
 };
 
-static  GUI_LOGPALETTE _PalfuelScale = {
+static GUI_CONST_STORAGE GUI_LOGPALETTE _PalfuelScale = {
   16,  // Number of entries
   0,   // No transparency
   &_ColorsfuelScale[0]
@@ -628,7 +628,7 @@ static GUI_CONST_STORAGE unsigned char _acfuelScale[] = {
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
- GUI_BITMAP bmfuelScale = {
+GUI_CONST_STORAGE GUI_BITMAP bmfuelScale = {
   180, // xSize
   190, // ySize
   90, // BytesPerLine

@@ -6354,7 +6354,7 @@ Memory Map of the image
 
   Image Entry point : 0x080001ad
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000388cc, Max: 0x00200000, ABSOLUTE, COMPRESSED[0x000383f8])
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000388cc, Max: 0x00200000, ABSOLUTE, COMPRESSED[0x00038414])
 
     Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x000381c4, Max: 0x00200000, ABSOLUTE)
 
@@ -7069,7 +7069,7 @@ Memory Map of the image
     0x080381a4   0x00000020   Data   RO         7312    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00011180, Max: 0x00030000, ABSOLUTE, COMPRESSED[0x00000234])
+    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00011180, Max: 0x00030000, ABSOLUTE, COMPRESSED[0x00000250])
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -7361,14 +7361,14 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
      60708       3588     169120       1800    5311096     597072   Grand Totals
-     60708       3588     169120        564    5311096     597072   ELF Image Totals (compressed)
-     60708       3588     169120        564          0          0   ROM Totals
+     60708       3588     169120        592    5311096     597072   ELF Image Totals (compressed)
+     60708       3588     169120        592          0          0   ROM Totals
 
 ==============================================================================
 
     Total RO  Size (Code + RO Data)               229828 ( 224.44kB)
     Total RW  Size (RW Data + ZI Data)           5312896 (5188.38kB)
-    Total ROM Size (Code + RO Data + RW Data)     230392 ( 224.99kB)
+    Total ROM Size (Code + RO Data + RW Data)     230420 ( 225.02kB)
 
 ==============================================================================
 

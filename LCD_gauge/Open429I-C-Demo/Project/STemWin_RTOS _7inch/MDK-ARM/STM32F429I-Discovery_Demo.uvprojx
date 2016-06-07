@@ -48,7 +48,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\STM32F429I-Discovery_Demo\</OutputDirectory>
-          <OutputName>STM32F429I-Discovery_Demo</OutputName>
+          <OutputName>STM32F429I-TEREX_PANEL</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>

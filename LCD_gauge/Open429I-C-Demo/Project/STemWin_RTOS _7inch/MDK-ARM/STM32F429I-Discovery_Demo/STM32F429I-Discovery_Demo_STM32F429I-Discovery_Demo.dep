@@ -1575,8 +1575,8 @@ I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TEXT.h)(0x524569B4)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TREEVIEW.h)(0x524569B8)
 I (..\Core\AutomotivePanel\tahometerScale.c)(0x574D3DB8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AF3C42)
-I (..\Core\AutomotivePanel\fuelScale.c)(0x574D3DC6)
-I (..\Core\AutomotivePanel\temperatureScale.c)(0x574D3DE9)
+I (..\Core\AutomotivePanel\fuelScale.c)(0x5756F2D6)
+I (..\Core\AutomotivePanel\temperatureScale.c)(0x5756F2BE)
 F (..\Core\AutomotivePanel\picto.c)(0x57516E8A)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib -I..\Core\AutomotivePanel --c99 --diag-suppress 111-I "D:\PROJECTS\GIT_REPOSITORY\STM32\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="516" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\picto.o --omf_browse .\stm32f429i-discovery_demo\picto.crf --depend .\stm32f429i-discovery_demo\picto.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AF3C42)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI.h)(0x53CCEBF6)
