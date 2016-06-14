@@ -3,35 +3,27 @@
 #include "automotivePanel.h"
 #include "global_includes.h"
 
-extern GUI_BITMAP bmpicto_H19;
-extern  GUI_LOGPALETTE _Palpicto_H19;
-	
-extern GUI_BITMAP bmpicto_H20;
-extern  GUI_LOGPALETTE _Palpicto_H20;
-	
-extern GUI_BITMAP bmpicto_H21;
-extern  GUI_LOGPALETTE _Palpicto_H21;
-	
-extern GUI_BITMAP bmpicto_H24;
-extern  GUI_LOGPALETTE _Palpicto_H24;	
-	
-extern GUI_BITMAP bmpicto_H35;
-extern  GUI_LOGPALETTE _Palpicto_H35;		
-	
+extern GUI_BITMAP bmpicto_H19;	
+extern GUI_BITMAP bmpicto_H20;	
+extern GUI_BITMAP bmpicto_H21;	
+extern GUI_BITMAP bmpicto_H24;	
+extern GUI_BITMAP bmpicto_H35;	
 extern GUI_BITMAP bmpicto_H36;
-extern  GUI_LOGPALETTE _Palpicto_H36;	
-
 extern GUI_BITMAP bmpicto_H37;
-extern  GUI_LOGPALETTE _Palpicto_H37;
-
 extern GUI_BITMAP bmpicto_H38;
-extern  GUI_LOGPALETTE _Palpicto_H38;
-
 extern GUI_BITMAP bmpicto_H39;
-extern  GUI_LOGPALETTE _Palpicto_H39;	
-
 extern GUI_BITMAP bmpicto_H40;
-extern  GUI_LOGPALETTE _Palpicto_H40;	
+extern GUI_BITMAP bmpicto_H41;
+extern GUI_BITMAP bmpicto_H42;	
+extern GUI_BITMAP bmpicto_H43;	
+extern GUI_BITMAP bmpicto_H44;	
+extern GUI_BITMAP bmpicto_H45;	
+extern GUI_BITMAP bmpicto_H46;
+extern GUI_BITMAP bmpicto_H47;
+extern GUI_BITMAP bmpicto_H48;
+extern GUI_BITMAP bmpicto_H49;
+extern GUI_BITMAP bmpicto_H51;
+
 	
 extern  GUI_COLOR _Colorspicto_gray[];
 extern  GUI_COLOR _Colorspicto_red[];
@@ -39,13 +31,14 @@ extern  GUI_COLOR _Colorspicto_green[];
 extern  GUI_COLOR _Colorspicto_blue[];
 
 #define MAG         3
-#define NUM_SCALES  3
+#define NUM_SCALES  4
 
 typedef enum
 {
 	SCALE_TAHOMETER=0,
 	SCALE_FUEL=1,
 	SCALE_TEMPERATURE=2,
+	SCALE_SPEEDOMETER=3,
 }enScale;
 
 
@@ -64,14 +57,86 @@ typedef enum
 #define TEMPERATURESCALE_VALUE_MIN	0
 #define TEMPERATURESCALE_VALUE_MAX	120
 
+#define SPEEDOMETERSCALE_ANGLE_MIN	270
+#define SPEEDOMETERSCALE_ANGLE_MAX	90
+#define SPEEDOMETERSCALE_VALUE_MIN	0
+#define SPEEDOMETERSCALE_VALUE_MAX	40
+
 void Set_TahometerScale_Value(float val);
 void Set_FuelScale_Value(float val);
 void Set_TemperatureScale_Value(float val);
-float AutomotivePanel_TahometerScale_Filter (float in);
-float AutomotivePanel_FuelScale_Filter (float in);
-float AutomotivePanel_TemperatureScale_Filter (float in);
+void Set_SpeedometerScale_Value(float val);
 
 
+/**************Filter******************************/
+#define TAHOMETERSCALE_FILTER_TCONST	10
+#define TAHOMETERSCALE_WLAG 8
+
+#define FUELSCALE_FILTER_TCONST	10
+#define FUELSCALE_WLAG 8
+
+#define TEMPERATURESCALE_FILTER_TCONST	10
+#define TEMPERATURESCALE_WLAG 8
+
+#define SPEEDOMETERSCALE_FILTER_TCONST	10
+#define SPEEDOMETERSCALE_WLAG 8
+
+typedef  struct
+{
+		float t_const;
+		float wlag;
+}
+FILTER;
+
+const FILTER TahometerScaleFilter={TAHOMETERSCALE_FILTER_TCONST,TAHOMETERSCALE_WLAG};
+const FILTER FuelScaleFilter={FUELSCALE_FILTER_TCONST,FUELSCALE_WLAG};
+const FILTER TemperatureScaleFilter={TEMPERATURESCALE_FILTER_TCONST,TEMPERATURESCALE_WLAG};
+const FILTER SpeedometerScaleFilter={SPEEDOMETERSCALE_FILTER_TCONST,SPEEDOMETERSCALE_WLAG};
+
+float ScaleFilter(const FILTER *filter, float in);
+/***************************************************/
+/*********************************************************************
+*
+*       Structure containing information for drawing routine
+*
+**********************************************************************
+*/
+typedef struct {
+  GUI_AUTODEV_INFO AutoDevInfo; // Information about what has to be displayed
+  GUI_POINT        aPoints[7];  // Polygon data
+  float            Angle;
+} PARAM;
+
+typedef struct {
+  GUI_POINT * pPolygon;
+  int         NumPoints;
+} NEEDLE;
+typedef struct
+{
+	GUI_POINT 		pos;
+	GUI_BITMAP *scale;
+	NEEDLE		 *needle;
+	PARAM			 *param;
+}
+SCALE;
+SCALE scales[NUM_SCALES];
+/***************************************************/
+typedef struct
+{
+	GUI_POINT pos;
+	GUI_BITMAP *picto;
+	GUI_COLOR  *palette_active_state;
+	GUI_COLOR  *palette_passive_state;
+	enPictoState state;	
+}
+PICTOGRAM;
+
+#define PICTO_NUM	20
+PICTOGRAM picto[PICTO_NUM];
+
+void Pictogram_Init(void);
+
+/***************************************************/
 #define AutomotivePanel_Task_PRIO    ( tskIDLE_PRIORITY  + 9 )
 #define AutomotivePanel_Task_STACK   ( 3048 )
 xTaskHandle                   				AutomotivePanel_Task_Handle;
@@ -79,11 +144,11 @@ static void AutomotivePanel_Task(void * pvParameters);
 
 //#define FONT_GEAR &GUI_FontRounded22
 
-
 #define DEG2RAD      (3.1415926f / 180)
 
 
 #include "tahometerScale.c"
+#include "speedometerScale.c"
 #include "fuelScale.c"
 #include "temperatureScale.c"
 //#include "picto.c"
@@ -131,22 +196,18 @@ static GUI_POINT _aNeedle_2[] = { //other needles
 };
 
 
-/*********************************************************************
-*
-*       Structure containing information for drawing routine
-*
-**********************************************************************
-*/
-typedef struct {
-  GUI_AUTODEV_INFO AutoDevInfo; // Information about what has to be displayed
-  GUI_POINT        aPoints[7];  // Polygon data
-  float            Angle;
-} PARAM;
+#define SPEEDOMETERSCALE_NEEDLE_LEN_VISIO	175
+#define SPEEDOMETERSCALE_NEEDLE_CENTER_TO_VISIO 15	// расстояние от центра вращения до видимой части
+#define SPEEDOMETERSCALE_NEEDLE_LEN_ALL	SPEEDOMETERSCALE_NEEDLE_LEN_VISIO + SPEEDOMETERSCALE_NEEDLE_CENTER_TO_VISIO		//общая длина стрелки
 
-typedef struct {
-  GUI_POINT * pPolygon;
-  int         NumPoints;
-} NEEDLE;
+static GUI_POINT _aNeedle_3[] = { //SPEEDOMETER needle
+  { MAG * ( 0), MAG * (  0 + SPEEDOMETERSCALE_NEEDLE_LEN_ALL)},
+  { MAG * (-3), MAG * (-15 + SPEEDOMETERSCALE_NEEDLE_LEN_ALL)},
+  { MAG * (-3), MAG * (-SPEEDOMETERSCALE_NEEDLE_LEN_VISIO + SPEEDOMETERSCALE_NEEDLE_LEN_ALL)},
+  { MAG * ( 3), MAG * (-SPEEDOMETERSCALE_NEEDLE_LEN_VISIO + SPEEDOMETERSCALE_NEEDLE_LEN_ALL)},
+  { MAG * ( 3), MAG * (-15 + SPEEDOMETERSCALE_NEEDLE_LEN_ALL)},
+};
+
 
 static int _OldGear = 0;
 
@@ -154,6 +215,7 @@ static NEEDLE _aNeedle[NUM_SCALES] = {
   { _aNeedle_0, GUI_COUNTOF(_aNeedle_0) },
   { _aNeedle_1, GUI_COUNTOF(_aNeedle_1) },
 	{ _aNeedle_2, GUI_COUNTOF(_aNeedle_2) },
+	{ _aNeedle_3, GUI_COUNTOF(_aNeedle_3) },
 };
 
 GUI_AUTODEV aAutoDev [NUM_SCALES];               // Object for banding memory device
@@ -244,6 +306,15 @@ static float _GetTemperature(int tDiff) {
   return 120;
 }
 
+static float _GetSpeed(int tDiff) {
+
+  if ((tDiff >= 0) && (tDiff < 15000)) 
+	{
+			return ((float)tDiff/15000*40);
+  }
+  return 40;
+}
+
 /*********************************************************************/
 #define TAHOMETERSCALE_POS_X					(xSize - bmtahometerScale.XSize)	
 #define TAHOMETERSCALE_POS_Y					(0)	
@@ -317,10 +388,37 @@ static void _Draw_TemperatureScale(void * p) {
 }
 
 /*********************************************************************/
+#define SPEEDOMETERSCALE_POS_X					(xSize - bmtahometerScale.XSize)	
+#define SPEEDOMETERSCALE_POS_Y					(0)	
+#define SPEEDOMETERSCALE_NEEDLE_POS_X		(xSize -(bmtahometerScale.XSize>>1)-12)
+#define SPEEDOMETERSCALE_NEEDLE_POS_Y		(bmtahometerScale.YSize-68)
+
+static void _Draw_SpeedometerScale(void * p) {
+  PARAM * pParam = (PARAM *)p;
+  int     xSize;
+
+  xSize = LCD_GetXSize();
+  //
+  // Fixed background
+  //
+  if (pParam->AutoDevInfo.DrawFixed) {
+    GUI_ClearRect (SPEEDOMETERSCALE_POS_X ,SPEEDOMETERSCALE_POS_Y, SPEEDOMETERSCALE_POS_X + bmtahometerScale.XSize - 1,SPEEDOMETERSCALE_POS_Y+ bmtahometerScale.YSize - 1);
+    GUI_DrawBitmap(&bmtahometerScale, SPEEDOMETERSCALE_POS_X , SPEEDOMETERSCALE_POS_Y);
+  }
+  //
+  // Moving needle
+  //
+  GUI_SetColor(GUI_WHITE);
+  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_3),  MAG*SPEEDOMETERSCALE_NEEDLE_POS_X,  MAG*SPEEDOMETERSCALE_NEEDLE_POS_Y);
+
+}
+
+/*********************************************************************/
 void (* _pfDraw[NUM_SCALES])(void * p) = {
   _Draw_TahometerScale,
   _Draw_FuelScale,
-	_Draw_TemperatureScale
+	_Draw_TemperatureScale,
+	_Draw_SpeedometerScale,
 };
 
 
@@ -328,7 +426,7 @@ void (* _pfDraw[NUM_SCALES])(void * p) = {
 
 void Set_TahometerScale_Value(float val)
 {
-	val=AutomotivePanel_TahometerScale_Filter(val);
+	val=ScaleFilter(&TahometerScaleFilter,val);
 	if(val<TAHOMETERSCALE_VALUE_MIN)
 	{
 			val=TAHOMETERSCALE_VALUE_MIN;
@@ -344,7 +442,7 @@ void Set_TahometerScale_Value(float val)
 
 void Set_FuelScale_Value(float val)
 {
-	val=AutomotivePanel_FuelScale_Filter(val);
+	val=ScaleFilter(&FuelScaleFilter,val);
 	if(val<FUELSCALE_VALUE_MIN)
 	{
 			val=FUELSCALE_VALUE_MIN;
@@ -360,7 +458,7 @@ void Set_FuelScale_Value(float val)
 
 void Set_TemperatureScale_Value(float val)
 {
-	val=AutomotivePanel_TemperatureScale_Filter(val);
+	val=ScaleFilter(&TemperatureScaleFilter,val);
 	if(val<TEMPERATURESCALE_VALUE_MIN)
 	{
 			val=TEMPERATURESCALE_VALUE_MIN;
@@ -374,160 +472,49 @@ void Set_TemperatureScale_Value(float val)
 	aParam[SCALE_TEMPERATURE].Angle = ((val-TEMPERATURESCALE_VALUE_MIN)/(TEMPERATURESCALE_VALUE_MAX-TEMPERATURESCALE_VALUE_MIN)*(TEMPERATURESCALE_ANGLE_MAX-TEMPERATURESCALE_ANGLE_MIN)+TEMPERATURESCALE_ANGLE_MIN)*DEG2RAD;
 }
 
+void Set_SpeedometerScale_Value(float val)
+{
+	val=ScaleFilter(&SpeedometerScaleFilter,val);
+	if(val<SPEEDOMETERSCALE_VALUE_MIN)
+	{
+			val=SPEEDOMETERSCALE_VALUE_MIN;
+	}
+	
+	if(val>SPEEDOMETERSCALE_VALUE_MAX)
+	{
+			val=SPEEDOMETERSCALE_VALUE_MAX;
+	}
+	
+	aParam[SCALE_SPEEDOMETER].Angle = ((val-SPEEDOMETERSCALE_VALUE_MIN)/(SPEEDOMETERSCALE_VALUE_MAX-SPEEDOMETERSCALE_VALUE_MIN)*(SPEEDOMETERSCALE_ANGLE_MAX-SPEEDOMETERSCALE_ANGLE_MIN)+SPEEDOMETERSCALE_ANGLE_MIN)*DEG2RAD;
+}
+
+
+//----------------------------------------------
 
 void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 {
-	switch(pictogram)
+	picto[pictogram].state=state;
+	
+	if(picto[pictogram].state==PICTO_STATE_OFF)
 	{
-		case PICTO_H19:
-		{
-			if(state==PICTO_STATE_OFF)
-			{
-					_Palpicto_H19.pPalEntries =&_Colorspicto_gray[0];
-			}
-			else
-			{
-					_Palpicto_H19.pPalEntries =&_Colorspicto_red[0];
-			}
-			GUI_DrawBitmap(&bmpicto_H19, 120 ,  10);
-		}
-		break;
-		
-		case PICTO_H20:
-		{
-			if(state==PICTO_STATE_OFF)
-			{
-					_Palpicto_H20.pPalEntries =&_Colorspicto_gray[0];
-			}
-			else
-			{
-					_Palpicto_H20.pPalEntries =&_Colorspicto_green[0];
-			}
-			GUI_DrawBitmap(&bmpicto_H20, 90 , 110);
-		}
-		break;
-		
-		case PICTO_H21:
-		{
-				if(state==PICTO_STATE_OFF)
-				{
-						_Palpicto_H21.pPalEntries =&_Colorspicto_gray[0];
-				}
-				else
-				{
-						_Palpicto_H21.pPalEntries =&_Colorspicto_blue[0];
-				}
-				GUI_DrawBitmap(&bmpicto_H21, 60 , 210);
-
-		}
-		break;
-		
-		case PICTO_H24:
-		{
-			
-				if(state==PICTO_STATE_OFF)
-				{
-						_Palpicto_H24.pPalEntries =&_Colorspicto_gray[0];
-				}
-				else
-				{
-						_Palpicto_H24.pPalEntries =&_Colorspicto_red[0];
-				}
-				GUI_DrawBitmap(&bmpicto_H24, 30 , 310);
-		}
-		break;
-		
-		case PICTO_H35:
-		{
-				if(state==PICTO_STATE_OFF)
-				{
-						_Palpicto_H35.pPalEntries =&_Colorspicto_gray[0];
-				}
-				else
-				{
-						_Palpicto_H35.pPalEntries =&_Colorspicto_green[0];
-				}
-				GUI_DrawBitmap(&bmpicto_H35, 10 , 410);
-		}
-		break;
-		
-		case PICTO_H36:
-		{
-				if(state==PICTO_STATE_OFF)
-				{
-						_Palpicto_H36.pPalEntries =&_Colorspicto_gray[0];
-				}
-				else
-				{
-						_Palpicto_H36.pPalEntries =&_Colorspicto_blue[0];
-				}
-				GUI_DrawBitmap(&bmpicto_H36, 220,  10);
-		}
-		break;	
-
-		case PICTO_H37:
-		{
-				if(state==PICTO_STATE_OFF)
-				{
-						_Palpicto_H37.pPalEntries =&_Colorspicto_gray[0];
-				}
-				else
-				{
-						_Palpicto_H37.pPalEntries =&_Colorspicto_red[0];
-				}	
-				GUI_DrawBitmap(&bmpicto_H37, 190, 110);
-		}
-		break;	
-
-		case PICTO_H38:
-		{
-				if(state==PICTO_STATE_OFF)
-				{
-						_Palpicto_H38.pPalEntries =&_Colorspicto_gray[0];
-				}
-				else
-				{
-						_Palpicto_H38.pPalEntries =&_Colorspicto_green[0];
-				}
-				GUI_DrawBitmap(&bmpicto_H38, 160, 210);
-		}
-		break;	
-
-		case PICTO_H39:
-		{
-				if(state==PICTO_STATE_OFF)
-				{
-						_Palpicto_H39.pPalEntries =&_Colorspicto_gray[0];
-				}
-				else
-				{
-						_Palpicto_H39.pPalEntries =&_Colorspicto_blue[0];
-				}
-				GUI_DrawBitmap(&bmpicto_H39, 130, 310);
-		}
-		break;	
-
-		case PICTO_H40:
-		{
-				if(state==PICTO_STATE_OFF)
-				{
-						_Palpicto_H40.pPalEntries =&_Colorspicto_gray[0];
-				}
-				else
-				{
-						_Palpicto_H40.pPalEntries =&_Colorspicto_red[0];
-				}	
-				GUI_DrawBitmap(&bmpicto_H40, 110, 410);
-		}
-		break;				
+			picto[pictogram].picto->pPal->pPalEntries=picto[pictogram].palette_passive_state;
 	}
+	else
+	{
+			picto[pictogram].picto->pPal->pPalEntries=picto[pictogram].palette_active_state;
+	}
+	
+	GUI_DrawBitmap(picto[pictogram].picto, picto[pictogram].pos.x , picto[pictogram].pos.y );
 }
+
 
 
 void AutomotivePanel_Init(void)
 {
 	GUI_AA_EnableHiRes();
   GUI_AA_SetFactor(MAG);
+	
+	Pictogram_Init();
 	
 	xTaskCreate(AutomotivePanel_Task,
 						(signed char const*)"BK_GND",
@@ -647,32 +634,122 @@ static void AutomotivePanel_Task(void * pvParameters)
   }
 }
 
-#define TAHOMETERSCALE_FILTER_TCONST	10
-#define TAHOMETERSCALE_WLAG 8
-float AutomotivePanel_TahometerScale_Filter (float in)
+float ScaleFilter(const FILTER *filter, float in)
 {
 		static float lastOut=0;
-		float out = in * (TAHOMETERSCALE_FILTER_TCONST - TAHOMETERSCALE_WLAG) + ((TAHOMETERSCALE_WLAG * lastOut) / TAHOMETERSCALE_FILTER_TCONST);
+		float out = in * (filter->t_const - filter->wlag) + ((filter->wlag * lastOut) / filter->t_const);
 		lastOut = out;
-		return (out / TAHOMETERSCALE_FILTER_TCONST); 
+		return (out / filter->t_const); 
 }
 
-#define FUELSCALE_FILTER_TCONST	10
-#define FUELSCALE_WLAG 8
-float AutomotivePanel_FuelScale_Filter (float in)
+void Pictogram_Init(void)
 {
-		static float lastOut=0;
-		float out = in * (FUELSCALE_FILTER_TCONST - FUELSCALE_WLAG) + ((FUELSCALE_WLAG * lastOut) / FUELSCALE_FILTER_TCONST);
-		lastOut = out;
-		return (out / FUELSCALE_FILTER_TCONST); 
-}
+		uint8_t i=0;
+		
+		for(i=0;i<PICTO_NUM;i++)
+		{
+				picto[i].palette_passive_state=_Colorspicto_gray;
+				picto[i].picto->pPal->pPalEntries=picto[i].palette_passive_state;
+				picto[i].state=PICTO_STATE_OFF;
+		}
+		
+		picto[PICTO_H19].pos.x								=	120;
+		picto[PICTO_H19].pos.y								=	10;
+		picto[PICTO_H19].picto								=	&bmpicto_H19;
+		picto[PICTO_H19].palette_active_state	=	_Colorspicto_red;		
+		
+		picto[PICTO_H20].pos.x								=	90;
+		picto[PICTO_H20].pos.y								=	110;
+		picto[PICTO_H20].picto								=	&bmpicto_H20;
+		picto[PICTO_H20].palette_active_state	=	_Colorspicto_red;	
 
-#define TEMPERATURESCALE_FILTER_TCONST	10
-#define TEMPERATURESCALE_WLAG 8
-float AutomotivePanel_TemperatureScale_Filter (float in)
-{
-		static float lastOut=0;
-		float out = in * (TEMPERATURESCALE_FILTER_TCONST - TEMPERATURESCALE_WLAG) + ((TEMPERATURESCALE_WLAG * lastOut) / TEMPERATURESCALE_FILTER_TCONST);
-		lastOut = out;
-		return (out / TEMPERATURESCALE_FILTER_TCONST); 
+		picto[PICTO_H21].pos.x								=	60;
+		picto[PICTO_H21].pos.y								=	210;
+		picto[PICTO_H21].picto								=	&bmpicto_H21;
+		picto[PICTO_H21].palette_active_state	=	_Colorspicto_red;	
+
+		picto[PICTO_H24].pos.x								=	30;
+		picto[PICTO_H24].pos.y								=	310;
+		picto[PICTO_H24].picto								=	&bmpicto_H24;
+		picto[PICTO_H24].palette_active_state	=	_Colorspicto_red;			
+		
+		picto[PICTO_H35].pos.x								=	10;
+		picto[PICTO_H35].pos.y								=	410;
+		picto[PICTO_H35].picto								=	&bmpicto_H35;
+		picto[PICTO_H35].palette_active_state	=	_Colorspicto_red;	
+
+		picto[PICTO_H36].pos.x								=	220;
+		picto[PICTO_H36].pos.y								=	10;
+		picto[PICTO_H36].picto								=	&bmpicto_H36;
+		picto[PICTO_H36].palette_active_state	=	_Colorspicto_red;		
+		
+		picto[PICTO_H37].pos.x								=	190;
+		picto[PICTO_H37].pos.y								=	110;
+		picto[PICTO_H37].picto								=	&bmpicto_H37;
+		picto[PICTO_H37].palette_active_state	=	_Colorspicto_red;	
+
+		picto[PICTO_H38].pos.x								=	160;
+		picto[PICTO_H38].pos.y								=	210;
+		picto[PICTO_H38].picto								=	&bmpicto_H38;
+		picto[PICTO_H38].palette_active_state	=	_Colorspicto_red;		
+		
+		picto[PICTO_H39].pos.x								=	130;
+		picto[PICTO_H39].pos.y								=	310;
+		picto[PICTO_H39].picto								=	&bmpicto_H39;
+		picto[PICTO_H39].palette_active_state	=	_Colorspicto_red;
+
+		picto[PICTO_H40].pos.x								=	110;
+		picto[PICTO_H40].pos.y								=	410;
+		picto[PICTO_H40].picto								=	&bmpicto_H40;
+		picto[PICTO_H40].palette_active_state	=	_Colorspicto_red;		
+		
+		picto[PICTO_H41].pos.x								=	120;
+		picto[PICTO_H41].pos.y								=	10;
+		picto[PICTO_H41].picto								=	&bmpicto_H41;
+		picto[PICTO_H41].palette_active_state	=	_Colorspicto_red;			
+		
+		picto[PICTO_H42].pos.x								=	90;
+		picto[PICTO_H42].pos.y								=	110;
+		picto[PICTO_H42].picto								=	&bmpicto_H42;
+		picto[PICTO_H42].palette_active_state	=	_Colorspicto_red;	
+		
+		picto[PICTO_H43].pos.x								=	60;
+		picto[PICTO_H43].pos.y								=	210;
+		picto[PICTO_H43].picto								=	&bmpicto_H43;
+		picto[PICTO_H43].palette_active_state	=	_Colorspicto_red;		
+
+		picto[PICTO_H44].pos.x								=	30;
+		picto[PICTO_H44].pos.y								=	310;
+		picto[PICTO_H44].picto								=	&bmpicto_H44;
+		picto[PICTO_H44].palette_active_state	=	_Colorspicto_red;	
+		
+		picto[PICTO_H45].pos.x								=	10;
+		picto[PICTO_H45].pos.y								=	410;
+		picto[PICTO_H45].picto								=	&bmpicto_H45;
+		picto[PICTO_H45].palette_active_state	=	_Colorspicto_red;	
+
+		picto[PICTO_H46].pos.x								=	220;
+		picto[PICTO_H46].pos.y								=	10;
+		picto[PICTO_H46].picto								=	&bmpicto_H46;
+		picto[PICTO_H46].palette_active_state	=	_Colorspicto_red;	
+		
+		picto[PICTO_H47].pos.x								=	190;
+		picto[PICTO_H47].pos.y								=	110;
+		picto[PICTO_H47].picto								=	&bmpicto_H47;
+		picto[PICTO_H47].palette_active_state	=	_Colorspicto_red;	
+
+		picto[PICTO_H48].pos.x								=	160;
+		picto[PICTO_H48].pos.y								=	210;
+		picto[PICTO_H48].picto								=	&bmpicto_H48;
+		picto[PICTO_H48].palette_active_state	=	_Colorspicto_red;
+
+		picto[PICTO_H49].pos.x								=	130;
+		picto[PICTO_H49].pos.y								=	310;
+		picto[PICTO_H49].picto								=	&bmpicto_H49;
+		picto[PICTO_H49].palette_active_state	=	_Colorspicto_red;	
+		
+		picto[PICTO_H51].pos.x								=	110;
+		picto[PICTO_H51].pos.y								=	410;
+		picto[PICTO_H51].picto								=	&bmpicto_H51;
+		picto[PICTO_H51].palette_active_state	=	_Colorspicto_red;	
 }

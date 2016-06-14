@@ -13,7 +13,16 @@ typedef enum
 	PICTO_H38,
 	PICTO_H39,
 	PICTO_H40,
+	PICTO_H41,
 	PICTO_H42,
+	PICTO_H43,
+	PICTO_H44,
+	PICTO_H45,
+	PICTO_H46,
+	PICTO_H47,
+	PICTO_H48,
+	PICTO_H49,
+	PICTO_H51,
 }enPictogram;
 
 typedef enum
