@@ -95,32 +95,39 @@ const FILTER SpeedometerScaleFilter={SPEEDOMETERSCALE_FILTER_TCONST,SPEEDOMETERS
 
 float ScaleFilter(const FILTER *filter, float in);
 /***************************************************/
-/*********************************************************************
-*
-*       Structure containing information for drawing routine
-*
-**********************************************************************
-*/
+
 typedef struct {
+	GUI_AUTODEV 		 aAutoDev;
   GUI_AUTODEV_INFO AutoDevInfo; // Information about what has to be displayed
   GUI_POINT        aPoints[7];  // Polygon data
   float            Angle;
+	float 					 Angle_min;
+	float 					 Angle_max;
+	float 					 Value;
+	float 					 Value_min;
+	float 					 Value_max;
+	
 } PARAM;
 
 typedef struct {
   GUI_POINT * pPolygon;
   int         NumPoints;
 } NEEDLE;
+
 typedef struct
 {
-	GUI_POINT 		pos;
 	GUI_BITMAP *scale;
+	GUI_POINT 	scale_pos;
 	NEEDLE		 *needle;
-	PARAM			 *param;
-}
-SCALE;
-SCALE scales[NUM_SCALES];
+	GUI_POINT   needle_pos;	
+	PARAM			  param;
+	const FILTER *filter;	
+	enScaleState state;
+} SCALE;
+
+static SCALE scales[NUM_SCALES];
 /***************************************************/
+
 typedef struct
 {
 	GUI_POINT pos;
@@ -132,7 +139,7 @@ typedef struct
 PICTOGRAM;
 
 #define PICTO_NUM	20
-PICTOGRAM picto[PICTO_NUM];
+static PICTOGRAM picto[PICTO_NUM];
 
 void Pictogram_Init(void);
 
@@ -218,8 +225,8 @@ static NEEDLE _aNeedle[NUM_SCALES] = {
 	{ _aNeedle_3, GUI_COUNTOF(_aNeedle_3) },
 };
 
-GUI_AUTODEV aAutoDev [NUM_SCALES];               // Object for banding memory device
-PARAM       aParam   [NUM_SCALES] = {0};           // Parameters for drawing routine
+//GUI_AUTODEV aAutoDev [NUM_SCALES];               // Object for banding memory device
+//PARAM       aParam   [NUM_SCALES] = {0};           // Parameters for drawing routine
 
 /*********************************************************************
 *
@@ -418,75 +425,92 @@ void (* _pfDraw[NUM_SCALES])(void * p) = {
   _Draw_TahometerScale,
   _Draw_FuelScale,
 	_Draw_TemperatureScale,
-	_Draw_SpeedometerScale,
+//	_Draw_SpeedometerScale,
 };
 
 
 /*********************************************************************/
 
-void Set_TahometerScale_Value(float val)
+void Set_ScaleValue(enScale scale, float val)
 {
-	val=ScaleFilter(&TahometerScaleFilter,val);
-	if(val<TAHOMETERSCALE_VALUE_MIN)
+	val=ScaleFilter(scales[scale].filter,val);
+	
+	if(val<scales[scale].param.Value_min)
 	{
-			val=TAHOMETERSCALE_VALUE_MIN;
+			val=scales[scale].param.Value_min;
 	}
 	
-	if(val>TAHOMETERSCALE_VALUE_MAX)
+	if(val>scales[scale].param.Value_max)
 	{
-			val=TAHOMETERSCALE_VALUE_MAX;
+			val=scales[scale].param.Value_max;
 	}
 	
-	aParam[SCALE_TAHOMETER].Angle = ((val-TAHOMETERSCALE_VALUE_MIN)/(TAHOMETERSCALE_VALUE_MAX-TAHOMETERSCALE_VALUE_MIN)*(TAHOMETERSCALE_ANGLE_MAX-TAHOMETERSCALE_ANGLE_MIN)+TAHOMETERSCALE_ANGLE_MIN)*DEG2RAD;
+	scales[scale].param.Angle = ((val-scales[scale].param.Value_min)/(scales[scale].param.Value_max-scales[scale].param.Value_min)*(scales[scale].param.Angle_max-scales[scale].param.Angle_min)+scales[scale].param.Angle_min)*DEG2RAD;
 }
 
-void Set_FuelScale_Value(float val)
-{
-	val=ScaleFilter(&FuelScaleFilter,val);
-	if(val<FUELSCALE_VALUE_MIN)
-	{
-			val=FUELSCALE_VALUE_MIN;
-	}
-	
-	if(val>FUELSCALE_VALUE_MAX)
-	{
-			val=FUELSCALE_VALUE_MAX;
-	}
-	
-	aParam[SCALE_FUEL].Angle = ((val-FUELSCALE_VALUE_MIN)/(FUELSCALE_VALUE_MAX-FUELSCALE_VALUE_MIN)*(FUELSCALE_ANGLE_MAX-FUELSCALE_ANGLE_MIN)+FUELSCALE_ANGLE_MIN)*DEG2RAD;
-}
+//void Set_TahometerScale_Value(float val)
+//{
+//	val=ScaleFilter(&TahometerScaleFilter,val);
+//	if(val<TAHOMETERSCALE_VALUE_MIN)
+//	{
+//			val=TAHOMETERSCALE_VALUE_MIN;
+//	}
+//	
+//	if(val>TAHOMETERSCALE_VALUE_MAX)
+//	{
+//			val=TAHOMETERSCALE_VALUE_MAX;
+//	}
+//	
+//	aParam[SCALE_TAHOMETER].Angle = ((val-TAHOMETERSCALE_VALUE_MIN)/(TAHOMETERSCALE_VALUE_MAX-TAHOMETERSCALE_VALUE_MIN)*(TAHOMETERSCALE_ANGLE_MAX-TAHOMETERSCALE_ANGLE_MIN)+TAHOMETERSCALE_ANGLE_MIN)*DEG2RAD;
+//}
 
-void Set_TemperatureScale_Value(float val)
-{
-	val=ScaleFilter(&TemperatureScaleFilter,val);
-	if(val<TEMPERATURESCALE_VALUE_MIN)
-	{
-			val=TEMPERATURESCALE_VALUE_MIN;
-	}
-	
-	if(val>TEMPERATURESCALE_VALUE_MAX)
-	{
-			val=TEMPERATURESCALE_VALUE_MAX;
-	}
-	
-	aParam[SCALE_TEMPERATURE].Angle = ((val-TEMPERATURESCALE_VALUE_MIN)/(TEMPERATURESCALE_VALUE_MAX-TEMPERATURESCALE_VALUE_MIN)*(TEMPERATURESCALE_ANGLE_MAX-TEMPERATURESCALE_ANGLE_MIN)+TEMPERATURESCALE_ANGLE_MIN)*DEG2RAD;
-}
+//void Set_FuelScale_Value(float val)
+//{
+//	val=ScaleFilter(&FuelScaleFilter,val);
+//	if(val<FUELSCALE_VALUE_MIN)
+//	{
+//			val=FUELSCALE_VALUE_MIN;
+//	}
+//	
+//	if(val>FUELSCALE_VALUE_MAX)
+//	{
+//			val=FUELSCALE_VALUE_MAX;
+//	}
+//	
+//	aParam[SCALE_FUEL].Angle = ((val-FUELSCALE_VALUE_MIN)/(FUELSCALE_VALUE_MAX-FUELSCALE_VALUE_MIN)*(FUELSCALE_ANGLE_MAX-FUELSCALE_ANGLE_MIN)+FUELSCALE_ANGLE_MIN)*DEG2RAD;
+//}
 
-void Set_SpeedometerScale_Value(float val)
-{
-	val=ScaleFilter(&SpeedometerScaleFilter,val);
-	if(val<SPEEDOMETERSCALE_VALUE_MIN)
-	{
-			val=SPEEDOMETERSCALE_VALUE_MIN;
-	}
-	
-	if(val>SPEEDOMETERSCALE_VALUE_MAX)
-	{
-			val=SPEEDOMETERSCALE_VALUE_MAX;
-	}
-	
-	aParam[SCALE_SPEEDOMETER].Angle = ((val-SPEEDOMETERSCALE_VALUE_MIN)/(SPEEDOMETERSCALE_VALUE_MAX-SPEEDOMETERSCALE_VALUE_MIN)*(SPEEDOMETERSCALE_ANGLE_MAX-SPEEDOMETERSCALE_ANGLE_MIN)+SPEEDOMETERSCALE_ANGLE_MIN)*DEG2RAD;
-}
+//void Set_TemperatureScale_Value(float val)
+//{
+//	val=ScaleFilter(&TemperatureScaleFilter,val);
+//	if(val<TEMPERATURESCALE_VALUE_MIN)
+//	{
+//			val=TEMPERATURESCALE_VALUE_MIN;
+//	}
+//	
+//	if(val>TEMPERATURESCALE_VALUE_MAX)
+//	{
+//			val=TEMPERATURESCALE_VALUE_MAX;
+//	}
+//	
+//	aParam[SCALE_TEMPERATURE].Angle = ((val-TEMPERATURESCALE_VALUE_MIN)/(TEMPERATURESCALE_VALUE_MAX-TEMPERATURESCALE_VALUE_MIN)*(TEMPERATURESCALE_ANGLE_MAX-TEMPERATURESCALE_ANGLE_MIN)+TEMPERATURESCALE_ANGLE_MIN)*DEG2RAD;
+//}
+
+//void Set_SpeedometerScale_Value(float val)
+//{
+//	val=ScaleFilter(&SpeedometerScaleFilter,val);
+//	if(val<SPEEDOMETERSCALE_VALUE_MIN)
+//	{
+//			val=SPEEDOMETERSCALE_VALUE_MIN;
+//	}
+//	
+//	if(val>SPEEDOMETERSCALE_VALUE_MAX)
+//	{
+//			val=SPEEDOMETERSCALE_VALUE_MAX;
+//	}
+//	
+//	aParam[SCALE_SPEEDOMETER].Angle = ((val-SPEEDOMETERSCALE_VALUE_MIN)/(SPEEDOMETERSCALE_VALUE_MAX-SPEEDOMETERSCALE_VALUE_MIN)*(SPEEDOMETERSCALE_ANGLE_MAX-SPEEDOMETERSCALE_ANGLE_MIN)+SPEEDOMETERSCALE_ANGLE_MIN)*DEG2RAD;
+//}
 
 
 //----------------------------------------------
@@ -539,20 +563,21 @@ static void AutomotivePanel_Task(void * pvParameters)
 	static uint8_t blink_flag=0;
 
 
-	Set_TahometerScale_Value(0);
-	Set_FuelScale_Value(0);
-	Set_TemperatureScale_Value(0);	
+//	Set_TahometerScale_Value(0);
+//	Set_FuelScale_Value(0);
+//	Set_TemperatureScale_Value(0);	
 	
-  for (i = 0; i < NUM_SCALES; i++) {
-
-    aAngleOld[i] = -1;
-
+	
+  for (i = 0; i < NUM_SCALES; i++) 
+	{
+		aAngleOld[i] = -1;	 
+		Set_ScaleValue(i,0)
     GUI_MEMDEV_CreateAuto(&aAutoDev[i]);
     GUI_RotatePolygon(aParam[i].aPoints, _aNeedle[i].pPolygon, _aNeedle[i].NumPoints, aParam[i].Angle);
     GUI_MEMDEV_DrawAuto(&aAutoDev[i], &aParam[i].AutoDevInfo, _pfDraw[i], &aParam[i]);
   }
 		
-	for(i=PICTO_H19;i<=PICTO_H40;i++)
+	for(i=0;i<=PICTO_NUM;i++)
 	{
 			Set_Pictogram_State(i,PICTO_STATE_OFF);
 	}
@@ -752,4 +777,14 @@ void Pictogram_Init(void)
 		picto[PICTO_H51].pos.y								=	410;
 		picto[PICTO_H51].picto								=	&bmpicto_H51;
 		picto[PICTO_H51].palette_active_state	=	_Colorspicto_red;	
+		
+		
+		/*******************************************************/
+
+}
+
+void Scales_Init(void)
+{
+//		scales[SCALE_TAHOMETER].pos.x=
+//		scales[SCALE_TAHOMETER].pos.y=	
 }

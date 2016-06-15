@@ -31,6 +31,13 @@ typedef enum
 	PICTO_STATE_ON,
 }enPictoState;
 
+typedef enum
+{
+		SCALE_STATE_OFF=0,
+		SCALE_STATE_DRAW,
+}
+enScaleState;
+
 void AutomotivePanel_Init(void);
 void Set_Pictogram_State(enPictogram pictogram, enPictoState state);
 
