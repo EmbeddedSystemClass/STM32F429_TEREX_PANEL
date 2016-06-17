@@ -3,6 +3,13 @@
 #include "automotivePanel.h"
 #include "global_includes.h"
 
+//-----------
+#include "tahometerScale.c"
+#include "speedometerScale.c"
+#include "fuelScale.c"
+#include "temperatureScale.c"
+//-----------
+
 extern GUI_BITMAP bmpicto_H19;	
 extern GUI_BITMAP bmpicto_H20;	
 extern GUI_BITMAP bmpicto_H21;	
@@ -99,7 +106,6 @@ float ScaleFilter(const FILTER *filter, float in);
 typedef struct {
 	GUI_AUTODEV 		 aAutoDev;
   GUI_AUTODEV_INFO AutoDevInfo; // Information about what has to be displayed
-  GUI_POINT        aPoints[7];  // Polygon data
   float            Angle;
 	float 					 Angle_min;
 	float 					 Angle_max;
@@ -120,12 +126,57 @@ typedef struct
 	GUI_POINT 	scale_pos;
 	NEEDLE		 *needle;
 	GUI_POINT   needle_pos;	
+	GUI_POINT   needle_points[7];  // Polygon data
 	PARAM			  param;
 	const FILTER *filter;	
 	enScaleState state;
+	enDisplay		display;
 } SCALE;
 
-static SCALE scales[NUM_SCALES];
+/*********************************************************************
+*
+*       static data, shape of polygons
+*
+**********************************************************************
+*/
+
+#define NEEDLE_0_LEN_VISIO	175
+#define NEEDLE_0_CENTER_TO_VISIO 15	// расстояние от центра вращения до видимой части
+#define NEEDLE_0_LEN_ALL	NEEDLE_0_LEN_VISIO + NEEDLE_0_CENTER_TO_VISIO		//общая длина стрелки
+
+static GUI_POINT _aNeedle_0[] = { //tahometer needle
+  { MAG * ( 0), MAG * (  0 + NEEDLE_0_LEN_ALL)},
+  { MAG * (-3), MAG * (-15 + NEEDLE_0_LEN_ALL)},
+  { MAG * (-3), MAG * (-NEEDLE_0_LEN_VISIO + NEEDLE_0_LEN_ALL)},
+  { MAG * ( 3), MAG * (-NEEDLE_0_LEN_VISIO + NEEDLE_0_LEN_ALL)},
+  { MAG * ( 3), MAG * (-15 + NEEDLE_0_LEN_ALL)},
+};
+
+
+#define NEEDLE_1_LEN_VISIO	100
+#define NEEDLE_1_CENTER_TO_VISIO 50	// расстояние от центра вращения до видимой части
+#define NEEDLE_1_LEN_ALL	NEEDLE_1_LEN_VISIO + NEEDLE_1_CENTER_TO_VISIO		//общая длина стрелки
+static GUI_POINT _aNeedle_1[] = { //other needles
+  { MAG * ( 0), MAG * (  0 + NEEDLE_1_LEN_ALL)},
+  { MAG * (-3), MAG * (-15 + NEEDLE_1_LEN_ALL)},
+  { MAG * (-3), MAG * (-NEEDLE_1_LEN_VISIO + NEEDLE_1_LEN_ALL)},
+  { MAG * ( 3), MAG * (-NEEDLE_1_LEN_VISIO + NEEDLE_1_LEN_ALL)},
+  { MAG * ( 3), MAG * (-15 + NEEDLE_1_LEN_ALL)},
+};
+
+
+static NEEDLE _aNeedle[2] = { 
+  { _aNeedle_0, GUI_COUNTOF(_aNeedle_0) },
+  { _aNeedle_1, GUI_COUNTOF(_aNeedle_1) },
+};
+
+static SCALE scales[NUM_SCALES]=
+{
+	{&bmtahometerScale	,{0,0},&_aNeedle[0],{0,0},{0},{{0},{0},0.0,0.0,0.0,0.0,0.0,0.0},&TahometerScaleFilter		,SCALE_STATE_DRAW,DISPLAY_0},
+	{&bmfuelScale				,{0,0},&_aNeedle[1],{0,0},{0},{{0},{0},0.0,0.0,0.0,0.0,0.0,0.0},&FuelScaleFilter				,SCALE_STATE_DRAW,DISPLAY_0},
+	{&bmtemperatureScale,{0,0},&_aNeedle[1],{0,0},{0},{{0},{0},0.0,0.0,0.0,0.0,0.0,0.0},&TemperatureScaleFilter	,SCALE_STATE_DRAW,DISPLAY_0},
+	{&bmspeedometerScale,{0,0},&_aNeedle[0],{0,0},{0},{{0},{0},0.0,0.0,0.0,0.0,0.0,0.0},&SpeedometerScaleFilter	,SCALE_STATE_DRAW,DISPLAY_1},
+};
 /***************************************************/
 
 typedef struct
@@ -135,11 +186,34 @@ typedef struct
 	GUI_COLOR  *palette_active_state;
 	GUI_COLOR  *palette_passive_state;
 	enPictoState state;	
+	enDisplay		display;
 }
 PICTOGRAM;
 
 #define PICTO_NUM	20
-static PICTOGRAM picto[PICTO_NUM];
+static PICTOGRAM picto[PICTO_NUM]=
+{
+{{120, 10},&bmpicto_H19,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
+{{ 90,110},&bmpicto_H20,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
+{{ 60,210},&bmpicto_H21,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
+{{ 30,310},&bmpicto_H24,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
+{{ 10,410},&bmpicto_H35,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
+{{220, 10},&bmpicto_H36,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
+{{190,110},&bmpicto_H37,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
+{{160,210},&bmpicto_H38,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
+{{130,310},&bmpicto_H39,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
+{{110,410},&bmpicto_H40,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
+{{120, 10},&bmpicto_H41,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
+{{ 90,110},&bmpicto_H42,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
+{{ 60,210},&bmpicto_H43,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
+{{ 30,310},&bmpicto_H44,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
+{{ 10,410},&bmpicto_H45,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
+{{220, 10},&bmpicto_H46,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
+{{190,110},&bmpicto_H47,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
+{{160,210},&bmpicto_H48,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
+{{130,310},&bmpicto_H49,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
+{{110,410},&bmpicto_H51,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1}
+};
 
 void Pictogram_Init(void);
 
@@ -154,76 +228,13 @@ static void AutomotivePanel_Task(void * pvParameters);
 #define DEG2RAD      (3.1415926f / 180)
 
 
-#include "tahometerScale.c"
-#include "speedometerScale.c"
-#include "fuelScale.c"
-#include "temperatureScale.c"
+
 //#include "picto.c"
-/*********************************************************************
-*
-*       static data, shape of polygons
-*
-**********************************************************************
-*/
-
-#define TAHOMETERSCALE_NEEDLE_LEN_VISIO	175
-#define TAHOMETERSCALE_NEEDLE_CENTER_TO_VISIO 15	// расстояние от центра вращения до видимой части
-#define TAHOMETERSCALE_NEEDLE_LEN_ALL	TAHOMETERSCALE_NEEDLE_LEN_VISIO + TAHOMETERSCALE_NEEDLE_CENTER_TO_VISIO		//общая длина стрелки
-
-static GUI_POINT _aNeedle_0[] = { //tahometer needle
-  { MAG * ( 0), MAG * (  0 + TAHOMETERSCALE_NEEDLE_LEN_ALL)},
-  { MAG * (-3), MAG * (-15 + TAHOMETERSCALE_NEEDLE_LEN_ALL)},
-  { MAG * (-3), MAG * (-TAHOMETERSCALE_NEEDLE_LEN_VISIO + TAHOMETERSCALE_NEEDLE_LEN_ALL)},
-  { MAG * ( 3), MAG * (-TAHOMETERSCALE_NEEDLE_LEN_VISIO + TAHOMETERSCALE_NEEDLE_LEN_ALL)},
-  { MAG * ( 3), MAG * (-15 + TAHOMETERSCALE_NEEDLE_LEN_ALL)},
-};
-
-
-#define FUELSCALE_NEEDLE_LEN_VISIO	100
-#define FUELSCALE_NEEDLE_CENTER_TO_VISIO 50	// расстояние от центра вращения до видимой части
-#define FUELSCALE_NEEDLE_LEN_ALL	FUELSCALE_NEEDLE_LEN_VISIO + FUELSCALE_NEEDLE_CENTER_TO_VISIO		//общая длина стрелки
-static GUI_POINT _aNeedle_1[] = { //other needles
-  { MAG * ( 0), MAG * (  0 + FUELSCALE_NEEDLE_LEN_ALL)},
-  { MAG * (-3), MAG * (-15 + FUELSCALE_NEEDLE_LEN_ALL)},
-  { MAG * (-3), MAG * (-FUELSCALE_NEEDLE_LEN_VISIO + FUELSCALE_NEEDLE_LEN_ALL)},
-  { MAG * ( 3), MAG * (-FUELSCALE_NEEDLE_LEN_VISIO + FUELSCALE_NEEDLE_LEN_ALL)},
-  { MAG * ( 3), MAG * (-15 + FUELSCALE_NEEDLE_LEN_ALL)},
-};
-
-
-#define TEMPERATURESCALE_NEEDLE_LEN_VISIO	100
-#define TEMPERATURESCALE_NEEDLE_CENTER_TO_VISIO 50	// расстояние от центра вращения до видимой части
-#define TEMPERATURESCALE_NEEDLE_LEN_ALL	TEMPERATURESCALE_NEEDLE_LEN_VISIO + TEMPERATURESCALE_NEEDLE_CENTER_TO_VISIO		//общая длина стрелки
-static GUI_POINT _aNeedle_2[] = { //other needles
-  { MAG * ( 0), MAG * (  0 + TEMPERATURESCALE_NEEDLE_LEN_ALL)},
-  { MAG * (-3), MAG * (-15 + TEMPERATURESCALE_NEEDLE_LEN_ALL)},
-  { MAG * (-3), MAG * (-TEMPERATURESCALE_NEEDLE_LEN_VISIO + TEMPERATURESCALE_NEEDLE_LEN_ALL)},
-  { MAG * ( 3), MAG * (-TEMPERATURESCALE_NEEDLE_LEN_VISIO + TEMPERATURESCALE_NEEDLE_LEN_ALL)},
-  { MAG * ( 3), MAG * (-15 + TEMPERATURESCALE_NEEDLE_LEN_ALL)},
-};
-
-
-#define SPEEDOMETERSCALE_NEEDLE_LEN_VISIO	175
-#define SPEEDOMETERSCALE_NEEDLE_CENTER_TO_VISIO 15	// расстояние от центра вращения до видимой части
-#define SPEEDOMETERSCALE_NEEDLE_LEN_ALL	SPEEDOMETERSCALE_NEEDLE_LEN_VISIO + SPEEDOMETERSCALE_NEEDLE_CENTER_TO_VISIO		//общая длина стрелки
-
-static GUI_POINT _aNeedle_3[] = { //SPEEDOMETER needle
-  { MAG * ( 0), MAG * (  0 + SPEEDOMETERSCALE_NEEDLE_LEN_ALL)},
-  { MAG * (-3), MAG * (-15 + SPEEDOMETERSCALE_NEEDLE_LEN_ALL)},
-  { MAG * (-3), MAG * (-SPEEDOMETERSCALE_NEEDLE_LEN_VISIO + SPEEDOMETERSCALE_NEEDLE_LEN_ALL)},
-  { MAG * ( 3), MAG * (-SPEEDOMETERSCALE_NEEDLE_LEN_VISIO + SPEEDOMETERSCALE_NEEDLE_LEN_ALL)},
-  { MAG * ( 3), MAG * (-15 + SPEEDOMETERSCALE_NEEDLE_LEN_ALL)},
-};
 
 
 static int _OldGear = 0;
 
-static NEEDLE _aNeedle[NUM_SCALES] = { 
-  { _aNeedle_0, GUI_COUNTOF(_aNeedle_0) },
-  { _aNeedle_1, GUI_COUNTOF(_aNeedle_1) },
-	{ _aNeedle_2, GUI_COUNTOF(_aNeedle_2) },
-	{ _aNeedle_3, GUI_COUNTOF(_aNeedle_3) },
-};
+
 
 //GUI_AUTODEV aAutoDev [NUM_SCALES];               // Object for banding memory device
 //PARAM       aParam   [NUM_SCALES] = {0};           // Parameters for drawing routine
@@ -323,28 +334,40 @@ static float _GetSpeed(int tDiff) {
 }
 
 /*********************************************************************/
+static void _Draw_Scale(void * p)
+{
+		SCALE pScale=(SCALE *)p;
+		if(pScale->param->AutoDevInfo->DrawFixed)
+		{
+		    GUI_ClearRect (pScale->scale_pos.x ,pScale->scale_pos.y, TAHOMETERSCALE_POS_X + bmtahometerScale.XSize - 1,TAHOMETERSCALE_POS_Y+ bmtahometerScale.YSize - 1);
+		    GUI_DrawBitmap(pScale->scale, pScale->scale_pos.x , pScale->scale_pos.y);		
+		}
+		GUI_SetColor(GUI_WHITE);
+		GUI_AA_FillPolygon(pScale->needle_points, pScale->needle->NumPoints,  MAG*pScale->needle_pos.x,  MAG*pScale->needle_pos.y);
+}
+//--------------------------------------
 #define TAHOMETERSCALE_POS_X					(xSize - bmtahometerScale.XSize)	
 #define TAHOMETERSCALE_POS_Y					(0)	
 #define TAHOMETERSCALE_NEEDLE_POS_X		(xSize -(bmtahometerScale.XSize>>1)-12)
 #define TAHOMETERSCALE_NEEDLE_POS_Y		(bmtahometerScale.YSize-68)
 
 static void _Draw_TahometerScale(void * p) {
-  PARAM * pParam = (PARAM *)p;
-  int     xSize;
+//  PARAM * pParam = (PARAM *)p;
+//  int     xSize;
 
-  xSize = LCD_GetXSize();
-  //
-  // Fixed background
-  //
-  if (pParam->AutoDevInfo.DrawFixed) {
-    GUI_ClearRect (TAHOMETERSCALE_POS_X ,TAHOMETERSCALE_POS_Y, TAHOMETERSCALE_POS_X + bmtahometerScale.XSize - 1,TAHOMETERSCALE_POS_Y+ bmtahometerScale.YSize - 1);
-    GUI_DrawBitmap(&bmtahometerScale, TAHOMETERSCALE_POS_X , TAHOMETERSCALE_POS_Y);
-  }
-  //
-  // Moving needle
-  //
-  GUI_SetColor(GUI_WHITE);
-  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_0),  MAG*TAHOMETERSCALE_NEEDLE_POS_X,  MAG*TAHOMETERSCALE_NEEDLE_POS_Y);
+//  xSize = LCD_GetXSize();
+//  //
+//  // Fixed background
+//  //
+//  if (pParam->AutoDevInfo.DrawFixed) {
+//    GUI_ClearRect (TAHOMETERSCALE_POS_X ,TAHOMETERSCALE_POS_Y, TAHOMETERSCALE_POS_X + bmtahometerScale.XSize - 1,TAHOMETERSCALE_POS_Y+ bmtahometerScale.YSize - 1);
+//    GUI_DrawBitmap(&bmtahometerScale, TAHOMETERSCALE_POS_X , TAHOMETERSCALE_POS_Y);
+//  }
+//  //
+//  // Moving needle
+//  //
+//  GUI_SetColor(GUI_WHITE);
+//  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_0),  MAG*TAHOMETERSCALE_NEEDLE_POS_X,  MAG*TAHOMETERSCALE_NEEDLE_POS_Y);
 
 }
 
@@ -356,19 +379,20 @@ static void _Draw_TahometerScale(void * p) {
 #define FUELSCALE_NEEDLE_POS_Y	(ySize-25)
 
 static void _Draw_FuelScale(void * p) {
-  PARAM * pParam = (PARAM *)p;
-  int     xSize, ySize;
+//  PARAM * pParam = (PARAM *)p;
+//  int     xSize, ySize;
 
-  xSize = LCD_GetXSize();
-	ySize = LCD_GetYSize();
-  // Fixed background
-  if (pParam->AutoDevInfo.DrawFixed) {
-    GUI_ClearRect (FUELSCALE_POS_X, FUELSCALE_POS_Y,/*FUELSCALE_POS_X+ bmfuelScale.XSize - 1*/FUELSCALE_NEEDLE_POS_X+5,FUELSCALE_POS_Y+ bmfuelScale.YSize - 1);
-    GUI_DrawBitmap(&bmfuelScale, FUELSCALE_POS_X, FUELSCALE_POS_Y);
-  }
-  // Moving needle
-  GUI_SetColor(GUI_WHITE);
-  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_1),  MAG * FUELSCALE_NEEDLE_POS_X,  MAG * FUELSCALE_NEEDLE_POS_Y);
+//  xSize = LCD_GetXSize();
+//	ySize = LCD_GetYSize();
+//  // Fixed background
+//  if (pParam->AutoDevInfo.DrawFixed) {
+//    GUI_ClearRect (FUELSCALE_POS_X, FUELSCALE_POS_Y,/*FUELSCALE_POS_X+ bmfuelScale.XSize - 1*/FUELSCALE_NEEDLE_POS_X+5,FUELSCALE_POS_Y+ bmfuelScale.YSize - 1);
+//    GUI_DrawBitmap(&bmfuelScale, FUELSCALE_POS_X, FUELSCALE_POS_Y);
+//  }
+//  // Moving needle
+//  GUI_SetColor(GUI_WHITE);
+//  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_1),  MAG * FUELSCALE_NEEDLE_POS_X,  MAG * FUELSCALE_NEEDLE_POS_Y);
+
 }
 
 /*********************************************************************/
@@ -378,19 +402,19 @@ static void _Draw_FuelScale(void * p) {
 #define TEMPERATURESCALE_NEEDLE_POS_Y	(ySize-25)
 
 static void _Draw_TemperatureScale(void * p) {
-  PARAM * pParam = (PARAM *)p;
-  int     xSize, ySize;
+//  PARAM * pParam = (PARAM *)p;
+//  int     xSize, ySize;
 
-  xSize = LCD_GetXSize();
-	ySize = LCD_GetYSize();
-  // Fixed background
-  if (pParam->AutoDevInfo.DrawFixed) {
-    GUI_ClearRect (TEMPERATURESCALE_POS_X,TEMPERATURESCALE_POS_Y, /*TEMPERATURESCALE_POS_X + bmtemperatureScale.XSize - 1*/TEMPERATURESCALE_NEEDLE_POS_X+5, TEMPERATURESCALE_POS_Y + bmtemperatureScale.YSize - 1);
-    GUI_DrawBitmap(&bmtemperatureScale, TEMPERATURESCALE_POS_X , TEMPERATURESCALE_POS_Y);
-  }
-  // Moving needle
-  GUI_SetColor(GUI_WHITE);
-  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_2), MAG * TEMPERATURESCALE_NEEDLE_POS_X, MAG * TEMPERATURESCALE_NEEDLE_POS_Y);
+//  xSize = LCD_GetXSize();
+//	ySize = LCD_GetYSize();
+//  // Fixed background
+//  if (pParam->AutoDevInfo.DrawFixed) {
+//    GUI_ClearRect (TEMPERATURESCALE_POS_X,TEMPERATURESCALE_POS_Y, /*TEMPERATURESCALE_POS_X + bmtemperatureScale.XSize - 1*/TEMPERATURESCALE_NEEDLE_POS_X+5, TEMPERATURESCALE_POS_Y + bmtemperatureScale.YSize - 1);
+//    GUI_DrawBitmap(&bmtemperatureScale, TEMPERATURESCALE_POS_X , TEMPERATURESCALE_POS_Y);
+//  }
+//  // Moving needle
+//  GUI_SetColor(GUI_WHITE);
+//  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_2), MAG * TEMPERATURESCALE_NEEDLE_POS_X, MAG * TEMPERATURESCALE_NEEDLE_POS_Y);
 
 }
 
@@ -401,22 +425,22 @@ static void _Draw_TemperatureScale(void * p) {
 #define SPEEDOMETERSCALE_NEEDLE_POS_Y		(bmtahometerScale.YSize-68)
 
 static void _Draw_SpeedometerScale(void * p) {
-  PARAM * pParam = (PARAM *)p;
-  int     xSize;
+//  PARAM * pParam = (PARAM *)p;
+//  int     xSize;
 
-  xSize = LCD_GetXSize();
-  //
-  // Fixed background
-  //
-  if (pParam->AutoDevInfo.DrawFixed) {
-    GUI_ClearRect (SPEEDOMETERSCALE_POS_X ,SPEEDOMETERSCALE_POS_Y, SPEEDOMETERSCALE_POS_X + bmtahometerScale.XSize - 1,SPEEDOMETERSCALE_POS_Y+ bmtahometerScale.YSize - 1);
-    GUI_DrawBitmap(&bmtahometerScale, SPEEDOMETERSCALE_POS_X , SPEEDOMETERSCALE_POS_Y);
-  }
-  //
-  // Moving needle
-  //
-  GUI_SetColor(GUI_WHITE);
-  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_3),  MAG*SPEEDOMETERSCALE_NEEDLE_POS_X,  MAG*SPEEDOMETERSCALE_NEEDLE_POS_Y);
+//  xSize = LCD_GetXSize();
+//  //
+//  // Fixed background
+//  //
+//  if (pParam->AutoDevInfo.DrawFixed) {
+//    GUI_ClearRect (SPEEDOMETERSCALE_POS_X ,SPEEDOMETERSCALE_POS_Y, SPEEDOMETERSCALE_POS_X + bmtahometerScale.XSize - 1,SPEEDOMETERSCALE_POS_Y+ bmtahometerScale.YSize - 1);
+//    GUI_DrawBitmap(&bmtahometerScale, SPEEDOMETERSCALE_POS_X , SPEEDOMETERSCALE_POS_Y);
+//  }
+//  //
+//  // Moving needle
+//  //
+//  GUI_SetColor(GUI_WHITE);
+//  GUI_AA_FillPolygon(pParam->aPoints, GUI_COUNTOF(_aNeedle_3),  MAG*SPEEDOMETERSCALE_NEEDLE_POS_X,  MAG*SPEEDOMETERSCALE_NEEDLE_POS_Y);
 
 }
 
@@ -447,71 +471,6 @@ void Set_ScaleValue(enScale scale, float val)
 	
 	scales[scale].param.Angle = ((val-scales[scale].param.Value_min)/(scales[scale].param.Value_max-scales[scale].param.Value_min)*(scales[scale].param.Angle_max-scales[scale].param.Angle_min)+scales[scale].param.Angle_min)*DEG2RAD;
 }
-
-//void Set_TahometerScale_Value(float val)
-//{
-//	val=ScaleFilter(&TahometerScaleFilter,val);
-//	if(val<TAHOMETERSCALE_VALUE_MIN)
-//	{
-//			val=TAHOMETERSCALE_VALUE_MIN;
-//	}
-//	
-//	if(val>TAHOMETERSCALE_VALUE_MAX)
-//	{
-//			val=TAHOMETERSCALE_VALUE_MAX;
-//	}
-//	
-//	aParam[SCALE_TAHOMETER].Angle = ((val-TAHOMETERSCALE_VALUE_MIN)/(TAHOMETERSCALE_VALUE_MAX-TAHOMETERSCALE_VALUE_MIN)*(TAHOMETERSCALE_ANGLE_MAX-TAHOMETERSCALE_ANGLE_MIN)+TAHOMETERSCALE_ANGLE_MIN)*DEG2RAD;
-//}
-
-//void Set_FuelScale_Value(float val)
-//{
-//	val=ScaleFilter(&FuelScaleFilter,val);
-//	if(val<FUELSCALE_VALUE_MIN)
-//	{
-//			val=FUELSCALE_VALUE_MIN;
-//	}
-//	
-//	if(val>FUELSCALE_VALUE_MAX)
-//	{
-//			val=FUELSCALE_VALUE_MAX;
-//	}
-//	
-//	aParam[SCALE_FUEL].Angle = ((val-FUELSCALE_VALUE_MIN)/(FUELSCALE_VALUE_MAX-FUELSCALE_VALUE_MIN)*(FUELSCALE_ANGLE_MAX-FUELSCALE_ANGLE_MIN)+FUELSCALE_ANGLE_MIN)*DEG2RAD;
-//}
-
-//void Set_TemperatureScale_Value(float val)
-//{
-//	val=ScaleFilter(&TemperatureScaleFilter,val);
-//	if(val<TEMPERATURESCALE_VALUE_MIN)
-//	{
-//			val=TEMPERATURESCALE_VALUE_MIN;
-//	}
-//	
-//	if(val>TEMPERATURESCALE_VALUE_MAX)
-//	{
-//			val=TEMPERATURESCALE_VALUE_MAX;
-//	}
-//	
-//	aParam[SCALE_TEMPERATURE].Angle = ((val-TEMPERATURESCALE_VALUE_MIN)/(TEMPERATURESCALE_VALUE_MAX-TEMPERATURESCALE_VALUE_MIN)*(TEMPERATURESCALE_ANGLE_MAX-TEMPERATURESCALE_ANGLE_MIN)+TEMPERATURESCALE_ANGLE_MIN)*DEG2RAD;
-//}
-
-//void Set_SpeedometerScale_Value(float val)
-//{
-//	val=ScaleFilter(&SpeedometerScaleFilter,val);
-//	if(val<SPEEDOMETERSCALE_VALUE_MIN)
-//	{
-//			val=SPEEDOMETERSCALE_VALUE_MIN;
-//	}
-//	
-//	if(val>SPEEDOMETERSCALE_VALUE_MAX)
-//	{
-//			val=SPEEDOMETERSCALE_VALUE_MAX;
-//	}
-//	
-//	aParam[SCALE_SPEEDOMETER].Angle = ((val-SPEEDOMETERSCALE_VALUE_MIN)/(SPEEDOMETERSCALE_VALUE_MAX-SPEEDOMETERSCALE_VALUE_MIN)*(SPEEDOMETERSCALE_ANGLE_MAX-SPEEDOMETERSCALE_ANGLE_MIN)+SPEEDOMETERSCALE_ANGLE_MIN)*DEG2RAD;
-//}
-
 
 //----------------------------------------------
 
@@ -563,24 +522,18 @@ static void AutomotivePanel_Task(void * pvParameters)
 	static uint8_t blink_flag=0;
 
 
-//	Set_TahometerScale_Value(0);
-//	Set_FuelScale_Value(0);
-//	Set_TemperatureScale_Value(0);	
 	
 	
-  for (i = 0; i < NUM_SCALES; i++) 
-	{
-		aAngleOld[i] = -1;	 
-		Set_ScaleValue(i,0)
-    GUI_MEMDEV_CreateAuto(&aAutoDev[i]);
-    GUI_RotatePolygon(aParam[i].aPoints, _aNeedle[i].pPolygon, _aNeedle[i].NumPoints, aParam[i].Angle);
-    GUI_MEMDEV_DrawAuto(&aAutoDev[i], &aParam[i].AutoDevInfo, _pfDraw[i], &aParam[i]);
-  }
-		
-	for(i=0;i<=PICTO_NUM;i++)
-	{
-			Set_Pictogram_State(i,PICTO_STATE_OFF);
-	}
+//  for (i = 0; i < NUM_SCALES; i++) 
+//	{
+//		aAngleOld[i] = -1;	 
+//		Set_ScaleValue(i,0);
+//    GUI_MEMDEV_CreateAuto(&scales[i].param.aAutoDev);
+//    GUI_RotatePolygon(scales[i].needle_points, scales[i].needle->pPolygon, scales[i].needle->NumPoints, scales[i].param.Angle);
+//    GUI_MEMDEV_DrawAuto(&scales[i].param.aAutoDev, &scales[i].param.AutoDevInfo, _pfDraw[i], &scales[i]);
+//  }
+//		
+
 
   t0 = GUI_GetTime();       // Get current time
 
@@ -630,24 +583,23 @@ static void AutomotivePanel_Task(void * pvParameters)
 
 
 			
-			Set_TahometerScale_Value(_GetRPM(tDiff));
-			//aParam[SCALE_TAHOMETER].Angle=_GetAngle_0(tDiff)*DEG2RAD;
-			Set_FuelScale_Value(_GetFuel(tDiff));
-			Set_TemperatureScale_Value(_GetTemperature(tDiff));
+//			Set_TahometerScale_Value(_GetRPM(tDiff));
+//			Set_FuelScale_Value(_GetFuel(tDiff));
+//			Set_TemperatureScale_Value(_GetTemperature(tDiff));
 			
-			for (i = 0; i < NUM_SCALES; i++) 
-			{
-				if (aAngleOld[i] != aParam[i].Angle)
-				{
-					aAngleOld[i] = aParam[i].Angle;
-					t1           = GUI_GetTime();
-					GUI_RotatePolygon(aParam[i].aPoints, _aNeedle[i].pPolygon, _aNeedle[i].NumPoints, aParam[i].Angle);
-					GUI_MEMDEV_DrawAuto(&aAutoDev[i], &aParam[i].AutoDevInfo, _pfDraw[i], &aParam[i]);
-					atDiff[i]    = GUI_GetTime() - t1;
-				}
-				
+//			for (i = 0; i < NUM_SCALES; i++) 
+//			{
+//				if (aAngleOld[i] != scales[i].param.Angle)
+//				{
+//					aAngleOld[i] = scales[i].param.Angle;
+//					t1           = GUI_GetTime();
+//					GUI_RotatePolygon(scales[i].needle_points, scales[i].needle->pPolygon, scales[i].needle->NumPoints, scales[i].param.Angle);
+//					GUI_MEMDEV_DrawAuto(&scales[i].param.aAutoDev, &scales[i].param.AutoDevInfo, _pfDraw[i], &scales[i]);
+//					atDiff[i]    = GUI_GetTime() - t1;
+//				}
+//				
 
-			}			
+//			}			
 			GUI_Exec();
   }
   
@@ -655,7 +607,7 @@ static void AutomotivePanel_Task(void * pvParameters)
   
   for (i = 0; i < NUM_SCALES; i++) 
 	{
-    GUI_MEMDEV_DeleteAuto(&aAutoDev[i]);
+    GUI_MEMDEV_DeleteAuto(&scales[i].param.aAutoDev);
   }
 }
 
@@ -669,122 +621,10 @@ float ScaleFilter(const FILTER *filter, float in)
 
 void Pictogram_Init(void)
 {
-		uint8_t i=0;
-		
-		for(i=0;i<PICTO_NUM;i++)
-		{
-				picto[i].palette_passive_state=_Colorspicto_gray;
-				picto[i].picto->pPal->pPalEntries=picto[i].palette_passive_state;
-				picto[i].state=PICTO_STATE_OFF;
-		}
-		
-		picto[PICTO_H19].pos.x								=	120;
-		picto[PICTO_H19].pos.y								=	10;
-		picto[PICTO_H19].picto								=	&bmpicto_H19;
-		picto[PICTO_H19].palette_active_state	=	_Colorspicto_red;		
-		
-		picto[PICTO_H20].pos.x								=	90;
-		picto[PICTO_H20].pos.y								=	110;
-		picto[PICTO_H20].picto								=	&bmpicto_H20;
-		picto[PICTO_H20].palette_active_state	=	_Colorspicto_red;	
-
-		picto[PICTO_H21].pos.x								=	60;
-		picto[PICTO_H21].pos.y								=	210;
-		picto[PICTO_H21].picto								=	&bmpicto_H21;
-		picto[PICTO_H21].palette_active_state	=	_Colorspicto_red;	
-
-		picto[PICTO_H24].pos.x								=	30;
-		picto[PICTO_H24].pos.y								=	310;
-		picto[PICTO_H24].picto								=	&bmpicto_H24;
-		picto[PICTO_H24].palette_active_state	=	_Colorspicto_red;			
-		
-		picto[PICTO_H35].pos.x								=	10;
-		picto[PICTO_H35].pos.y								=	410;
-		picto[PICTO_H35].picto								=	&bmpicto_H35;
-		picto[PICTO_H35].palette_active_state	=	_Colorspicto_red;	
-
-		picto[PICTO_H36].pos.x								=	220;
-		picto[PICTO_H36].pos.y								=	10;
-		picto[PICTO_H36].picto								=	&bmpicto_H36;
-		picto[PICTO_H36].palette_active_state	=	_Colorspicto_red;		
-		
-		picto[PICTO_H37].pos.x								=	190;
-		picto[PICTO_H37].pos.y								=	110;
-		picto[PICTO_H37].picto								=	&bmpicto_H37;
-		picto[PICTO_H37].palette_active_state	=	_Colorspicto_red;	
-
-		picto[PICTO_H38].pos.x								=	160;
-		picto[PICTO_H38].pos.y								=	210;
-		picto[PICTO_H38].picto								=	&bmpicto_H38;
-		picto[PICTO_H38].palette_active_state	=	_Colorspicto_red;		
-		
-		picto[PICTO_H39].pos.x								=	130;
-		picto[PICTO_H39].pos.y								=	310;
-		picto[PICTO_H39].picto								=	&bmpicto_H39;
-		picto[PICTO_H39].palette_active_state	=	_Colorspicto_red;
-
-		picto[PICTO_H40].pos.x								=	110;
-		picto[PICTO_H40].pos.y								=	410;
-		picto[PICTO_H40].picto								=	&bmpicto_H40;
-		picto[PICTO_H40].palette_active_state	=	_Colorspicto_red;		
-		
-		picto[PICTO_H41].pos.x								=	120;
-		picto[PICTO_H41].pos.y								=	10;
-		picto[PICTO_H41].picto								=	&bmpicto_H41;
-		picto[PICTO_H41].palette_active_state	=	_Colorspicto_red;			
-		
-		picto[PICTO_H42].pos.x								=	90;
-		picto[PICTO_H42].pos.y								=	110;
-		picto[PICTO_H42].picto								=	&bmpicto_H42;
-		picto[PICTO_H42].palette_active_state	=	_Colorspicto_red;	
-		
-		picto[PICTO_H43].pos.x								=	60;
-		picto[PICTO_H43].pos.y								=	210;
-		picto[PICTO_H43].picto								=	&bmpicto_H43;
-		picto[PICTO_H43].palette_active_state	=	_Colorspicto_red;		
-
-		picto[PICTO_H44].pos.x								=	30;
-		picto[PICTO_H44].pos.y								=	310;
-		picto[PICTO_H44].picto								=	&bmpicto_H44;
-		picto[PICTO_H44].palette_active_state	=	_Colorspicto_red;	
-		
-		picto[PICTO_H45].pos.x								=	10;
-		picto[PICTO_H45].pos.y								=	410;
-		picto[PICTO_H45].picto								=	&bmpicto_H45;
-		picto[PICTO_H45].palette_active_state	=	_Colorspicto_red;	
-
-		picto[PICTO_H46].pos.x								=	220;
-		picto[PICTO_H46].pos.y								=	10;
-		picto[PICTO_H46].picto								=	&bmpicto_H46;
-		picto[PICTO_H46].palette_active_state	=	_Colorspicto_red;	
-		
-		picto[PICTO_H47].pos.x								=	190;
-		picto[PICTO_H47].pos.y								=	110;
-		picto[PICTO_H47].picto								=	&bmpicto_H47;
-		picto[PICTO_H47].palette_active_state	=	_Colorspicto_red;	
-
-		picto[PICTO_H48].pos.x								=	160;
-		picto[PICTO_H48].pos.y								=	210;
-		picto[PICTO_H48].picto								=	&bmpicto_H48;
-		picto[PICTO_H48].palette_active_state	=	_Colorspicto_red;
-
-		picto[PICTO_H49].pos.x								=	130;
-		picto[PICTO_H49].pos.y								=	310;
-		picto[PICTO_H49].picto								=	&bmpicto_H49;
-		picto[PICTO_H49].palette_active_state	=	_Colorspicto_red;	
-		
-		picto[PICTO_H51].pos.x								=	110;
-		picto[PICTO_H51].pos.y								=	410;
-		picto[PICTO_H51].picto								=	&bmpicto_H51;
-		picto[PICTO_H51].palette_active_state	=	_Colorspicto_red;	
-		
-		
-		/*******************************************************/
-
+	
 }
 
 void Scales_Init(void)
 {
-//		scales[SCALE_TAHOMETER].pos.x=
-//		scales[SCALE_TAHOMETER].pos.y=	
+
 }

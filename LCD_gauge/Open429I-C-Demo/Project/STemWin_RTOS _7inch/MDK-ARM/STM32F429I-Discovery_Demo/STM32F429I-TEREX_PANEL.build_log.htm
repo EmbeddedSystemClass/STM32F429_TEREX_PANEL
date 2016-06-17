@@ -28,48 +28,41 @@ Project File Date:  06/14/2016
 *** Using Compiler 'V5.06 (build 20)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32F429I-Discovery_Demo'
 compiling automotivePanel.c...
-..\Core\AutomotivePanel\automotivePanel.h(44): warning:  #1-D: last line of file ends without a newline
+..\Core\AutomotivePanel\automotivePanel.h(54): warning:  #1-D: last line of file ends without a newline
   #endif
-..\Core\AutomotivePanel\automotivePanel.c(360): warning:  #550-D: variable "xSize" was set but never used
-    int     xSize, ySize;
-..\Core\AutomotivePanel\automotivePanel.c(382): warning:  #550-D: variable "xSize" was set but never used
-    int     xSize, ySize;
-..\Core\AutomotivePanel\automotivePanel.c(574): warning:  #188-D: enumerated type mixed with another type
-                Set_ScaleValue(i,0)
-..\Core\AutomotivePanel\automotivePanel.c(575): error:  #65: expected a ";"
-      GUI_MEMDEV_CreateAuto(&aAutoDev[i]);
-..\Core\AutomotivePanel\automotivePanel.c(576): error:  #20: identifier "aParam" is undefined
-      GUI_RotatePolygon(aParam[i].aPoints, _aNeedle[i].pPolygon, _aNeedle[i].NumPoints, aParam[i].Angle);
-..\Core\AutomotivePanel\automotivePanel.c(577): error:  #20: identifier "aAutoDev" is undefined
-      GUI_MEMDEV_DrawAuto(&aAutoDev[i], &aParam[i].AutoDevInfo, _pfDraw[i], &aParam[i]);
-..\Core\AutomotivePanel\automotivePanel.c(582): warning:  #188-D: enumerated type mixed with another type
-                        Set_Pictogram_State(i,PICTO_STATE_OFF);
-..\Core\AutomotivePanel\automotivePanel.c(640): error:  #20: identifier "aParam" is undefined
-                                if (aAngleOld[i] != aParam[i].Angle)
-..\Core\AutomotivePanel\automotivePanel.c(645): error:  #20: identifier "aAutoDev" is undefined
-                                        GUI_MEMDEV_DrawAuto(&aAutoDev[i], &aParam[i].AutoDevInfo, _pfDraw[i], &aParam[i]);
-..\Core\AutomotivePanel\automotivePanel.c(658): error:  #20: identifier "aAutoDev" is undefined
-      GUI_MEMDEV_DeleteAuto(&aAutoDev[i]);
-..\Core\AutomotivePanel\automotivePanel.c(656): warning:  #128-D: loop is not reachable
+..\Core\AutomotivePanel\automotivePanel.c(596): warning:  #128-D: loop is not reachable
     for (i = 0; i < NUM_SCALES; i++) 
-..\Core\AutomotivePanel\automotivePanel.c(554): warning:  #550-D: variable "atDiff" was set but never used
+..\Core\AutomotivePanel\automotivePanel.c(500): warning:  #177-D: variable "aAngleOld" was declared but never referenced
+        float       aAngleOld[NUM_SCALES];
+..\Core\AutomotivePanel\automotivePanel.c(501): warning:  #177-D: variable "atDiff" was declared but never referenced
     int         atDiff   [NUM_SCALES];
-..\Core\AutomotivePanel\automotivePanel.c(555): warning:  #177-D: variable "atDiffOld" was declared but never referenced
+..\Core\AutomotivePanel\automotivePanel.c(502): warning:  #177-D: variable "atDiffOld" was declared but never referenced
     int         atDiffOld[NUM_SCALES] = {0};
-..\Core\AutomotivePanel\automotivePanel.c(558): warning:  #550-D: variable "ySize" was set but never used
+..\Core\AutomotivePanel\automotivePanel.c(503): warning:  #177-D: variable "t1" was declared but never referenced
+    int         tDiff, t0, t1, tBlinkNext;
+..\Core\AutomotivePanel\automotivePanel.c(505): warning:  #550-D: variable "ySize" was set but never used
     int         ySize;
-..\Core\AutomotivePanel\automotivePanel.c(790): warning:  #1-D: last line of file ends without a newline
+..\Core\AutomotivePanel\automotivePanel.c(618): warning:  #1-D: last line of file ends without a newline
   }
-..\Core\AutomotivePanel\automotivePanel.c(219): warning:  #177-D: variable "_OldGear" was declared but never referenced
+..\Core\AutomotivePanel\automotivePanel.c(235): warning:  #177-D: variable "_OldGear" was declared but never referenced
   static int _OldGear = 0;
-..\Core\AutomotivePanel\automotivePanel.c(266): warning:  #177-D: function "_GetAngle_0" was declared but never referenced
+..\Core\AutomotivePanel\automotivePanel.c(277): warning:  #177-D: function "_GetAngle_0" was declared but never referenced
   static float _GetAngle_0(int tDiff) {
-..\Core\AutomotivePanel\automotivePanel.c(316): warning:  #177-D: function "_GetSpeed" was declared but never referenced
+..\Core\AutomotivePanel\automotivePanel.c(300): warning:  #177-D: function "_GetRPM" was declared but never referenced
+  static float _GetRPM(int tDiff) {
+..\Core\AutomotivePanel\automotivePanel.c(309): warning:  #177-D: function "_GetFuel" was declared but never referenced
+  static float _GetFuel(int tDiff) {
+..\Core\AutomotivePanel\automotivePanel.c(318): warning:  #177-D: function "_GetTemperature" was declared but never referenced
+  static float _GetTemperature(int tDiff) {
+..\Core\AutomotivePanel\automotivePanel.c(327): warning:  #177-D: function "_GetSpeed" was declared but never referenced
   static float _GetSpeed(int tDiff) {
-..\Core\AutomotivePanel\automotivePanel.c(403): warning:  #177-D: function "_Draw_SpeedometerScale" was declared but never referenced
+..\Core\AutomotivePanel\automotivePanel.c(415): warning:  #177-D: function "_Draw_SpeedometerScale" was declared but never referenced
   static void _Draw_SpeedometerScale(void * p) {
-..\Core\AutomotivePanel\automotivePanel.c: 14 warnings, 6 errors
-".\STM32F429I-Discovery_Demo\STM32F429I-TEREX_PANEL.axf" - 6 Error(s), 14 Warning(s).
+..\Core\AutomotivePanel\automotivePanel.c: 15 warnings, 0 errors
+linking...
+Program Size: Code=54904 RO-data=288460 RW-data=2964 ZI-data=5310900  
+FromELF: creating hex file...
+".\STM32F429I-Discovery_Demo\STM32F429I-TEREX_PANEL.axf" - 0 Error(s), 15 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -87,8 +80,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:4.1.0
-Target not created.
-Build Time Elapsed:  00:00:05
+Build Time Elapsed:  00:00:06
 </pre>
 </body>
 </html>

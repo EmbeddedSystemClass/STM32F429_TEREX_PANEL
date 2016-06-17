@@ -1,6 +1,8 @@
 #ifndef AUTOMOTIVE_PANEL_H
 #define AUTOMOTIVE_PANEL_H
 
+
+
 typedef enum
 {
 	PICTO_H19=0,
@@ -30,6 +32,14 @@ typedef enum
 	PICTO_STATE_OFF=0,
 	PICTO_STATE_ON,
 }enPictoState;
+
+#define DISPLAY_NUM	2
+
+typedef enum
+{
+		DISPLAY_0=0,
+		DISPLAY_1,
+}enDisplay;
 
 typedef enum
 {
