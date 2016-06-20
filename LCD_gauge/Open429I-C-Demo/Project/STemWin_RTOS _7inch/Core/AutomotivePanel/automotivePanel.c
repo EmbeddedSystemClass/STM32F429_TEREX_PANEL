@@ -47,34 +47,6 @@ typedef enum
 	SCALE_TEMPERATURE=2,
 	SCALE_SPEEDOMETER=3,
 }enScale;
-
-
-#define TAHOMETERSCALE_ANGLE_MIN	270
-#define TAHOMETERSCALE_ANGLE_MAX	90
-#define TAHOMETERSCALE_VALUE_MIN	0
-#define TAHOMETERSCALE_VALUE_MAX	2500
-
-#define FUELSCALE_ANGLE_MIN	270
-#define FUELSCALE_ANGLE_MAX	198
-#define FUELSCALE_VALUE_MIN	0
-#define FUELSCALE_VALUE_MAX	100
-
-#define TEMPERATURESCALE_ANGLE_MIN	270
-#define TEMPERATURESCALE_ANGLE_MAX	198
-#define TEMPERATURESCALE_VALUE_MIN	0
-#define TEMPERATURESCALE_VALUE_MAX	120
-
-#define SPEEDOMETERSCALE_ANGLE_MIN	270
-#define SPEEDOMETERSCALE_ANGLE_MAX	90
-#define SPEEDOMETERSCALE_VALUE_MIN	0
-#define SPEEDOMETERSCALE_VALUE_MAX	40
-
-void Set_TahometerScale_Value(float val);
-void Set_FuelScale_Value(float val);
-void Set_TemperatureScale_Value(float val);
-void Set_SpeedometerScale_Value(float val);
-
-
 /**************Filter******************************/
 #define TAHOMETERSCALE_FILTER_TCONST	10
 #define TAHOMETERSCALE_WLAG 8
@@ -92,15 +64,16 @@ typedef  struct
 {
 		float t_const;
 		float wlag;
+		float lastOut;
 }
 FILTER;
 
-const FILTER TahometerScaleFilter={TAHOMETERSCALE_FILTER_TCONST,TAHOMETERSCALE_WLAG};
-const FILTER FuelScaleFilter={FUELSCALE_FILTER_TCONST,FUELSCALE_WLAG};
-const FILTER TemperatureScaleFilter={TEMPERATURESCALE_FILTER_TCONST,TEMPERATURESCALE_WLAG};
-const FILTER SpeedometerScaleFilter={SPEEDOMETERSCALE_FILTER_TCONST,SPEEDOMETERSCALE_WLAG};
+static FILTER TahometerScaleFilter={TAHOMETERSCALE_FILTER_TCONST,TAHOMETERSCALE_WLAG,0};
+static FILTER FuelScaleFilter={FUELSCALE_FILTER_TCONST,FUELSCALE_WLAG,0};
+static FILTER TemperatureScaleFilter={TEMPERATURESCALE_FILTER_TCONST,TEMPERATURESCALE_WLAG,0};
+static FILTER SpeedometerScaleFilter={SPEEDOMETERSCALE_FILTER_TCONST,SPEEDOMETERSCALE_WLAG,0};
 
-float ScaleFilter(const FILTER *filter, float in);
+float ScaleFilter(FILTER *filter, float in);
 /***************************************************/
 
 typedef struct {
@@ -128,7 +101,7 @@ typedef struct
 	GUI_POINT   needle_pos;	
 	GUI_POINT   needle_points[7];  // Polygon data
 	PARAM			  param;
-	const FILTER *filter;	
+  FILTER *filter;	
 	enScaleState state;
 	enDisplay		display;
 } SCALE;
@@ -175,7 +148,7 @@ static SCALE scales[NUM_SCALES]=
 	{&bmtahometerScale	,{250,  0},&_aNeedle[0],{513,251},{0},{{0},{0},270.0,270.0, 90.0,0.0,0.0,2500.0},&TahometerScaleFilter		,SCALE_STATE_DRAW,DISPLAY_0},
 	{&bmfuelScale				,{250,290},&_aNeedle[1],{450,455},{0},{{0},{0},270.0,270.0,198.0,0.0,0.0, 100.0},&FuelScaleFilter				,SCALE_STATE_DRAW,DISPLAY_0},
 	{&bmtemperatureScale,{570,290},&_aNeedle[1],{770,455},{0},{{0},{0},270.0,270.0,198.0,0.0,0.0, 120.0},&TemperatureScaleFilter	,SCALE_STATE_DRAW,DISPLAY_0},
-	{&bmspeedometerScale,{250,0},&_aNeedle[0],{513,251},{0},{{0},{0},270.0,270.0, 90.0,0.0,0.0,  40.0},&SpeedometerScaleFilter	,SCALE_STATE_DRAW,DISPLAY_1},
+	{&bmspeedometerScale,{250,  0},&_aNeedle[0],{513,251},{0},{{0},{0},270.0,270.0, 90.0,0.0,0.0,  40.0},&SpeedometerScaleFilter	,SCALE_STATE_DRAW,DISPLAY_1},
 };
 /***************************************************/
 
@@ -226,17 +199,7 @@ static void AutomotivePanel_Task(void * pvParameters);
 
 #define DEG2RAD      (3.1415926f / 180)
 
-
-
-//#include "picto.c"
-
-
 static int _OldGear = 0;
-
-
-
-//GUI_AUTODEV aAutoDev [NUM_SCALES];               // Object for banding memory device
-//PARAM       aParam   [NUM_SCALES] = {0};           // Parameters for drawing routine
 
 /*********************************************************************
 *
@@ -404,6 +367,8 @@ void AutomotivePanel_Init(void)
 						&AutomotivePanel_Task_Handle);
 }
 
+enDisplay currentDisplay=DISPLAY_1;
+
 static void AutomotivePanel_Task(void * pvParameters)
 {
 	float       aAngleOld[NUM_SCALES];
@@ -426,8 +391,11 @@ static void AutomotivePanel_Task(void * pvParameters)
 		aAngleOld[i] = -1;	 
 		Set_ScaleValue(i,0);
     GUI_MEMDEV_CreateAuto(&scales[i].param.aAutoDev);
-    GUI_RotatePolygon(scales[i].needle_points, scales[i].needle->pPolygon, scales[i].needle->NumPoints, scales[i].param.Angle);
-    GUI_MEMDEV_DrawAuto(&scales[i].param.aAutoDev, &scales[i].param.AutoDevInfo, _pfDraw[i], &scales[i]);
+		if(scales[i].display==currentDisplay)
+		{
+			GUI_RotatePolygon(scales[i].needle_points, scales[i].needle->pPolygon, scales[i].needle->NumPoints, scales[i].param.Angle);
+			GUI_MEMDEV_DrawAuto(&scales[i].param.aAutoDev, &scales[i].param.AutoDevInfo, _pfDraw[i], &scales[i]);
+		}
   }
 		
 
@@ -480,9 +448,10 @@ static void AutomotivePanel_Task(void * pvParameters)
 
 
 			
-//			Set_TahometerScale_Value(_GetRPM(tDiff));
-//			Set_FuelScale_Value(_GetFuel(tDiff));
-//			Set_TemperatureScale_Value(_GetTemperature(tDiff));
+			Set_ScaleValue(SCALE_TAHOMETER,   _GetRPM(tDiff));
+			Set_ScaleValue(SCALE_FUEL, 		 		_GetFuel(tDiff));
+			Set_ScaleValue(SCALE_TEMPERATURE, _GetTemperature(tDiff));
+			Set_ScaleValue(SCALE_SPEEDOMETER, _GetSpeed(tDiff));
 			
 			for (i = 0; i < NUM_SCALES; i++) 
 			{
@@ -490,12 +459,13 @@ static void AutomotivePanel_Task(void * pvParameters)
 				{
 					aAngleOld[i] = scales[i].param.Angle;
 					t1           = GUI_GetTime();
-					GUI_RotatePolygon(scales[i].needle_points, scales[i].needle->pPolygon, scales[i].needle->NumPoints, scales[i].param.Angle);
-					GUI_MEMDEV_DrawAuto(&scales[i].param.aAutoDev, &scales[i].param.AutoDevInfo, _pfDraw[i], &scales[i]);
+					if(scales[i].display==currentDisplay)
+					{
+						GUI_RotatePolygon(scales[i].needle_points, scales[i].needle->pPolygon, scales[i].needle->NumPoints, scales[i].param.Angle);
+						GUI_MEMDEV_DrawAuto(&scales[i].param.aAutoDev, &scales[i].param.AutoDevInfo, _pfDraw[i], &scales[i]);
+					}
 					atDiff[i]    = GUI_GetTime() - t1;
 				}
-				
-
 			}			
 			GUI_Exec();
   }
@@ -508,11 +478,11 @@ static void AutomotivePanel_Task(void * pvParameters)
   }
 }
 
-float ScaleFilter(const FILTER *filter, float in)
+float ScaleFilter(FILTER *filter, float in)
 {
-		static float lastOut=0;
-		float out = in * (filter->t_const - filter->wlag) + ((filter->wlag * lastOut) / filter->t_const);
-		lastOut = out;
+		//static float lastOut=0;
+		float out = in * (filter->t_const - filter->wlag) + ((filter->wlag * filter->lastOut) / filter->t_const);
+		filter->lastOut = out;
 		return (out / filter->t_const); 
 }
 
