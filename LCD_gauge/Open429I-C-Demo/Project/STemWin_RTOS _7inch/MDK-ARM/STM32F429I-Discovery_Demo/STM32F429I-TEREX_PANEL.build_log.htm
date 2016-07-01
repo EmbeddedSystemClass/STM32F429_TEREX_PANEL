@@ -30,25 +30,23 @@ Build target 'STM32F429I-Discovery_Demo'
 compiling automotivePanel.c...
 ..\Core\AutomotivePanel\automotivePanel.h(54): warning:  #1-D: last line of file ends without a newline
   #endif
-..\Core\AutomotivePanel\automotivePanel.c(392): warning:  #188-D: enumerated type mixed with another type
+..\Core\AutomotivePanel\automotivePanel.c(349): warning:  #188-D: enumerated type mixed with another type
                 Set_ScaleValue(i,0);
-..\Core\AutomotivePanel\automotivePanel.c(475): warning:  #128-D: loop is not reachable
+..\Core\AutomotivePanel\automotivePanel.c(428): warning:  #128-D: loop is not reachable
     for (i = 0; i < NUM_SCALES; i++) 
-..\Core\AutomotivePanel\automotivePanel.c(375): warning:  #550-D: variable "atDiff" was set but never used
+..\Core\AutomotivePanel\automotivePanel.c(335): warning:  #550-D: variable "atDiff" was set but never used
     int         atDiff   [NUM_SCALES];
-..\Core\AutomotivePanel\automotivePanel.c(376): warning:  #177-D: variable "atDiffOld" was declared but never referenced
+..\Core\AutomotivePanel\automotivePanel.c(336): warning:  #177-D: variable "atDiffOld" was declared but never referenced
     int         atDiffOld[NUM_SCALES] = {0};
-..\Core\AutomotivePanel\automotivePanel.c(379): warning:  #550-D: variable "ySize" was set but never used
+..\Core\AutomotivePanel\automotivePanel.c(339): warning:  #550-D: variable "ySize" was set but never used
     int         ySize;
-..\Core\AutomotivePanel\automotivePanel.c(202): warning:  #177-D: variable "_OldGear" was declared but never referenced
+..\Core\AutomotivePanel\automotivePanel.c(204): warning:  #177-D: variable "_OldGear" was declared but never referenced
   static int _OldGear = 0;
-..\Core\AutomotivePanel\automotivePanel.c(239): warning:  #177-D: function "_GetAngle_0" was declared but never referenced
-  static float _GetAngle_0(int tDiff) {
-..\Core\AutomotivePanel\automotivePanel.c: 8 warnings, 0 errors
+..\Core\AutomotivePanel\automotivePanel.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=60064 RO-data=288844 RW-data=3012 ZI-data=5310924  
+Program Size: Code=60176 RO-data=288844 RW-data=3016 ZI-data=5310928  
 FromELF: creating hex file...
-".\STM32F429I-Discovery_Demo\STM32F429I-TEREX_PANEL.axf" - 0 Error(s), 8 Warning(s).
+".\STM32F429I-Discovery_Demo\STM32F429I-TEREX_PANEL.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -66,7 +64,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:4.1.0
-Build Time Elapsed:  00:00:06
+Build Time Elapsed:  00:00:05
 </pre>
 </body>
 </html>

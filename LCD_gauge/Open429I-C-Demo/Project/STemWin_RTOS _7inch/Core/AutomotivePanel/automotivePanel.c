@@ -37,6 +37,8 @@ extern  GUI_COLOR _Colorspicto_red[];
 extern  GUI_COLOR _Colorspicto_green[];
 extern  GUI_COLOR _Colorspicto_blue[];
 
+static enDisplay currentDisplay=DISPLAY_0;
+
 #define MAG         3
 #define NUM_SCALES  4
 
@@ -201,63 +203,7 @@ static void AutomotivePanel_Task(void * pvParameters);
 
 static int _OldGear = 0;
 
-/*********************************************************************
-*
-*       _GetAngle_0
-*/
-#define ANGLE_0 270
-#define ANGLE_100 90
 
-#define SPEED_1_TO	0.075
-#define SPEED_1_FROM	0.3
-#define TIME_1_TO	(unsigned short)((ANGLE_0- ANGLE_100) / SPEED_1_TO)
-#define TIME_1_FROM	(unsigned short)((ANGLE_0- ANGLE_100) / SPEED_1_FROM)
-#define TIME_1_1	(0 + TIME_1_TO)
-#define TIME_1_2	(TIME_1_1 + TIME_1_FROM)
-
-#define SPEED_2_TO	0.0375
-#define SPEED_2_FROM	0.3
-#define TIME_2_TO	(unsigned short)((ANGLE_0- ANGLE_100) / SPEED_2_TO)
-#define TIME_2_FROM	(unsigned short)((ANGLE_0- ANGLE_100) / SPEED_2_FROM)
-#define TIME_2_1	(TIME_1_2 + TIME_2_TO)
-#define TIME_2_2	(TIME_2_1 + TIME_2_FROM)
-
-#define SPEED_3_TO	0.03
-#define SPEED_3_FROM	0.3
-#define TIME_3_TO	(unsigned short)((ANGLE_0- ANGLE_100) / SPEED_3_TO)
-#define TIME_3_FROM	(unsigned short)((ANGLE_0- ANGLE_100) / SPEED_3_FROM)
-#define TIME_3_1	(TIME_2_2 + TIME_3_TO)
-#define TIME_3_2	(TIME_3_1 + TIME_3_FROM)
-
-#define SPEED_4_TO	0.01
-#define SPEED_4_FROM	0.3
-#define TIME_4_TO	(unsigned short)((ANGLE_0- ANGLE_100) / SPEED_4_TO)
-#define TIME_4_FROM	(unsigned short)((ANGLE_0- ANGLE_100) / SPEED_4_FROM)
-#define TIME_4_1	(TIME_3_2 + TIME_4_TO)
-#define TIME_4_2	(TIME_4_1 + TIME_4_FROM)
-
-static float _GetAngle_0(int tDiff) {
-  // Gear 1
-  if ((tDiff >= 0)    && (tDiff <  TIME_1_1)) {                return ANGLE_0 - SPEED_1_TO  *  tDiff;         }
-  if ((tDiff >= TIME_1_1) && (tDiff <  TIME_1_2)) {                return ANGLE_100 + SPEED_1_FROM    * (tDiff - TIME_1_1); }
-  // Gear 2
-  if ((tDiff >= TIME_1_2) && (tDiff <  TIME_2_1)) { /*_WriteGear(2);*/ return ANGLE_0 - SPEED_2_TO * (tDiff - TIME_1_2); }
-  if ((tDiff >= TIME_2_1) && (tDiff <  TIME_2_2)) {                return ANGLE_100 + SPEED_2_FROM    * (tDiff - TIME_2_1); }
-  // Gear 3
-  if ((tDiff >= TIME_2_2) && (tDiff <  TIME_3_1)) { /*_WriteGear(3);*/ return ANGLE_0 - SPEED_3_TO   * (tDiff - TIME_2_2); }
-  if ((tDiff >= TIME_3_1) && (tDiff <  TIME_3_2)) {                return ANGLE_100 + SPEED_3_FROM    * (tDiff - TIME_3_1); }
-  // Gear 4
-  if ((tDiff >= TIME_3_2) && (tDiff <  TIME_4_1)) { /*_WriteGear(4);*/ return ANGLE_0 - SPEED_4_TO  * (tDiff - TIME_3_2); }
-  if ((tDiff >= TIME_4_1) && (tDiff <  TIME_4_2)) {                return ANGLE_100 + SPEED_4_FROM    * (tDiff - TIME_4_1); }
-  // Gear 5
-//  if ((tDiff >= TIME_4_2) && (tDiff < 15000)) { _WriteGear(5); return ANGLE_0 - 0.0035 * (tDiff - TIME_4_2); }
-  return ANGLE_100;
-}
-
-/*********************************************************************
-*
-*       _GetAngle_1
-*/
 
 static float _GetRPM(int tDiff) {
 
@@ -301,7 +247,7 @@ static void _Draw_Scale(void * p)
 		SCALE *pScale=(SCALE *)p;
 		if(pScale->param.AutoDevInfo.DrawFixed)
 		{
-		    GUI_ClearRect (pScale->scale_pos.x ,pScale->scale_pos.y, pScale->scale_pos.x  + pScale->scale->XSize - 1,pScale->scale_pos.y+ pScale->scale->YSize - 1);
+		    GUI_ClearRect (pScale->scale_pos.x ,pScale->scale_pos.y, pScale->scale_pos.x  + pScale->scale->XSize /*- 1*/+10,pScale->scale_pos.y+ pScale->scale->YSize - 1);
 		    GUI_DrawBitmap(pScale->scale, pScale->scale_pos.x , pScale->scale_pos.y);		
 		}
 		GUI_SetColor(GUI_WHITE);
@@ -348,10 +294,11 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 			picto[pictogram].picto->pPal->pPalEntries=picto[pictogram].palette_active_state;
 	}
 	
-	GUI_DrawBitmap(picto[pictogram].picto, picto[pictogram].pos.x , picto[pictogram].pos.y );
+	if(picto[pictogram].display==currentDisplay)
+	{
+			GUI_DrawBitmap(picto[pictogram].picto, picto[pictogram].pos.x , picto[pictogram].pos.y );
+	}
 }
-
-
 
 void AutomotivePanel_Init(void)
 {
@@ -367,7 +314,20 @@ void AutomotivePanel_Init(void)
 						&AutomotivePanel_Task_Handle);
 }
 
-enDisplay currentDisplay=DISPLAY_1;
+void Automotive_Panel_ChangeDisplay(enDisplay display)
+{
+		uint16_t xSize, ySize;
+		uint8_t i=0;
+		xSize=LCD_GetXSize();
+		ySize=LCD_GetYSize();
+		GUI_ClearRect (0 ,0, xSize - 1,ySize - 1);
+		currentDisplay=display;
+	
+		for (i = 0; i < NUM_SCALES; i++) 
+		{
+			scales[i].param.AutoDevInfo.DrawFixed=1;
+		}
+}
 
 static void AutomotivePanel_Task(void * pvParameters)
 {
@@ -383,9 +343,6 @@ static void AutomotivePanel_Task(void * pvParameters)
 	
 	static uint8_t blink_flag=0;
 
-
-	
-	
   for (i = 0; i < NUM_SCALES; i++) 
 	{
 		aAngleOld[i] = -1;	 
@@ -398,9 +355,7 @@ static void AutomotivePanel_Task(void * pvParameters)
 		}
   }
 		
-
-
-  t0 = GUI_GetTime();       // Get current time
+  t0 = GUI_GetTime(); 
 
 	tBlinkNext=1000;
 	while(1)
@@ -411,13 +366,13 @@ static void AutomotivePanel_Task(void * pvParameters)
 			tBlinkNext=1000;
 			t0 = GUI_GetTime();       // Get current time
 		}
-	
 				
 		if(tDiff > tBlinkNext)
 		{
 				tBlinkNext+=1000;
 				if(blink_flag)
 				{
+						Automotive_Panel_ChangeDisplay(DISPLAY_0);
 						Set_Pictogram_State(PICTO_H19,PICTO_STATE_OFF);
 						Set_Pictogram_State(PICTO_H20,PICTO_STATE_ON);
 						Set_Pictogram_State(PICTO_H21,PICTO_STATE_OFF);
@@ -427,10 +382,11 @@ static void AutomotivePanel_Task(void * pvParameters)
 						Set_Pictogram_State(PICTO_H37,PICTO_STATE_OFF);
 						Set_Pictogram_State(PICTO_H38,PICTO_STATE_ON);
 						Set_Pictogram_State(PICTO_H39,PICTO_STATE_OFF);
-						Set_Pictogram_State(PICTO_H40,PICTO_STATE_ON);					
+						Set_Pictogram_State(PICTO_H40,PICTO_STATE_ON);			
 				}
 				else
 				{
+						Automotive_Panel_ChangeDisplay(DISPLAY_1);
 						Set_Pictogram_State(PICTO_H19,PICTO_STATE_ON);
 						Set_Pictogram_State(PICTO_H20,PICTO_STATE_OFF);
 						Set_Pictogram_State(PICTO_H21,PICTO_STATE_ON);
@@ -440,13 +396,10 @@ static void AutomotivePanel_Task(void * pvParameters)
 						Set_Pictogram_State(PICTO_H37,PICTO_STATE_ON);
 						Set_Pictogram_State(PICTO_H38,PICTO_STATE_OFF);
 						Set_Pictogram_State(PICTO_H39,PICTO_STATE_ON);
-						Set_Pictogram_State(PICTO_H40,PICTO_STATE_OFF);	
+						Set_Pictogram_State(PICTO_H40,PICTO_STATE_OFF);		
 				}  
-				blink_flag=~blink_flag;			
-
+				blink_flag=~blink_flag;	
 			}
-
-
 			
 			Set_ScaleValue(SCALE_TAHOMETER,   _GetRPM(tDiff));
 			Set_ScaleValue(SCALE_FUEL, 		 		_GetFuel(tDiff));
@@ -480,9 +433,7 @@ static void AutomotivePanel_Task(void * pvParameters)
 
 float ScaleFilter(FILTER *filter, float in)
 {
-		//static float lastOut=0;
 		float out = in * (filter->t_const - filter->wlag) + ((filter->wlag * filter->lastOut) / filter->t_const);
 		filter->lastOut = out;
 		return (out / filter->t_const); 
 }
-
