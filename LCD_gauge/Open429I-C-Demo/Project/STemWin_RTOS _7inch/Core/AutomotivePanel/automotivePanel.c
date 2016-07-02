@@ -189,8 +189,6 @@ static PICTOGRAM picto[PICTO_NUM]=
 {{130,310},&bmpicto_H49,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
 {{110,410},&bmpicto_H51,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1}
 };
-
-
 /***************************************************/
 #define AutomotivePanel_Task_PRIO    ( tskIDLE_PRIORITY  + 9 )
 #define AutomotivePanel_Task_STACK   ( 3048 )
@@ -204,7 +202,7 @@ static void AutomotivePanel_Task(void * pvParameters);
 static int _OldGear = 0;
 
 
-
+/******************DEMO DEMO DEMO**********************/
 static float _GetRPM(int tDiff) {
 
   if ((tDiff >= 0) && (tDiff < 15000)) 
@@ -240,8 +238,7 @@ static float _GetSpeed(int tDiff) {
   }
   return 40;
 }
-
-/*********************************************************************/
+/*******************************************************/
 static void _Draw_Scale(void * p)
 {
 		SCALE *pScale=(SCALE *)p;
@@ -343,6 +340,7 @@ static void AutomotivePanel_Task(void * pvParameters)
 	
 	static uint8_t blink_flag=0;
 
+	/******************INIT********************/
   for (i = 0; i < NUM_SCALES; i++) 
 	{
 		aAngleOld[i] = -1;	 
@@ -354,7 +352,7 @@ static void AutomotivePanel_Task(void * pvParameters)
 			GUI_MEMDEV_DrawAuto(&scales[i].param.aAutoDev, &scales[i].param.AutoDevInfo, _pfDraw[i], &scales[i]);
 		}
   }
-		
+	/*****************************************/	
   t0 = GUI_GetTime(); 
 
 	tBlinkNext=1000;

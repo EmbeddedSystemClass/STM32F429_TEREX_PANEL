@@ -10,12 +10,12 @@
       <TargetName>STM32F429I-Discovery_Demo</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060020::V5.06 (build 20)::ARMCC</pCCUsed>
+      <pCCUsed>5060061::V5.06 update 1 (build 61)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F429ZI</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F4xx_DFP.2.5.0</PackID>
+          <PackID>Keil.STM32F4xx_DFP.2.7.0</PackID>
           <PackURL>http://www.keil.com/pack</PackURL>
           <Cpu>IROM(0x08000000,0x200000) IRAM(0x20000000,0x30000) IRAM2(0x10000000,0x10000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -427,11 +427,6 @@
               <FilePath>.\..\Core\User\main.c</FilePath>
             </File>
             <File>
-              <FileName>rtc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\..\Core\User\rtc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32xxx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\..\Core\User\stm32xxx_it.c</FilePath>
@@ -445,6 +440,16 @@
               <FileName>startup_stm32f429_439xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\startup_stm32f429_439xx.s</FilePath>
+            </File>
+            <File>
+              <FileName>rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\User\rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>proto.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\User\proto.c</FilePath>
             </File>
           </Files>
         </Group>

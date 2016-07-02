@@ -1,10 +1,11 @@
 --cpu Cortex-M4.fp
 ".\stm32f429i-discovery_demo\bsp.o"
 ".\stm32f429i-discovery_demo\main.o"
-".\stm32f429i-discovery_demo\rtc.o"
 ".\stm32f429i-discovery_demo\stm32xxx_it.o"
 ".\stm32f429i-discovery_demo\system_stm32f4xx.o"
 ".\stm32f429i-discovery_demo\startup_stm32f429_439xx.o"
+".\stm32f429i-discovery_demo\rtc.o"
+".\stm32f429i-discovery_demo\proto.o"
 ".\stm32f429i-discovery_demo\guiconf.o"
 ".\stm32f429i-discovery_demo\gui_x_freertos.o"
 ".\stm32f429i-discovery_demo\misc.o"

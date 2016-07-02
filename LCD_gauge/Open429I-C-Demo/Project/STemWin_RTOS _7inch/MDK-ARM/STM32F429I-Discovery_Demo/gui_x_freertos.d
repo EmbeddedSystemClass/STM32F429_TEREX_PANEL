@@ -7,7 +7,7 @@
 .\stm32f429i-discovery_demo\gui_x_freertos.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\Global.h
 .\stm32f429i-discovery_demo\gui_x_freertos.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_Version.h
 .\stm32f429i-discovery_demo\gui_x_freertos.o: .\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\FreeRTOS.h
-.\stm32f429i-discovery_demo\gui_x_freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\stm32f429i-discovery_demo\gui_x_freertos.o: D:\Programs\Keil\ARM\ARMCC\Bin\..\include\stddef.h
 .\stm32f429i-discovery_demo\gui_x_freertos.o: .\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h
 .\stm32f429i-discovery_demo\gui_x_freertos.o: .\..\Config\FreeRTOSConfig.h
 .\stm32f429i-discovery_demo\gui_x_freertos.o: .\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h
