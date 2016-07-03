@@ -105,3 +105,4 @@
 .\stm32f429i-discovery_demo\automotivepanel.o: ..\Core\AutomotivePanel\speedometerScale.c
 .\stm32f429i-discovery_demo\automotivepanel.o: ..\Core\AutomotivePanel\fuelScale.c
 .\stm32f429i-discovery_demo\automotivepanel.o: ..\Core\AutomotivePanel\temperatureScale.c
+.\stm32f429i-discovery_demo\automotivepanel.o: ..\Core\AutomotivePanel\resource.c

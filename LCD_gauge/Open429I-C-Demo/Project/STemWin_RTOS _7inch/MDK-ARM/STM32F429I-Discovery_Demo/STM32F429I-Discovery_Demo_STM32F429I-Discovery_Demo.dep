@@ -8,7 +8,7 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stddef.h)(0x55DB71CE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x577783EE)
 I (.\..\Config\FreeRTOSConfig.h)(0x577783ED)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x577783EE)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x577783EE)
+I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x57783C80)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x577783EE)
@@ -109,7 +109,7 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stddef.h)(0x55DB71CE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x577783EE)
 I (.\..\Config\FreeRTOSConfig.h)(0x577783ED)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x577783EE)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x577783EE)
+I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x57783C80)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x577783EE)
@@ -210,7 +210,7 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stddef.h)(0x55DB71CE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x577783EE)
 I (.\..\Config\FreeRTOSConfig.h)(0x577783ED)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x577783EE)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x577783EE)
+I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x57783C80)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x577783EE)
@@ -351,7 +351,7 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stddef.h)(0x55DB71CE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x577783EE)
 I (.\..\Config\FreeRTOSConfig.h)(0x577783ED)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x577783EE)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x577783EE)
+I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x57783C80)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x577783EE)
@@ -442,8 +442,8 @@ I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\SLIDER.h)(0x577783ED)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\SPINBOX.h)(0x577783ED)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TEXT.h)(0x577783ED)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TREEVIEW.h)(0x577783ED)
-F (..\Core\User\proto.c)(0x57783C6E)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib -I..\Core\AutomotivePanel --c99 --diag-suppress 111-I "D:\PROJECTS\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I D:\Programs\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Programs\Keil\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\proto.o --omf_browse .\stm32f429i-discovery_demo\proto.crf --depend .\stm32f429i-discovery_demo\proto.d)
-I (..\Core\User\proto.h)(0x57780101)
+F (..\Core\User\proto.c)(0x5778E3F9)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib -I..\Core\AutomotivePanel --c99 --diag-suppress 111-I "D:\PROJECTS\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I D:\Programs\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Programs\Keil\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\proto.o --omf_browse .\stm32f429i-discovery_demo\proto.crf --depend .\stm32f429i-discovery_demo\proto.d)
+I (..\Core\User\proto.h)(0x5778CE8E)
 I (.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x577783ED)
 I (D:\Programs\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm4.h)(0x5625FD5C)
 I (D:\Programs\Keil\ARM\ARMCC\include\stdint.h)(0x55DB71D0)
@@ -488,7 +488,7 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stddef.h)(0x55DB71CE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x577783EE)
 I (.\..\Config\FreeRTOSConfig.h)(0x577783ED)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x577783EE)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x577783EE)
+I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x57783C80)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x577783EE)
@@ -515,7 +515,7 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stddef.h)(0x55DB71CE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x577783EE)
 I (.\..\Config\FreeRTOSConfig.h)(0x577783ED)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x577783EE)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x577783EE)
+I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x57783C80)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x577783EE)
@@ -1380,7 +1380,7 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stddef.h)(0x55DB71CE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x577783EE)
 I (.\..\Config\FreeRTOSConfig.h)(0x577783ED)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x577783EE)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x577783EE)
+I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x57783C80)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x577783EE)
@@ -1478,7 +1478,7 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stddef.h)(0x55DB71CE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x577783EE)
 I (.\..\Config\FreeRTOSConfig.h)(0x577783ED)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x577783EE)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x577783EE)
+I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x57783C80)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x577783EE)
@@ -1490,7 +1490,7 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stddef.h)(0x55DB71CE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x577783EE)
 I (.\..\Config\FreeRTOSConfig.h)(0x577783ED)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x577783EE)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x577783EE)
+I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x57783C80)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x577783EE)
 F (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\queue.c)(0x577783EE)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib -I..\Core\AutomotivePanel --c99 --diag-suppress 111-I "D:\PROJECTS\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I D:\Programs\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Programs\Keil\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\queue.o --omf_browse .\stm32f429i-discovery_demo\queue.crf --depend .\stm32f429i-discovery_demo\queue.d)
@@ -1501,7 +1501,7 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stddef.h)(0x55DB71CE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x577783EE)
 I (.\..\Config\FreeRTOSConfig.h)(0x577783ED)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x577783EE)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x577783EE)
+I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x57783C80)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x577783EE)
@@ -1514,7 +1514,7 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stddef.h)(0x55DB71CE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x577783EE)
 I (.\..\Config\FreeRTOSConfig.h)(0x577783ED)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x577783EE)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x577783EE)
+I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x57783C80)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x577783EE)
@@ -1526,7 +1526,7 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stddef.h)(0x55DB71CE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x577783EE)
 I (.\..\Config\FreeRTOSConfig.h)(0x577783ED)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x577783EE)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x577783EE)
+I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x57783C80)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x577783EE)
@@ -1539,7 +1539,7 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stddef.h)(0x55DB71CE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x577783EE)
 I (.\..\Config\FreeRTOSConfig.h)(0x577783ED)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x577783EE)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x577783EE)
+I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x57783C80)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x577783EE)
@@ -1549,11 +1549,11 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stddef.h)(0x55DB71CE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x577783EE)
 I (.\..\Config\FreeRTOSConfig.h)(0x577783ED)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x577783EE)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x577783EE)
+I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x57783C80)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x577783EE)
-F (..\Core\AutomotivePanel\automotivePanel.c)(0x57778F31)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib -I..\Core\AutomotivePanel --c99 --diag-suppress 111-I "D:\PROJECTS\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I D:\Programs\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Programs\Keil\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\automotivepanel.o --omf_browse .\stm32f429i-discovery_demo\automotivepanel.crf --depend .\stm32f429i-discovery_demo\automotivepanel.d)
+F (..\Core\AutomotivePanel\automotivePanel.c)(0x5778E3AB)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib -I..\Core\AutomotivePanel --c99 --diag-suppress 111-I "D:\PROJECTS\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I D:\Programs\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Programs\Keil\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\automotivepanel.o --omf_browse .\stm32f429i-discovery_demo\automotivepanel.crf --depend .\stm32f429i-discovery_demo\automotivepanel.d)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI.h)(0x577783ED)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_ConfDefaults.h)(0x577783ED)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config\GUIConf.h)(0x577783ED)
@@ -1570,7 +1570,7 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stddef.h)(0x55DB71CE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h)(0x577783EE)
 I (.\..\Config\FreeRTOSConfig.h)(0x577783ED)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h)(0x577783EE)
-I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x577783EE)
+I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portmacro.h)(0x57783C80)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\task.h)(0x577783EE)
 I (.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\list.h)(0x577783EE)
@@ -1658,6 +1658,7 @@ I (D:\Programs\Keil\ARM\ARMCC\include\stdlib.h)(0x55DB71C8)
 I (..\Core\AutomotivePanel\speedometerScale.c)(0x577783ED)
 I (..\Core\AutomotivePanel\fuelScale.c)(0x577783ED)
 I (..\Core\AutomotivePanel\temperatureScale.c)(0x577783ED)
+I (..\Core\AutomotivePanel\resource.c)(0x5778E3DE)
 F (..\Core\AutomotivePanel\picto.c)(0x577783ED)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I.\..\Config -I.\..\Core\Devices\STM32F4xx -I.\..\Core\User -I.\..\Core\Demo -I.\..\Core\Lib -I.\..\Core\Test_Program -I.\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I.\..\..\..\Utilities -I.\..\..\..\Utilities\Common -I.\..\..\..\Utilities\STM32F429i-Discovery -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F -I.\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc -I.\..\..\..\Libraries\STemWinLibrary522_4x9i\Config -I..\Core\User\TouchPanel -I..\..\..\Utilities\STM32F429I_Lib -I..\Core\AutomotivePanel --c99 --diag-suppress 111-I "D:\PROJECTS\STM32F429_TEREX_PANEL\LCD_gauge\Open429I-C-Demo\Project\STemWin_RTOS _7inch\MDK-ARM\RTE"-I D:\Programs\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I D:\Programs\Keil\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F429xx -DUSE_STDPERIPH_DRIVER -DSTM32F429_439xx -DUSE_STM32F429I_DISCO -DUSE_EMBEDDED_PHY-o .\stm32f429i-discovery_demo\picto.o --omf_browse .\stm32f429i-discovery_demo\picto.crf --depend .\stm32f429i-discovery_demo\picto.d)
 I (D:\Programs\Keil\ARM\ARMCC\include\stdlib.h)(0x55DB71C8)
 I (.\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI.h)(0x577783ED)

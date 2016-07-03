@@ -1,22 +1,39 @@
 #include "proto.h"
 
 //#include "watchdog.h"
-
-
-
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_tim.h"
 #include "stm32f4xx_usart.h"
 #include "misc.h"
 
-// FreeRTOS:
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
 #include "semphr.h"
+
+#define USART_PANEL 					USART3
+#define GPIO_AF_USART_PANEL 	GPIO_AF_USART3
+#define USART_PANEL_IRQn			USART3_IRQn
+#define RCC_USART_PANEL 			RCC_APB1Periph_USART3
+#define USART_PANEL_IRQHandler  USART3_IRQHandler
+
+#define RCC_USART_PANEL_GPIO 	RCC_AHB1Periph_GPIOB
+
+#define USART_PANEL_GPIO 	GPIOB
+
+#define USART_PANEL_TXD	GPIO_Pin_10
+#define USART_PANEL_RXD	GPIO_Pin_11
+
+#define USART_PANEL_TXD_PIN_SOURCE GPIO_PinSource10
+#define USART_PANEL_RXD_PIN_SOURCE GPIO_PinSource11
+#define USART_PANEL_BUF_LEN 	64 
+
+#define USART_PANEL_BAUDRATE		115200
+
+#define CRC_LEN				2 
 //--------------------------------------------------------------------
-uint8_t    RecieveBuf[64];
+uint8_t    RecieveBuf[USART_PANEL_BUF_LEN];
 uint8_t		 recieve_count=0;
 uint8_t  	 symbol=0xFF;
 //-----------------------------------------------------------------------------------
@@ -24,7 +41,7 @@ xSemaphoreHandle xProtoSemaphore;
 
 void ProtoBufHandling(void);
 
-uint8_t  CRC_Check( uint8_t *Spool,uint8_t Count);
+uint16_t CRC_Check(uint8_t *buf, uint16_t len);
 
 void ProtoTask( void *pvParameters );//
 //----------------------------------------------------------------------------------
@@ -39,7 +56,7 @@ void USART_PANEL_IRQHandler(void)
 		USART_ClearITPendingBit(USART_PANEL, USART_IT_RXNE);
 		symbol=(uint16_t)(USART_PANEL->DR & (uint16_t)0x01FF);
 
-		if(recieve_count>MAX_LENGTH_REC_BUF)
+		if(recieve_count>(USART_PANEL_BUF_LEN-1))
 		{
 			recieve_count=0x0;
 			return;
@@ -69,7 +86,7 @@ void Proto_Init(uint8_t init_type) //
 		GPIO_PinAFConfig(USART_PANEL_GPIO, USART_PANEL_TXD_PIN_SOURCE, GPIO_AF_USART_PANEL); //
 		GPIO_PinAFConfig(USART_PANEL_GPIO, USART_PANEL_RXD_PIN_SOURCE, GPIO_AF_USART_PANEL);
 
-		USART_InitStruct.USART_BaudRate = 115200;				
+		USART_InitStruct.USART_BaudRate = USART_PANEL_BAUDRATE;				
 		USART_InitStruct.USART_WordLength = USART_WordLength_8b;
 		USART_InitStruct.USART_StopBits = USART_StopBits_1;		
 		USART_InitStruct.USART_Parity = USART_Parity_No;		
@@ -96,13 +113,8 @@ void Proto_Init(uint8_t init_type) //
 
 		NVIC_EnableIRQ(USART_PANEL_IRQn);						 
 
-
-
-
-
 		recieve_count=0x0;
 
-	
 		vSemaphoreCreateBinary( xProtoSemaphore );
 		xTaskCreate(ProtoTask,(signed char*)"PROTO",256,NULL, tskIDLE_PRIORITY + 1, NULL);
 
@@ -135,25 +147,26 @@ void ProtoTask( void *pvParameters )
 	}
 }
 //-----------------------crc_n------------------------------------------------------------
-uint8_t  CRC_Check( uint8_t  *Spool_pr,uint8_t Count_pr )
+uint16_t CRC_Check(uint8_t *buf, uint16_t len)
 {
-	uint8_t crc_n = 0;
-	uint8_t  *Spool;
-	uint8_t  Count ;
-
-	Spool=Spool_pr;
-	Count=Count_pr;
-
-  		while(Count!=0x0)
-        {
-	        crc_n = crc_n ^ (*Spool++);//
-
-	        crc_n = ((crc_n & 0x01) ? (uint8_t)0x80: (uint8_t)0x00) | (uint8_t)(crc_n >> 1);
-
-	        if (crc_n & (uint8_t)0x80) crc_n = crc_n ^ (uint8_t)0x3C;
-			Count--;
-        }
-    return crc_n;
+  uint16_t crc = 0xFFFF;
+ 
+  for (int pos = 0; pos < len; pos++) 
+	{
+    crc ^= (uint16_t)buf[pos];          
+ 
+    for (int i = 8; i != 0; i--) 
+		{   
+      if ((crc & 0x0001) != 0) 
+			{     
+        crc >>= 1;                    
+        crc ^= 0xA001;
+      }
+      else
+			{				
+        crc >>= 1; 
+			}				
+    }
+  }
+  return crc;  
 }
- //-----------------------------------------------------------------------------------------------
-

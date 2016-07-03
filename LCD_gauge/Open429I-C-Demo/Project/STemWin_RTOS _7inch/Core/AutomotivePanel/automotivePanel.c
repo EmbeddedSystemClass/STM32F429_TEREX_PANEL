@@ -8,6 +8,7 @@
 #include "speedometerScale.c"
 #include "fuelScale.c"
 #include "temperatureScale.c"
+#include "resource.c"
 //-----------
 
 extern GUI_BITMAP bmpicto_H19;	
@@ -195,7 +196,7 @@ static PICTOGRAM picto[PICTO_NUM]=
 xTaskHandle                   				AutomotivePanel_Task_Handle;
 static void AutomotivePanel_Task(void * pvParameters);
 
-//#define FONT_GEAR &GUI_FontRounded22
+#define FONT_MOTOHOURS &GUI_FontRounded22
 
 #define DEG2RAD      (3.1415926f / 180)
 
@@ -257,6 +258,14 @@ void (* _pfDraw[NUM_SCALES])(void * p) = {
 	_Draw_Scale,
 	_Draw_Scale,
 };
+/*********************************************************************/
+static void _Draw_MotorHours(void)
+{
+		GUI_SetColor(GUI_WHITE);
+    GUI_SetTextMode(GUI_TM_NORMAL);
+    GUI_SetFont(FONT_MOTOHOURS);
+  //  GUI_DispDecAt(Gear, ((xSize + GUI_GetStringDistX(STR_GEAR) + 1) >> 1) - GUI_GetCharDistX('1'), (ySize - GUI_GetFontDistY()) >> 1, 1);
+}
 /*********************************************************************/
 
 void Set_ScaleValue(enScale scale, float val)
@@ -417,7 +426,12 @@ static void AutomotivePanel_Task(void * pvParameters)
 					}
 					atDiff[i]    = GUI_GetTime() - t1;
 				}
-			}			
+			}
+
+			if(currentDisplay == DISPLAY_1)
+			{
+					
+			}
 			GUI_Exec();
   }
   
