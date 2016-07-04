@@ -8,7 +8,7 @@
 #include "speedometerScale.c"
 #include "fuelScale.c"
 #include "temperatureScale.c"
-#include "resource.c"
+#include "font_mhours.c"
 //-----------
 
 extern GUI_BITMAP bmpicto_H19;	
@@ -38,7 +38,7 @@ extern  GUI_COLOR _Colorspicto_red[];
 extern  GUI_COLOR _Colorspicto_green[];
 extern  GUI_COLOR _Colorspicto_blue[];
 
-static enDisplay currentDisplay=DISPLAY_0;
+static enDisplay currentDisplay=DISPLAY_1;
 
 #define MAG         3
 #define NUM_SCALES  4
@@ -196,7 +196,7 @@ static PICTOGRAM picto[PICTO_NUM]=
 xTaskHandle                   				AutomotivePanel_Task_Handle;
 static void AutomotivePanel_Task(void * pvParameters);
 
-#define FONT_MOTOHOURS &GUI_FontRounded22
+#define FONT_MOTOHOURS &GUI_Fontfont_mhours
 
 #define DEG2RAD      (3.1415926f / 180)
 
@@ -258,13 +258,16 @@ void (* _pfDraw[NUM_SCALES])(void * p) = {
 	_Draw_Scale,
 	_Draw_Scale,
 };
+
+#define MHOURS_POS_X 450
+#define MHOURS_POS_Y 400
 /*********************************************************************/
-static void _Draw_MotorHours(void)
+static void _Draw_MotorHours(uint32_t mhours)
 {
 		GUI_SetColor(GUI_WHITE);
     GUI_SetTextMode(GUI_TM_NORMAL);
     GUI_SetFont(FONT_MOTOHOURS);
-  //  GUI_DispDecAt(Gear, ((xSize + GUI_GetStringDistX(STR_GEAR) + 1) >> 1) - GUI_GetCharDistX('1'), (ySize - GUI_GetFontDistY()) >> 1, 1);
+    GUI_DispDecAt(mhours, MHOURS_POS_X, MHOURS_POS_Y, 6);
 }
 /*********************************************************************/
 
@@ -361,6 +364,7 @@ static void AutomotivePanel_Task(void * pvParameters)
 			GUI_MEMDEV_DrawAuto(&scales[i].param.aAutoDev, &scales[i].param.AutoDevInfo, _pfDraw[i], &scales[i]);
 		}
   }
+	
 	/*****************************************/	
   t0 = GUI_GetTime(); 
 
@@ -379,7 +383,7 @@ static void AutomotivePanel_Task(void * pvParameters)
 				tBlinkNext+=1000;
 				if(blink_flag)
 				{
-						Automotive_Panel_ChangeDisplay(DISPLAY_0);
+						//Automotive_Panel_ChangeDisplay(DISPLAY_0);
 						Set_Pictogram_State(PICTO_H19,PICTO_STATE_OFF);
 						Set_Pictogram_State(PICTO_H20,PICTO_STATE_ON);
 						Set_Pictogram_State(PICTO_H21,PICTO_STATE_OFF);
@@ -393,7 +397,7 @@ static void AutomotivePanel_Task(void * pvParameters)
 				}
 				else
 				{
-						Automotive_Panel_ChangeDisplay(DISPLAY_1);
+						//Automotive_Panel_ChangeDisplay(DISPLAY_1);
 						Set_Pictogram_State(PICTO_H19,PICTO_STATE_ON);
 						Set_Pictogram_State(PICTO_H20,PICTO_STATE_OFF);
 						Set_Pictogram_State(PICTO_H21,PICTO_STATE_ON);
@@ -406,6 +410,11 @@ static void AutomotivePanel_Task(void * pvParameters)
 						Set_Pictogram_State(PICTO_H40,PICTO_STATE_OFF);		
 				}  
 				blink_flag=~blink_flag;	
+			}
+		
+			if(currentDisplay == DISPLAY_1)
+			{
+					_Draw_MotorHours(tBlinkNext);
 			}
 			
 			Set_ScaleValue(SCALE_TAHOMETER,   _GetRPM(tDiff));
@@ -428,10 +437,9 @@ static void AutomotivePanel_Task(void * pvParameters)
 				}
 			}
 
-			if(currentDisplay == DISPLAY_1)
-			{
-					
-			}
+			
+			
+
 			GUI_Exec();
   }
   

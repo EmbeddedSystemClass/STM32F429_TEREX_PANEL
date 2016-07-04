@@ -1,8 +1,8 @@
 .\stm32f429i-discovery_demo\queue.o: ..\..\..\Utilities\Third_Party\FreeRTOS\Source\queue.c
-.\stm32f429i-discovery_demo\queue.o: D:\Programs\Keil\ARM\ARMCC\Bin\..\include\stdlib.h
-.\stm32f429i-discovery_demo\queue.o: D:\Programs\Keil\ARM\ARMCC\Bin\..\include\string.h
+.\stm32f429i-discovery_demo\queue.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\stm32f429i-discovery_demo\queue.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\stm32f429i-discovery_demo\queue.o: .\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\FreeRTOS.h
-.\stm32f429i-discovery_demo\queue.o: D:\Programs\Keil\ARM\ARMCC\Bin\..\include\stddef.h
+.\stm32f429i-discovery_demo\queue.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\stm32f429i-discovery_demo\queue.o: .\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h
 .\stm32f429i-discovery_demo\queue.o: .\..\Config\FreeRTOSConfig.h
 .\stm32f429i-discovery_demo\queue.o: .\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h

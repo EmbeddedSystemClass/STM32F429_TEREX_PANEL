@@ -3,7 +3,7 @@
 .\stm32f429i-discovery_demo\bsp.o: .\..\Config\global_includes.h
 .\stm32f429i-discovery_demo\bsp.o: .\..\Config\global_conf.h
 .\stm32f429i-discovery_demo\bsp.o: .\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\FreeRTOS.h
-.\stm32f429i-discovery_demo\bsp.o: D:\Programs\Keil\ARM\ARMCC\Bin\..\include\stddef.h
+.\stm32f429i-discovery_demo\bsp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\stm32f429i-discovery_demo\bsp.o: .\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\projdefs.h
 .\stm32f429i-discovery_demo\bsp.o: .\..\Config\FreeRTOSConfig.h
 .\stm32f429i-discovery_demo\bsp.o: .\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\portable.h
@@ -15,12 +15,11 @@
 .\stm32f429i-discovery_demo\bsp.o: .\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\queue.h
 .\stm32f429i-discovery_demo\bsp.o: ..\..\..\Utilities\STM32F429I_Lib\stm32f429i_lib.h
 .\stm32f429i-discovery_demo\bsp.o: .\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
-.\stm32f429i-discovery_demo\bsp.o: D:\Programs\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm4.h
-.\stm32f429i-discovery_demo\bsp.o: D:\Programs\Keil\ARM\ARMCC\Bin\..\include\stdint.h
-.\stm32f429i-discovery_demo\bsp.o: D:\Programs\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmInstr.h
-.\stm32f429i-discovery_demo\bsp.o: D:\Programs\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\cmsis_armcc.h
-.\stm32f429i-discovery_demo\bsp.o: D:\Programs\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmFunc.h
-.\stm32f429i-discovery_demo\bsp.o: D:\Programs\Keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmSimd.h
+.\stm32f429i-discovery_demo\bsp.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm4.h
+.\stm32f429i-discovery_demo\bsp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\stm32f429i-discovery_demo\bsp.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmInstr.h
+.\stm32f429i-discovery_demo\bsp.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmFunc.h
+.\stm32f429i-discovery_demo\bsp.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmSimd.h
 .\stm32f429i-discovery_demo\bsp.o: .\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h
 .\stm32f429i-discovery_demo\bsp.o: .\..\Core\Devices\STM32F4xx\stm32f4xx_conf.h
 .\stm32f429i-discovery_demo\bsp.o: .\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h

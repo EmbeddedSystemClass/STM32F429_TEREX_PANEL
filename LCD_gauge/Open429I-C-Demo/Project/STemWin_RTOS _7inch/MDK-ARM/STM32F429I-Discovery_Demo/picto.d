@@ -1,5 +1,5 @@
 .\stm32f429i-discovery_demo\picto.o: ..\Core\AutomotivePanel\picto.c
-.\stm32f429i-discovery_demo\picto.o: D:\Programs\Keil\ARM\ARMCC\Bin\..\include\stdlib.h
+.\stm32f429i-discovery_demo\picto.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\stm32f429i-discovery_demo\picto.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI.h
 .\stm32f429i-discovery_demo\picto.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\GUI_ConfDefaults.h
 .\stm32f429i-discovery_demo\picto.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\Config\GUIConf.h
