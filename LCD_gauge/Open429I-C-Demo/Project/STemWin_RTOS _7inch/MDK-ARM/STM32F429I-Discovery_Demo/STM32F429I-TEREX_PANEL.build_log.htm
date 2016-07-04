@@ -27,26 +27,14 @@ Project File Date:  07/04/2016
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 (build 20)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32F429I-Discovery_Demo'
-compiling automotivePanel.c...
-..\Core\AutomotivePanel\automotivePanel.h(54): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\Core\AutomotivePanel\automotivePanel.c(359): warning:  #188-D: enumerated type mixed with another type
-                Set_ScaleValue(i,0);
-..\Core\AutomotivePanel\automotivePanel.c(448): warning:  #128-D: loop is not reachable
-    for (i = 0; i < NUM_SCALES; i++) 
-..\Core\AutomotivePanel\automotivePanel.c(344): warning:  #550-D: variable "atDiff" was set but never used
-    int         atDiff   [NUM_SCALES];
-..\Core\AutomotivePanel\automotivePanel.c(345): warning:  #177-D: variable "atDiffOld" was declared but never referenced
-    int         atDiffOld[NUM_SCALES] = {0};
-..\Core\AutomotivePanel\automotivePanel.c(348): warning:  #550-D: variable "ySize" was set but never used
-    int         ySize;
-..\Core\AutomotivePanel\automotivePanel.c(203): warning:  #177-D: variable "_OldGear" was declared but never referenced
-  static int _OldGear = 0;
-..\Core\AutomotivePanel\automotivePanel.c: 7 warnings, 0 errors
+compiling proto.c...
+..\Core\User\proto.c(238): warning:  #1-D: last line of file ends without a newline
+  }
+..\Core\User\proto.c: 1 warning, 0 errors
 linking...
-Program Size: Code=63308 RO-data=294172 RW-data=3084 ZI-data=5310988  
+Program Size: Code=64692 RO-data=294172 RW-data=3100 ZI-data=5311068  
 FromELF: creating hex file...
-".\STM32F429I-Discovery_Demo\STM32F429I-TEREX_PANEL.axf" - 0 Error(s), 7 Warning(s).
+".\STM32F429I-Discovery_Demo\STM32F429I-TEREX_PANEL.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -64,7 +52,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:4.1.0
-Build Time Elapsed:  00:00:05
+Build Time Elapsed:  00:00:04
 </pre>
 </body>
 </html>

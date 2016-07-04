@@ -32,10 +32,25 @@
 #define USART_PANEL_BAUDRATE		115200
 
 #define CRC_LEN				2 
+
+#define START_SYMBOL		0x55
+
+#define USART_PANEL_FRAME_LEN	19
+
+//-------------------------------------------------------------------
+typedef enum
+{
+		RECEIVE_STATE_WAIT=0,
+		RECEIVE_STATE_REC,
+		RECEIVE_STATE_HANDLING
+}enReceiveState;
+
+static enReceiveState ReceiveState=RECEIVE_STATE_WAIT;
 //--------------------------------------------------------------------
 uint8_t    RecieveBuf[USART_PANEL_BUF_LEN];
-uint8_t		 recieve_count=0;
+uint8_t		 receive_count=0;
 uint8_t  	 symbol=0xFF;
+stProtocolData ProtocolData;
 //-----------------------------------------------------------------------------------
 xSemaphoreHandle xProtoSemaphore;
 
@@ -47,26 +62,46 @@ void ProtoTask( void *pvParameters );//
 //----------------------------------------------------------------------------------
 void USART_PANEL_IRQHandler(void)
 {
- 	static portBASE_TYPE xHigherPriorityTaskWoken;
- 	xHigherPriorityTaskWoken = pdFALSE;
-
-
  	if(USART_GetITStatus(USART_PANEL, USART_IT_RXNE) != RESET)
 	{
 		USART_ClearITPendingBit(USART_PANEL, USART_IT_RXNE);
-		symbol=(uint16_t)(USART_PANEL->DR & (uint16_t)0x01FF);
-
-		if(recieve_count>(USART_PANEL_BUF_LEN-1))
+		symbol=USART_PANEL->DR;
+		TIM_SetCounter(TIM2, 0);
+		
+		if(receive_count>(USART_PANEL_BUF_LEN-1))
 		{
-			recieve_count=0x0;
-			return;
+			receive_count=0x0;
+		}
+		else
+		{
+				switch(ReceiveState)
+				{
+						case RECEIVE_STATE_WAIT:
+						{
+								ReceiveState=RECEIVE_STATE_REC;
+								receive_count=0x0;
+								TIM_Cmd(TIM2, ENABLE);
+						}
+						break;
+						
+						case RECEIVE_STATE_REC:
+						{
+							//	RecieveBuf[receive_count]=symbol;
+						}
+						break;
+						
+						default:
+						{
+						}
+						break;
+				}
+				RecieveBuf[receive_count]=symbol;
+				receive_count++;
 		}
 	}
-
- 	portEND_SWITCHING_ISR( xHigherPriorityTaskWoken );
 }
 //------------------------------------------------------------------------------
-void Proto_Init(uint8_t init_type) //
+void Proto_Init(void) //
 {
 		GPIO_InitTypeDef GPIO_InitStruct; 
 		USART_InitTypeDef USART_InitStruct;
@@ -113,12 +148,47 @@ void Proto_Init(uint8_t init_type) //
 
 		NVIC_EnableIRQ(USART_PANEL_IRQn);						 
 
-		recieve_count=0x0;
+		receive_count=0x0;
+		
+		//----------------------------------------
+		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
+ 
+    TIM_TimeBaseInitTypeDef timerInitStructure; 
+    timerInitStructure.TIM_Prescaler = 40000;
+    timerInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
+    timerInitStructure.TIM_Period = 500;
+    timerInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
+    timerInitStructure.TIM_RepetitionCounter = 0;
+    TIM_TimeBaseInit(TIM2, &timerInitStructure);
+		
+
+    NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+		
+    TIM_Cmd(TIM2, ENABLE);
+		//----------------------------------------
 
 		vSemaphoreCreateBinary( xProtoSemaphore );
 		xTaskCreate(ProtoTask,(signed char*)"PROTO",256,NULL, tskIDLE_PRIORITY + 1, NULL);
 
 		return;
+}
+//-----------------------------------------------------------------------------------
+void TIM2_IRQHandler()
+{
+		static portBASE_TYPE xHigherPriorityTaskWoken;
+    if (TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET)
+    {
+			TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
+			TIM_Cmd(TIM2, DISABLE);
+			
+			xHigherPriorityTaskWoken = pdFALSE;
+			xSemaphoreGiveFromISR( xProtoSemaphore, &xHigherPriorityTaskWoken );
+			portEND_SWITCHING_ISR( xHigherPriorityTaskWoken );			
+    }
 }
 //-----------------------------------------------------------------------------------
 void ProtoTask( void *pvParameters )
@@ -131,17 +201,13 @@ void ProtoTask( void *pvParameters )
 		{
 			if( xSemaphoreTake( xProtoSemaphore, ( portTickType ) portMAX_DELAY ) == pdTRUE )
 			{
-						crc_n=RecieveBuf[recieve_count-1];
+						crc_n=RecieveBuf[receive_count-CRC_LEN];
 				
-					  if((CRC_Check(RecieveBuf,(recieve_count-CRC_LEN))==crc_n))
+					  if((CRC_Check(RecieveBuf,(receive_count-CRC_LEN))==crc_n) && (receive_count==USART_PANEL_FRAME_LEN))
 						{
-							recieve_count=0;
-							USART_ITConfig(USART_PANEL, USART_IT_RXNE , ENABLE);
+								//ProtocolData.
 						}
-						else
-						{
-							USART_ITConfig(USART_PANEL, USART_IT_RXNE , ENABLE);
-						}
+						USART_ITConfig(USART_PANEL, USART_IT_RXNE , ENABLE);
 			}
 		}
 	}

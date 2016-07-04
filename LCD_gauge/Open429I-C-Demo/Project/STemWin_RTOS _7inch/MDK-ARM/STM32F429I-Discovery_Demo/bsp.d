@@ -100,3 +100,4 @@
 .\stm32f429i-discovery_demo\bsp.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TEXT.h
 .\stm32f429i-discovery_demo\bsp.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TREEVIEW.h
 .\stm32f429i-discovery_demo\bsp.o: ..\Core\User\rtc.h
+.\stm32f429i-discovery_demo\bsp.o: ..\Core\User\proto.h

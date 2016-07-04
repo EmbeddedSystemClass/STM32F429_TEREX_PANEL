@@ -28,7 +28,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "bsp.h"
 #include "rtc.h"
-
+#include "proto.h"
 
 
 
@@ -55,6 +55,7 @@ uint32_t LowLevel_Init (void)
   
   /* Enable the CRC Module */
   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_CRC, ENABLE);  
+	Proto_Init();
   
   return 0;
 }

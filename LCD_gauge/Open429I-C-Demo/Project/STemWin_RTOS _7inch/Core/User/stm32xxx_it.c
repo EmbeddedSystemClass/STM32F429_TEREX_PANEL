@@ -140,10 +140,7 @@ void EXTI0_IRQHandler(void)
   * @retval None
   */
 
-void TIM2_IRQHandler(void)
-{
-  //USB_OTG_BSP_TimerIRQ();
-}
+
 
 /**
   * @brief  This function handles OTG_HS Handler.
