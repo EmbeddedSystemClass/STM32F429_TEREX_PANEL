@@ -116,10 +116,7 @@ void TimingDelay_Decrement(void)
 	
 void SysTick_Handler(void)
 {
-if(demo_mode == 0)
   xPortSysTickHandler();
-else  
-  TimingDelay_Decrement();
 }
 
 /**

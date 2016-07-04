@@ -99,6 +99,7 @@
 .\stm32f429i-discovery_demo\automotivepanel.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\SPINBOX.h
 .\stm32f429i-discovery_demo\automotivepanel.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TEXT.h
 .\stm32f429i-discovery_demo\automotivepanel.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TREEVIEW.h
+.\stm32f429i-discovery_demo\automotivepanel.o: .\..\Core\User\proto.h
 .\stm32f429i-discovery_demo\automotivepanel.o: ..\Core\AutomotivePanel\tahometerScale.c
 .\stm32f429i-discovery_demo\automotivepanel.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\stm32f429i-discovery_demo\automotivepanel.o: ..\Core\AutomotivePanel\speedometerScale.c

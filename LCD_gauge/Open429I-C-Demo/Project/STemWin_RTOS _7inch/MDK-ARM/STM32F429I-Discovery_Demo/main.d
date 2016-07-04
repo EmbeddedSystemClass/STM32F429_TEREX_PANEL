@@ -101,3 +101,4 @@
 .\stm32f429i-discovery_demo\main.o: .\..\..\..\Libraries\STemWinLibrary522_4x9i\inc\TREEVIEW.h
 .\stm32f429i-discovery_demo\main.o: .\..\..\..\Utilities\Third_Party\FreeRTOS\Source\include\timers.h
 .\stm32f429i-discovery_demo\main.o: ..\Core\AutomotivePanel\automotivePanel.h
+.\stm32f429i-discovery_demo\main.o: ..\Core\User\proto.h

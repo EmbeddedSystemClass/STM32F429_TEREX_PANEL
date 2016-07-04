@@ -50,7 +50,7 @@ static enReceiveState ReceiveState=RECEIVE_STATE_WAIT;
 uint8_t    RecieveBuf[USART_PANEL_BUF_LEN];
 uint8_t		 receive_count=0;
 uint8_t  	 symbol=0xFF;
-stProtocolData ProtocolData;
+stProtocolData *ProtocolData;
 //-----------------------------------------------------------------------------------
 xSemaphoreHandle xProtoSemaphore;
 
@@ -106,6 +106,9 @@ void Proto_Init(void) //
 		GPIO_InitTypeDef GPIO_InitStruct; 
 		USART_InitTypeDef USART_InitStruct;
 		NVIC_InitTypeDef NVIC_InitStructure; 
+	
+		ProtocolData=(stProtocolData*)(&RecieveBuf[1]);
+		vSemaphoreCreateBinary( xProtoSemaphore );
 
 		RCC_APB1PeriphClockCmd(RCC_USART_PANEL, ENABLE);
 		RCC_AHB1PeriphClockCmd(RCC_USART_PANEL_GPIO, ENABLE);
@@ -132,21 +135,19 @@ void Proto_Init(void) //
 		USART_ClearFlag(USART_PANEL, USART_FLAG_CTS | USART_FLAG_LBD  | USART_FLAG_TC  | USART_FLAG_RXNE );
 
 
-		USART_ITConfig(USART_PANEL, USART_IT_TC, ENABLE);
-		USART_ITConfig(USART_PANEL, USART_IT_RXNE , ENABLE);
-
-		USART_Cmd(USART_PANEL, ENABLE);
 
 		NVIC_PriorityGroupConfig( NVIC_PriorityGroup_4 );
 
-		   /* Enabling interrupt from USART */
 		NVIC_InitStructure.NVIC_IRQChannel = USART_PANEL_IRQn;
-		NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
+		NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = configLIBRARY_LOWEST_INTERRUPT_PRIORITY;
 		NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
 		NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 		NVIC_Init(&NVIC_InitStructure);
 
-		NVIC_EnableIRQ(USART_PANEL_IRQn);						 
+	  NVIC_EnableIRQ(USART_PANEL_IRQn);			
+		
+	  USART_ITConfig(USART_PANEL, USART_IT_RXNE , ENABLE);
+	  USART_Cmd(USART_PANEL, ENABLE);		
 
 		receive_count=0x0;
 		
@@ -163,16 +164,16 @@ void Proto_Init(void) //
 		
 
     NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 14;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = configLIBRARY_LOWEST_INTERRUPT_PRIORITY;
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
-		
-    TIM_Cmd(TIM2, ENABLE);
+		NVIC_EnableIRQ(TIM2_IRQn);	
+   // TIM_Cmd(TIM2, ENABLE);
 		//----------------------------------------
 
-		vSemaphoreCreateBinary( xProtoSemaphore );
-		xTaskCreate(ProtoTask,(signed char*)"PROTO",256,NULL, tskIDLE_PRIORITY + 1, NULL);
+	
+	//	xTaskCreate(ProtoTask,(signed char*)"PROTO",512,NULL, tskIDLE_PRIORITY , NULL);
 
 		return;
 }
@@ -191,27 +192,28 @@ void TIM2_IRQHandler()
     }
 }
 //-----------------------------------------------------------------------------------
-void ProtoTask( void *pvParameters )
-{
-	uint8_t   crc_n;
-	//task_watches[PROTO_TASK].task_status=TASK_IDLE;
-	while(1)
-	{
-		if( xProtoSemaphore != NULL )
-		{
-			if( xSemaphoreTake( xProtoSemaphore, ( portTickType ) portMAX_DELAY ) == pdTRUE )
-			{
-						crc_n=RecieveBuf[receive_count-CRC_LEN];
-				
-					  if((CRC_Check(RecieveBuf,(receive_count-CRC_LEN))==crc_n) && (receive_count==USART_PANEL_FRAME_LEN))
-						{
-								//ProtocolData.
-						}
-						USART_ITConfig(USART_PANEL, USART_IT_RXNE , ENABLE);
-			}
-		}
-	}
-}
+//void ProtoTask( void *pvParameters )
+//{
+//	uint16_t   crc_n;
+//	
+//	while(1)
+//	{
+//		if( xProtoSemaphore != NULL )
+//		{
+//			if( xSemaphoreTake( xProtoSemaphore, ( portTickType ) portMAX_DELAY ) == pdTRUE )
+//			{
+//						crc_n=*(uint16_t*)&RecieveBuf[receive_count-CRC_LEN];
+//				
+//					  if((CRC_Check(RecieveBuf,(receive_count-CRC_LEN))==crc_n) && (receive_count==USART_PANEL_FRAME_LEN))
+//						{
+//								//ProtocolData.
+//						}
+//						USART_ITConfig(USART_PANEL, USART_IT_RXNE , ENABLE);
+//			}
+//		}
+//		taskYIELD(); 
+//	}
+//}
 //-----------------------crc_n------------------------------------------------------------
 uint16_t CRC_Check(uint8_t *buf, uint16_t len)
 {

@@ -30,39 +30,11 @@
 #include "timers.h"
 #include <stddef.h>
 #include "automotivePanel.h"
+#include "proto.h"
 
-/* Private typedef -----------------------------------------------------------*/
-/* Private define ------------------------------------------------------------*/
-//#define Background_Task_PRIO    ( tskIDLE_PRIORITY  + 10 )
-//#define Background_Task_STACK   ( 512 )
-
-//#define Demo_Task_PRIO          ( tskIDLE_PRIORITY  + 9 )
-//#define Demo_Task_STACK         ( 3048 )
-
-///* Private macro -------------------------------------------------------------*/
-///* Private variables ---------------------------------------------------------*/
-//xTaskHandle                   Task_Handle;
-//xTaskHandle                   Demo_Handle;
-xTimerHandle                  TouchScreenTimer;
-
-uint32_t demo_mode = 0;
-
-//extern WM_HWIN  ALARM_hWin;
-
-/* Private function prototypes -----------------------------------------------*/
-//static void Background_Task(void * pvParameters);
-//static void Demo_Task(void * pvParameters);
-static void vTimerCallback( xTimerHandle pxTimer );
-/* Private functions ---------------------------------------------------------*/
-
-/**
-  * @brief  Main program.
-  * @param  None
-  * @retval None
-  */ 
 int main(void)
 { 
-  uint32_t ticks = 0;
+
     
   /* Initialize the BSP layer */
   LowLevel_Init();
@@ -75,6 +47,7 @@ int main(void)
   GUI_Clear();
   GUI_SetBkColor(GUI_BLACK); 
 	AutomotivePanel_Init();
+		Proto_Init();
 
   vTaskStartScheduler();
 	while(1)
@@ -83,15 +56,7 @@ int main(void)
 }
 
 
-/**
-  * @brief  Timer callback
-  * @param  pxTimer 
-  * @retval None
-  */
-static void vTimerCallback( xTimerHandle pxTimer )
-{
 
-}
 
 /**
   * @brief  Error callback function
@@ -104,23 +69,6 @@ void vApplicationMallocFailedHook( void )
   {}
 }
 
-#ifdef  USE_FULL_ASSERT
-/**
-  * @brief  Reports the name of the source file and the source line number
-  *   where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
-void assert_failed(uint8_t* file, uint32_t line)
-{
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 
-  /* Infinite loop */
-  while (1)
-  {}
-}
-#endif
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include "automotivePanel.h"
 #include "global_includes.h"
+#include "proto.h"
 
 //-----------
 #include "tahometerScale.c"
@@ -148,10 +149,10 @@ static NEEDLE _aNeedle[2] = {
 
 static SCALE scales[NUM_SCALES]=
 {
-	{&bmtahometerScale	,{250,  0},&_aNeedle[0],{513,251},{0},{{0},{0},270.0,270.0, 90.0,0.0,0.0,2500.0},&TahometerScaleFilter		,SCALE_STATE_DRAW,DISPLAY_0},
-	{&bmfuelScale				,{250,290},&_aNeedle[1],{450,455},{0},{{0},{0},270.0,270.0,198.0,0.0,0.0, 100.0},&FuelScaleFilter				,SCALE_STATE_DRAW,DISPLAY_0},
-	{&bmtemperatureScale,{570,290},&_aNeedle[1],{770,455},{0},{{0},{0},270.0,270.0,198.0,0.0,0.0, 120.0},&TemperatureScaleFilter	,SCALE_STATE_DRAW,DISPLAY_0},
-	{&bmspeedometerScale,{250,  0},&_aNeedle[0],{513,251},{0},{{0},{0},270.0,270.0, 90.0,0.0,0.0,  40.0},&SpeedometerScaleFilter	,SCALE_STATE_DRAW,DISPLAY_1},
+	{&bmtahometerScale	,{250,  0},&_aNeedle[0],{513,251},{0},{{0},{0},270.0,270.0, 90.0,0.0,0.0,65535.0},&TahometerScaleFilter		,SCALE_STATE_DRAW,DISPLAY_0},
+	{&bmfuelScale				,{250,290},&_aNeedle[1],{450,455},{0},{{0},{0},270.0,270.0,198.0,0.0,0.0,65535.0},&FuelScaleFilter				,SCALE_STATE_DRAW,DISPLAY_0},
+	{&bmtemperatureScale,{570,290},&_aNeedle[1],{770,455},{0},{{0},{0},270.0,270.0,198.0,0.0,0.0,65535.0},&TemperatureScaleFilter	,SCALE_STATE_DRAW,DISPLAY_0},
+	{&bmspeedometerScale,{250,  0},&_aNeedle[0],{513,251},{0},{{0},{0},270.0,270.0, 90.0,0.0,0.0,65535.0},&SpeedometerScaleFilter	,SCALE_STATE_DRAW,DISPLAY_1},
 };
 /***************************************************/
 
@@ -191,9 +192,15 @@ static PICTOGRAM picto[PICTO_NUM]=
 {{110,410},&bmpicto_H51,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1}
 };
 /***************************************************/
-#define AutomotivePanel_Task_PRIO    ( tskIDLE_PRIORITY  + 9 )
+#define AutomotivePanel_Task_PRIO    ( tskIDLE_PRIORITY  )
 #define AutomotivePanel_Task_STACK   ( 3048 )
 xTaskHandle                   				AutomotivePanel_Task_Handle;
+
+extern xSemaphoreHandle xProtoSemaphore;
+
+extern stProtocolData *ProtocolData;
+stProtocolData ProtocolDataCopy;
+
 static void AutomotivePanel_Task(void * pvParameters);
 
 #define FONT_MOTOHOURS &GUI_Fontfont_mhours
@@ -204,42 +211,6 @@ static int _OldGear = 0;
 
 
 /******************DEMO DEMO DEMO**********************/
-static float _GetRPM(int tDiff) {
-
-  if ((tDiff >= 0) && (tDiff < 15000)) 
-	{
-			return ((float)tDiff/15000*2500);
-  }
-  return 2500;
-}
-
-static float _GetFuel(int tDiff) {
-
-  if ((tDiff >= 0) && (tDiff < 15000)) 
-	{
-			return 100- ((float)tDiff/15000*100);
-  }
-  return 0;
-}
-
-static float _GetTemperature(int tDiff) {
-
-  if ((tDiff >= 0) && (tDiff < 15000)) 
-	{
-			return ((float)tDiff/15000*120);
-  }
-  return 120;
-}
-
-static float _GetSpeed(int tDiff) {
-
-  if ((tDiff >= 0) && (tDiff < 15000)) 
-	{
-			return ((float)tDiff/15000*40);
-  }
-  return 40;
-}
-/*******************************************************/
 static void _Draw_Scale(void * p)
 {
 		SCALE *pScale=(SCALE *)p;
@@ -343,14 +314,13 @@ static void AutomotivePanel_Task(void * pvParameters)
 	float       aAngleOld[NUM_SCALES];
   int         atDiff   [NUM_SCALES];
   int         atDiffOld[NUM_SCALES] = {0};
-  int         tDiff, t0, t1, tBlinkNext;
+//  int         tDiff, t0, t1;
   int          i;
   int         ySize;
 
-  tDiff = 0;
+
   ySize = LCD_GetYSize();
 	
-	static uint8_t blink_flag=0;
 
 	/******************INIT********************/
   for (i = 0; i < NUM_SCALES; i++) 
@@ -365,86 +335,85 @@ static void AutomotivePanel_Task(void * pvParameters)
 		}
   }
 	
-	/*****************************************/	
-  t0 = GUI_GetTime(); 
 
-	tBlinkNext=1000;
 	while(1)
 	{
 				
-		if((tDiff = GUI_GetTime() - t0) > 15000)
-		{
-			tBlinkNext=1000;
-			t0 = GUI_GetTime();       // Get current time
-		}
+//		if((tDiff = GUI_GetTime() - t0) > 15000)
+//		{
+//			tBlinkNext=1000;
+//			t0 = GUI_GetTime();       // Get current time
+//		}
 				
-		if(tDiff > tBlinkNext)
-		{
-				tBlinkNext+=1000;
-				if(blink_flag)
-				{
-						//Automotive_Panel_ChangeDisplay(DISPLAY_0);
-						Set_Pictogram_State(PICTO_H19,PICTO_STATE_OFF);
-						Set_Pictogram_State(PICTO_H20,PICTO_STATE_ON);
-						Set_Pictogram_State(PICTO_H21,PICTO_STATE_OFF);
-						Set_Pictogram_State(PICTO_H24,PICTO_STATE_ON);
-						Set_Pictogram_State(PICTO_H35,PICTO_STATE_OFF);
-						Set_Pictogram_State(PICTO_H36,PICTO_STATE_ON);
-						Set_Pictogram_State(PICTO_H37,PICTO_STATE_OFF);
-						Set_Pictogram_State(PICTO_H38,PICTO_STATE_ON);
-						Set_Pictogram_State(PICTO_H39,PICTO_STATE_OFF);
-						Set_Pictogram_State(PICTO_H40,PICTO_STATE_ON);			
-				}
-				else
-				{
-						//Automotive_Panel_ChangeDisplay(DISPLAY_1);
-						Set_Pictogram_State(PICTO_H19,PICTO_STATE_ON);
-						Set_Pictogram_State(PICTO_H20,PICTO_STATE_OFF);
-						Set_Pictogram_State(PICTO_H21,PICTO_STATE_ON);
-						Set_Pictogram_State(PICTO_H24,PICTO_STATE_OFF);
-						Set_Pictogram_State(PICTO_H35,PICTO_STATE_ON);
-						Set_Pictogram_State(PICTO_H36,PICTO_STATE_OFF);
-						Set_Pictogram_State(PICTO_H37,PICTO_STATE_ON);
-						Set_Pictogram_State(PICTO_H38,PICTO_STATE_OFF);
-						Set_Pictogram_State(PICTO_H39,PICTO_STATE_ON);
-						Set_Pictogram_State(PICTO_H40,PICTO_STATE_OFF);		
-				}  
-				blink_flag=~blink_flag;	
+//		if(tDiff > tBlinkNext)
+//		{
+//				tBlinkNext+=1000;
+//				if(blink_flag)
+//				{
+//						//Automotive_Panel_ChangeDisplay(DISPLAY_0);
+//						Set_Pictogram_State(PICTO_H19,PICTO_STATE_OFF);
+//						Set_Pictogram_State(PICTO_H20,PICTO_STATE_ON);
+//						Set_Pictogram_State(PICTO_H21,PICTO_STATE_OFF);
+//						Set_Pictogram_State(PICTO_H24,PICTO_STATE_ON);
+//						Set_Pictogram_State(PICTO_H35,PICTO_STATE_OFF);
+//						Set_Pictogram_State(PICTO_H36,PICTO_STATE_ON);
+//						Set_Pictogram_State(PICTO_H37,PICTO_STATE_OFF);
+//						Set_Pictogram_State(PICTO_H38,PICTO_STATE_ON);
+//						Set_Pictogram_State(PICTO_H39,PICTO_STATE_OFF);
+//						Set_Pictogram_State(PICTO_H40,PICTO_STATE_ON);			
+//				}
+//				else
+//				{
+//						//Automotive_Panel_ChangeDisplay(DISPLAY_1);
+//						Set_Pictogram_State(PICTO_H19,PICTO_STATE_ON);
+//						Set_Pictogram_State(PICTO_H20,PICTO_STATE_OFF);
+//						Set_Pictogram_State(PICTO_H21,PICTO_STATE_ON);
+//						Set_Pictogram_State(PICTO_H24,PICTO_STATE_OFF);
+//						Set_Pictogram_State(PICTO_H35,PICTO_STATE_ON);
+//						Set_Pictogram_State(PICTO_H36,PICTO_STATE_OFF);
+//						Set_Pictogram_State(PICTO_H37,PICTO_STATE_ON);
+//						Set_Pictogram_State(PICTO_H38,PICTO_STATE_OFF);
+//						Set_Pictogram_State(PICTO_H39,PICTO_STATE_ON);
+//						Set_Pictogram_State(PICTO_H40,PICTO_STATE_OFF);		
+//				}  
+
+//			}
+
+			if( xSemaphoreTake( xProtoSemaphore, ( portTickType ) 0 ) == pdTRUE )
+			{
+					ProtocolDataCopy=*ProtocolData;
 			}
 		
 			if(currentDisplay == DISPLAY_1)
 			{
-					_Draw_MotorHours(tBlinkNext);
+					_Draw_MotorHours(ProtocolDataCopy.motoHours);
 			}
 			
-			Set_ScaleValue(SCALE_TAHOMETER,   _GetRPM(tDiff));
-			Set_ScaleValue(SCALE_FUEL, 		 		_GetFuel(tDiff));
-			Set_ScaleValue(SCALE_TEMPERATURE, _GetTemperature(tDiff));
-			Set_ScaleValue(SCALE_SPEEDOMETER, _GetSpeed(tDiff));
+			Set_ScaleValue(SCALE_TAHOMETER,   ProtocolDataCopy.RPM);
+			Set_ScaleValue(SCALE_FUEL, 		 		ProtocolDataCopy.fuelLevel);
+			Set_ScaleValue(SCALE_TEMPERATURE, ProtocolDataCopy.coolantTemperature);
+			Set_ScaleValue(SCALE_SPEEDOMETER, ProtocolDataCopy.velocity);
 			
 			for (i = 0; i < NUM_SCALES; i++) 
 			{
 				if (aAngleOld[i] != scales[i].param.Angle)
 				{
 					aAngleOld[i] = scales[i].param.Angle;
-					t1           = GUI_GetTime();
 					if(scales[i].display==currentDisplay)
 					{
 						GUI_RotatePolygon(scales[i].needle_points, scales[i].needle->pPolygon, scales[i].needle->NumPoints, scales[i].param.Angle);
 						GUI_MEMDEV_DrawAuto(&scales[i].param.aAutoDev, &scales[i].param.AutoDevInfo, _pfDraw[i], &scales[i]);
 					}
-					atDiff[i]    = GUI_GetTime() - t1;
 				}
 			}
 
 			
-			
-
+		
 			GUI_Exec();
+			
+//			vTaskDelay(1);
   }
-  
-	// Delete GUI_AUTODEV-objects
-  
+   
   for (i = 0; i < NUM_SCALES; i++) 
 	{
     GUI_MEMDEV_DeleteAuto(&scales[i].param.aAutoDev);
