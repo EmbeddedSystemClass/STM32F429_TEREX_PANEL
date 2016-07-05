@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\STM32F429I-Discovery_Demo\STM32F429I-TEREX_PANEL.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\STM32F429I-Discovery_Demo\STM32F429I-TEREX_PANEL.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Tue Jul 05 15:52:27 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Tue Jul 05 17:07:13 2016
 <BR><P>
 <H3>Maximum Stack Usage =       1116 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -695,7 +695,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[131]"></a>Automotive_Panel_ChangeDisplay</STRONG> (Thumb, 220 bytes, Stack size 40 bytes, automotivepanel.o(i.Automotive_Panel_ChangeDisplay))
+<P><STRONG><a name="[131]"></a>Automotive_Panel_ChangeDisplay</STRONG> (Thumb, 218 bytes, Stack size 40 bytes, automotivepanel.o(i.Automotive_Panel_ChangeDisplay))
 <BR><BR>[Stack]<UL><LI>Max Depth = 956<LI>Call Chain = Automotive_Panel_ChangeDisplay &rArr; GUI_MEMDEV_DrawAuto &rArr; GUI_MEMDEV_Draw &rArr; GUI_MEMDEV_CopyToLCD &rArr; GUI_MEMDEV_CopyToLCDAt &rArr; GUI_MEMDEV__WriteToActiveOpaque &rArr; LCD__DrawBitmap_1bpp &rArr; LCD_FillRect
 </UL>
 <BR>[Calls]<UL><LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GetYSize
@@ -956,8 +956,7 @@ Global Symbols
 <P><STRONG><a name="[15c]"></a>GUI_AA_FillPolygon</STRONG> (Thumb, 518 bytes, Stack size 64 bytes, guiaa_poly.o(i.GUI_AA_FillPolygon))
 <BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = GUI_AA_FillPolygon &rArr; GUI_AA_Init &rArr; GUI_ALLOC_GetFixedBlock &rArr; _InitOnce &rArr; _EnlargeBlocks &rArr; GUI_Lock &rArr; GUI_X_Lock &rArr; GUI_X_InitOS &rArr; xQueueCreateMutex &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
 </UL>
-<BR>[Calls]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
-<LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetOrgY_AA
+<BR>[Calls]<UL><LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetOrgY_AA
 <LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetOrgX_AA
 <LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
 <LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Unlock
@@ -965,6 +964,7 @@ Global Symbols
 <LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GL_FillPolygon
 <LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_AA_Init
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_AA_Exit
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 </UL>
 <BR>[Called By]<UL><LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Draw_Scale
 </UL>
@@ -1081,14 +1081,14 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[16c]"></a>GUI_ALLOC_LockH</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, gui_alloc.o(i.GUI_ALLOC_LockH))
-<BR><BR>[Called By]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
-<LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
+<BR><BR>[Called By]<UL><LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
 <LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEASDEV_Select
 <LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEASDEV_GetRect
 <LI><a href="#[19d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEASDEV_Delete
 <LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEASDEV_Create
 <LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEASDEV_ClearRect
 <LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_Exec
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 <LI><a href="#[1d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_TIMER__GetNextTimerLin
 <LI><a href="#[1d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_TIMER__GetFirstTimer
 <LI><a href="#[1d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_TIMER_GetFlag
@@ -1166,14 +1166,14 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[16d]"></a>GUI_ALLOC_UnlockH</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, gui_alloc.o(i.GUI_ALLOC_UnlockH))
-<BR><BR>[Called By]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
-<LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
+<BR><BR>[Called By]<UL><LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
 <LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEASDEV_Select
 <LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEASDEV_GetRect
 <LI><a href="#[19d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEASDEV_Delete
 <LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEASDEV_Create
 <LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEASDEV_ClearRect
 <LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_Exec
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 <LI><a href="#[1d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_TIMER__GetNextTimerLin
 <LI><a href="#[1d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_TIMER__GetFirstTimer
 <LI><a href="#[1d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_TIMER_GetFlag
@@ -1281,12 +1281,12 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = GUI_Clear &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillRect
-<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 <LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
 <LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Unlock
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Lock
 <LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetDrawMode
 <LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_GotoXY
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 </UL>
 <BR>[Called By]<UL><LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AutomotivePanel_Init
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cbBackWin
@@ -1296,11 +1296,11 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = GUI_ClearRect &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillRect
-<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 <LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
 <LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Unlock
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Lock
 <LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SetDrawMode
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 </UL>
 <BR>[Called By]<UL><LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Automotive_Panel_ChangeDisplay
 <LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Draw_Scale
@@ -1425,12 +1425,12 @@ Global Symbols
 <P><STRONG><a name="[184]"></a>GUI_DrawBitmap</STRONG> (Thumb, 234 bytes, Stack size 72 bytes, gui_drawbitmap.o(i.GUI_DrawBitmap))
 <BR><BR>[Stack]<UL><LI>Max Depth = 288<LI>Call Chain = GUI_DrawBitmap &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
-<BR>[Calls]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
-<LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
+<BR>[Calls]<UL><LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
 <LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Unlock
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Lock
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawBitmap
 <LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetDrawMode
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 </UL>
 <BR>[Called By]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_Pictogram_State
 <LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Draw_Scale
@@ -1740,8 +1740,7 @@ Global Symbols
 <P><STRONG><a name="[1a6]"></a>GUI_MEMDEV_CopyToLCDAt</STRONG> (Thumb, 242 bytes, Stack size 48 bytes, guidev.o(i.GUI_MEMDEV_CopyToLCDAt))
 <BR><BR>[Stack]<UL><LI>Max Depth = 796<LI>Call Chain = GUI_MEMDEV_CopyToLCDAt &rArr; GUI_MEMDEV__WriteToActiveOpaque &rArr; LCD__DrawBitmap_1bpp &rArr; LCD_FillRect
 </UL>
-<BR>[Calls]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
-<LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
+<BR>[Calls]<UL><LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
 <LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Unlock
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Lock
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SelectLayer
@@ -1753,6 +1752,7 @@ Global Symbols
 <LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DEVICE_Link
 <LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ALLOC_UnlockH
 <LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ALLOC_LockH
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 <LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_Deactivate
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV__WriteToActiveOpaque
 </UL>
@@ -1915,12 +1915,12 @@ Global Symbols
 <P><STRONG><a name="[1ba]"></a>GUI_MEMDEV_Write</STRONG> (Thumb, 100 bytes, Stack size 32 bytes, guidev_write.o(i.GUI_MEMDEV_Write))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = GUI_MEMDEV_Write &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
-<BR>[Calls]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
-<LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
+<BR>[Calls]<UL><LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
 <LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Unlock
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Lock
 <LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ALLOC_UnlockH
 <LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ALLOC_LockH
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 <LI><a href="#[1bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV__WriteToActiveAt
 </UL>
 <BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV_Paint1Static
@@ -2463,9 +2463,9 @@ Global Symbols
 <P><STRONG><a name="[182]"></a>GUI__DispLine</STRONG> (Thumb, 396 bytes, Stack size 48 bytes, gui_charline.o(i.GUI__DispLine))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
-<BR>[Calls]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
-<LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
+<BR>[Calls]<UL><LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
 <LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_UC__GetCharCodeInc
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 <LI><a href="#[1df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__ManageCache
 <LI><a href="#[1de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_RectsIntersect
 </UL>
@@ -3955,8 +3955,8 @@ Global Symbols
 <LI><a href="#[26f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__ClipAtParentBorders
 <LI><a href="#[274]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MoveRect
 </UL>
-<BR>[Called By]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
-<LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
+<BR>[Called By]<UL><LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 </UL>
 
 <P><STRONG><a name="[272]"></a>WM__AddCriticalHandle</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, wm_criticalhandle.o(i.WM__AddCriticalHandle))
@@ -3970,8 +3970,8 @@ Global Symbols
 <LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ALLOC_LockH
 <LI><a href="#[275]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__IntersectRect
 </UL>
-<BR>[Called By]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
-<LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_Exec
+<BR>[Called By]<UL><LI><a href="#[185]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_Exec
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 <LI><a href="#[280]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__ActivateClipRect
 <LI><a href="#[265]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_InvalidateRect
 </UL>
@@ -4029,12 +4029,12 @@ Global Symbols
 <LI><a href="#[285]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Findx1
 <LI><a href="#[284]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_Findx0
 </UL>
-<BR>[Called By]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
-<LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DrawBitmap
+<BR>[Called By]<UL><LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DrawBitmap
 <LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ClearRect
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Clear
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_AA_FillPolygon
 <LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI__DispLine
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 <LI><a href="#[1ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV_Write
 <LI><a href="#[1a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_MEMDEV_CopyToLCDAt
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__Paint1
@@ -4156,10 +4156,10 @@ Global Symbols
 <P><STRONG><a name="[92]"></a>WM__Paint1</STRONG> (Thumb, 168 bytes, Stack size 64 bytes, wm.o(i.WM__Paint1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 392<LI>Call Chain = WM__Paint1 &rArr; WM__SendMessage &rArr; WM_DefaultProc &rArr; WM_InvalidateRect &rArr; WM__InvalidateRect &rArr;  WM__InvalidateRect (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
-<LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
+<BR>[Calls]<UL><LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__GetNextIVR
 <LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ALLOC_UnlockH
 <LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ALLOC_LockH
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__InitIVRSearch
 <LI><a href="#[266]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM__SendMessage
 <LI><a href="#[27d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_SendMessageNoPara
 <LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GL_SetDefault
@@ -4938,7 +4938,7 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> tasks.o(i.vTaskStartScheduler)
 </UL>
-<P><STRONG><a name="[6f]"></a>AutomotivePanel_Task</STRONG> (Thumb, 304 bytes, Stack size 24 bytes, automotivepanel.o(i.AutomotivePanel_Task))
+<P><STRONG><a name="[6f]"></a>AutomotivePanel_Task</STRONG> (Thumb, 314 bytes, Stack size 24 bytes, automotivepanel.o(i.AutomotivePanel_Task))
 <BR><BR>[Stack]<UL><LI>Max Depth = 1116<LI>Call Chain = AutomotivePanel_Task &rArr; GUI_Exec &rArr; WM_Exec &rArr; GUI_MEMDEV_Draw &rArr; GUI_MEMDEV_CopyToLCD &rArr; GUI_MEMDEV_CopyToLCDAt &rArr; GUI_MEMDEV__WriteToActiveOpaque &rArr; LCD__DrawBitmap_1bpp &rArr; LCD_FillRect
 </UL>
 <BR>[Calls]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericReceive
@@ -4953,7 +4953,7 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> automotivepanel.o(i.AutomotivePanel_Init)
 </UL>
-<P><STRONG><a name="[134]"></a>_Draw_MotorHours</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, automotivepanel.o(i._Draw_MotorHours))
+<P><STRONG><a name="[134]"></a>_Draw_MotorHours</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, automotivepanel.o(i._Draw_MotorHours))
 <BR><BR>[Stack]<UL><LI>Max Depth = 368<LI>Call Chain = _Draw_MotorHours &rArr; GUI_DispDecAt &rArr; GUI_DispStringAt &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetTextMode

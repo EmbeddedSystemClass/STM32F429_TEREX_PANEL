@@ -27,34 +27,30 @@ Project File Date:  07/04/2016
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 (build 20)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32F429I-Discovery_Demo'
-compiling proto.c...
-..\Core\User\proto.c(247): warning:  #1-D: last line of file ends without a newline
-  }
-..\Core\User\proto.c: 1 warning, 0 errors
 compiling automotivePanel.c...
 ..\Core\AutomotivePanel\automotivePanel.h(54): warning:  #1-D: last line of file ends without a newline
   #endif
-..\Core\AutomotivePanel\automotivePanel.c(340): warning:  #188-D: enumerated type mixed with another type
+..\Core\AutomotivePanel\automotivePanel.c(347): warning:  #188-D: enumerated type mixed with another type
                         Set_ScaleValue(i,0);
-..\Core\AutomotivePanel\automotivePanel.c(351): warning:  #188-D: enumerated type mixed with another type
-                        Set_Pictogram_State(i,(!(picto[i].state))&0x1);         
-..\Core\AutomotivePanel\automotivePanel.c(351): warning:  #188-D: enumerated type mixed with another type
-                        Set_Pictogram_State(i,(!(picto[i].state))&0x1);         
-..\Core\AutomotivePanel\automotivePanel.c(379): warning:  #188-D: enumerated type mixed with another type
+..\Core\AutomotivePanel\automotivePanel.c(358): warning:  #188-D: enumerated type mixed with another type
+                        Set_Pictogram_State(i,(picto[i].state)&0x1);            
+..\Core\AutomotivePanel\automotivePanel.c(358): warning:  #188-D: enumerated type mixed with another type
+                        Set_Pictogram_State(i,(picto[i].state)&0x1);            
+..\Core\AutomotivePanel\automotivePanel.c(388): warning:  #188-D: enumerated type mixed with another type
                                                                         Set_Pictogram_State(i,(!(picto[i].state))&0x1);         
-..\Core\AutomotivePanel\automotivePanel.c(379): warning:  #188-D: enumerated type mixed with another type
+..\Core\AutomotivePanel\automotivePanel.c(388): warning:  #188-D: enumerated type mixed with another type
                                                                         Set_Pictogram_State(i,(!(picto[i].state))&0x1);         
-..\Core\AutomotivePanel\automotivePanel.c(394): warning:  #188-D: enumerated type mixed with another type
+..\Core\AutomotivePanel\automotivePanel.c(404): warning:  #188-D: enumerated type mixed with another type
                                 currentDisplay=0x1&(!currentDisplay);
-..\Core\AutomotivePanel\automotivePanel.c(419): warning:  #128-D: loop is not reachable
+..\Core\AutomotivePanel\automotivePanel.c(429): warning:  #128-D: loop is not reachable
     for (i = 0; i < NUM_SCALES; i++) 
 ..\Core\AutomotivePanel\automotivePanel.c(214): warning:  #177-D: variable "_OldGear" was declared but never referenced
   static int _OldGear = 0;
 ..\Core\AutomotivePanel\automotivePanel.c: 9 warnings, 0 errors
 linking...
-Program Size: Code=59768 RO-data=288024 RW-data=2908 ZI-data=5310940  
+Program Size: Code=59792 RO-data=288024 RW-data=2912 ZI-data=5310936  
 FromELF: creating hex file...
-".\STM32F429I-Discovery_Demo\STM32F429I-TEREX_PANEL.axf" - 0 Error(s), 10 Warning(s).
+".\STM32F429I-Discovery_Demo\STM32F429I-TEREX_PANEL.axf" - 0 Error(s), 9 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -72,7 +68,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:4.1.0
-Build Time Elapsed:  00:00:08
+Build Time Elapsed:  00:00:05
 </pre>
 </body>
 </html>

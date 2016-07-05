@@ -234,15 +234,22 @@ void (* _pfDraw[NUM_SCALES])(void * p) = {
 	_Draw_Scale,
 };
 
+
+/*********************************************************************/
 #define MHOURS_POS_X 450
 #define MHOURS_POS_Y 400
-/*********************************************************************/
+static uint32_t last_mhours=0;
 static void _Draw_MotorHours(uint32_t mhours)
-{
+{			
+		if(mhours>999999)
+		{
+				mhours=999999;
+		}
+				
 		GUI_SetColor(GUI_WHITE);
-    GUI_SetTextMode(GUI_TM_NORMAL);
-    GUI_SetFont(FONT_MOTOHOURS);
-    GUI_DispDecAt(mhours, MHOURS_POS_X, MHOURS_POS_Y, 6);
+		GUI_SetTextMode(GUI_TM_NORMAL);
+		GUI_SetFont(FONT_MOTOHOURS);
+		GUI_DispDecAt(mhours, MHOURS_POS_X, MHOURS_POS_Y, 6);
 }
 /*********************************************************************/
 
@@ -348,12 +355,12 @@ void Automotive_Panel_ChangeDisplay(enDisplay display)
 		
 		for(i=0;i<PICTO_NUM;i++)
 		{
-			Set_Pictogram_State(i,(!(picto[i].state))&0x1);		
+			Set_Pictogram_State(i,(picto[i].state)&0x1);		
 		}
 		
 		if(display == DISPLAY_1)
 		{
-				_Draw_MotorHours(0);
+				_Draw_MotorHours(last_mhours);
 		}
 }
 
@@ -362,6 +369,8 @@ static void AutomotivePanel_Task(void * pvParameters)
 	float       aAngleOld[NUM_SCALES];
   uint8_t          i;
 	uint8_t 		ButtonState_Current=1, ButtonState_Last=1;
+
+
 	
 	/******************INIT********************/
 
@@ -380,9 +389,10 @@ static void AutomotivePanel_Task(void * pvParameters)
 							}
 					}
 					
-					if(currentDisplay == DISPLAY_1)
+					if((currentDisplay == DISPLAY_1)&&(ProtocolData.motoHours!=last_mhours))
 					{
 							_Draw_MotorHours(ProtocolData.motoHours);
+						  last_mhours=ProtocolData.motoHours;
 					}
 			}
 	
