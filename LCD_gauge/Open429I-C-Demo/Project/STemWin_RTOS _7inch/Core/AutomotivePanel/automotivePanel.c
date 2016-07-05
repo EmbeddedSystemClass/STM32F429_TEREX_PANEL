@@ -4,6 +4,10 @@
 #include "global_includes.h"
 #include "proto.h"
 
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "semphr.h"
 //-----------
 #include "tahometerScale.c"
 #include "speedometerScale.c"
@@ -192,14 +196,14 @@ static PICTOGRAM picto[PICTO_NUM]=
 {{110,410},&bmpicto_H51,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1}
 };
 /***************************************************/
-#define AutomotivePanel_Task_PRIO    ( tskIDLE_PRIORITY  )
-#define AutomotivePanel_Task_STACK   ( 3048 )
+#define AutomotivePanel_Task_PRIO    ( tskIDLE_PRIORITY +5 )
+#define AutomotivePanel_Task_STACK   ( 4096 )
 xTaskHandle                   				AutomotivePanel_Task_Handle;
 
-extern xSemaphoreHandle xProtoSemaphore;
+extern  xQueueHandle ProtocolDataQueue;
 
-extern stProtocolData *ProtocolData;
-stProtocolData ProtocolDataCopy;
+
+static stProtocolData ProtocolData;
 
 static void AutomotivePanel_Task(void * pvParameters);
 
@@ -282,6 +286,13 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 
 void AutomotivePanel_Init(void)
 {
+	GUI_Init();
+	GUI_SelectLayer(0);
+  GUI_SetBkColor(GUI_BLACK);
+  GUI_SelectLayer(1);
+  GUI_Clear();
+  GUI_SetBkColor(GUI_BLACK); 
+	
 	GUI_AA_EnableHiRes();
   GUI_AA_SetFactor(MAG);
 	
@@ -291,7 +302,7 @@ void AutomotivePanel_Init(void)
 						AutomotivePanel_Task_STACK,
 						NULL,
 						AutomotivePanel_Task_PRIO,
-						&AutomotivePanel_Task_Handle);
+						NULL);
 }
 
 void Automotive_Panel_ChangeDisplay(enDisplay display)
@@ -307,92 +318,57 @@ void Automotive_Panel_ChangeDisplay(enDisplay display)
 		{
 			scales[i].param.AutoDevInfo.DrawFixed=1;
 		}
+		
+		 for (i = 0; i < NUM_SCALES; i++) 
+		{
+			//aAngleOld[i] = -1;	 
+			Set_ScaleValue(i,0);
+			GUI_MEMDEV_CreateAuto(&scales[i].param.aAutoDev);
+			if(scales[i].display==currentDisplay)
+			{
+				GUI_RotatePolygon(scales[i].needle_points, scales[i].needle->pPolygon, scales[i].needle->NumPoints, scales[i].param.Angle);
+				GUI_MEMDEV_DrawAuto(&scales[i].param.aAutoDev, &scales[i].param.AutoDevInfo, _pfDraw[i], &scales[i]);
+			}
+		}
+		
+		for(i=0;i<PICTO_NUM;i++)
+		{
+			Set_Pictogram_State(i,(!(picto[i].state))&0x1);		
+		}
 }
 
 static void AutomotivePanel_Task(void * pvParameters)
 {
 	float       aAngleOld[NUM_SCALES];
-  int         atDiff   [NUM_SCALES];
-  int         atDiffOld[NUM_SCALES] = {0};
-//  int         tDiff, t0, t1;
-  int          i;
-  int         ySize;
-
-
-  ySize = LCD_GetYSize();
+  uint8_t          i;
 	
-
 	/******************INIT********************/
-  for (i = 0; i < NUM_SCALES; i++) 
-	{
-		aAngleOld[i] = -1;	 
-		Set_ScaleValue(i,0);
-    GUI_MEMDEV_CreateAuto(&scales[i].param.aAutoDev);
-		if(scales[i].display==currentDisplay)
-		{
-			GUI_RotatePolygon(scales[i].needle_points, scales[i].needle->pPolygon, scales[i].needle->NumPoints, scales[i].param.Angle);
-			GUI_MEMDEV_DrawAuto(&scales[i].param.aAutoDev, &scales[i].param.AutoDevInfo, _pfDraw[i], &scales[i]);
-		}
-  }
-	
+
+	Automotive_Panel_ChangeDisplay(currentDisplay);	
 
 	while(1)
 	{
-				
-//		if((tDiff = GUI_GetTime() - t0) > 15000)
-//		{
-//			tBlinkNext=1000;
-//			t0 = GUI_GetTime();       // Get current time
-//		}
-				
-//		if(tDiff > tBlinkNext)
-//		{
-//				tBlinkNext+=1000;
-//				if(blink_flag)
-//				{
-//						//Automotive_Panel_ChangeDisplay(DISPLAY_0);
-//						Set_Pictogram_State(PICTO_H19,PICTO_STATE_OFF);
-//						Set_Pictogram_State(PICTO_H20,PICTO_STATE_ON);
-//						Set_Pictogram_State(PICTO_H21,PICTO_STATE_OFF);
-//						Set_Pictogram_State(PICTO_H24,PICTO_STATE_ON);
-//						Set_Pictogram_State(PICTO_H35,PICTO_STATE_OFF);
-//						Set_Pictogram_State(PICTO_H36,PICTO_STATE_ON);
-//						Set_Pictogram_State(PICTO_H37,PICTO_STATE_OFF);
-//						Set_Pictogram_State(PICTO_H38,PICTO_STATE_ON);
-//						Set_Pictogram_State(PICTO_H39,PICTO_STATE_OFF);
-//						Set_Pictogram_State(PICTO_H40,PICTO_STATE_ON);			
-//				}
-//				else
-//				{
-//						//Automotive_Panel_ChangeDisplay(DISPLAY_1);
-//						Set_Pictogram_State(PICTO_H19,PICTO_STATE_ON);
-//						Set_Pictogram_State(PICTO_H20,PICTO_STATE_OFF);
-//						Set_Pictogram_State(PICTO_H21,PICTO_STATE_ON);
-//						Set_Pictogram_State(PICTO_H24,PICTO_STATE_OFF);
-//						Set_Pictogram_State(PICTO_H35,PICTO_STATE_ON);
-//						Set_Pictogram_State(PICTO_H36,PICTO_STATE_OFF);
-//						Set_Pictogram_State(PICTO_H37,PICTO_STATE_ON);
-//						Set_Pictogram_State(PICTO_H38,PICTO_STATE_OFF);
-//						Set_Pictogram_State(PICTO_H39,PICTO_STATE_ON);
-//						Set_Pictogram_State(PICTO_H40,PICTO_STATE_OFF);		
-//				}  
-
-//			}
-
-			if( xSemaphoreTake( xProtoSemaphore, ( portTickType ) 0 ) == pdTRUE )
+			//Automotive_Panel_ChangeDisplay(DISPLAY_1);	
+			if(xQueueReceive( ProtocolDataQueue, &( ProtocolData ), ( portTickType ) 0 ))
 			{
-					ProtocolDataCopy=*ProtocolData;
+					for(i=0;i<PICTO_NUM;i++)
+					{
+							if(((ProtocolData.pictoState>>i)&0x1)!=picto[i].state)
+							{
+									Set_Pictogram_State(i,(!(picto[i].state))&0x1);		
+							}
+					}
 			}
-		
+	
 			if(currentDisplay == DISPLAY_1)
 			{
-					_Draw_MotorHours(ProtocolDataCopy.motoHours);
+					_Draw_MotorHours(ProtocolData.motoHours);
 			}
 			
-			Set_ScaleValue(SCALE_TAHOMETER,   ProtocolDataCopy.RPM);
-			Set_ScaleValue(SCALE_FUEL, 		 		ProtocolDataCopy.fuelLevel);
-			Set_ScaleValue(SCALE_TEMPERATURE, ProtocolDataCopy.coolantTemperature);
-			Set_ScaleValue(SCALE_SPEEDOMETER, ProtocolDataCopy.velocity);
+			Set_ScaleValue(SCALE_TAHOMETER,   ProtocolData.RPM);
+			Set_ScaleValue(SCALE_FUEL, 		 		ProtocolData.fuelLevel);
+			Set_ScaleValue(SCALE_TEMPERATURE, ProtocolData.coolantTemperature);
+			Set_ScaleValue(SCALE_SPEEDOMETER, ProtocolData.velocity);
 			
 			for (i = 0; i < NUM_SCALES; i++) 
 			{
@@ -407,11 +383,7 @@ static void AutomotivePanel_Task(void * pvParameters)
 				}
 			}
 
-			
-		
 			GUI_Exec();
-			
-//			vTaskDelay(1);
   }
    
   for (i = 0; i < NUM_SCALES; i++) 

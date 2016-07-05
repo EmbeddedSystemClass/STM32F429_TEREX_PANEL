@@ -34,41 +34,20 @@
 
 int main(void)
 { 
-
-    
-  /* Initialize the BSP layer */
-  LowLevel_Init();
-	
-  /* Init the STemWin GUI Library */
-  GUI_Init();
-	GUI_SelectLayer(0);
-  GUI_SetBkColor(GUI_BLACK);
-  GUI_SelectLayer(1);
-  GUI_Clear();
-  GUI_SetBkColor(GUI_BLACK); 
+ 	
+  LowLevel_Init();	
+	//Proto_Init();	
 	AutomotivePanel_Init();
-		Proto_Init();
-
+		
   vTaskStartScheduler();
 	while(1)
 	{
 	}
 }
 
-
-
-
-/**
-  * @brief  Error callback function
-  * @param  None
-  * @retval None
-  */
 void vApplicationMallocFailedHook( void )
 {
   while (1)
   {}
 }
 
-
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
