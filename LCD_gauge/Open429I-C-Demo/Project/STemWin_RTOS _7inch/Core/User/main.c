@@ -36,7 +36,7 @@ int main(void)
 { 
  	
   LowLevel_Init();	
-	//Proto_Init();	
+//	Proto_Init();	
 	AutomotivePanel_Init();
 		
   vTaskStartScheduler();

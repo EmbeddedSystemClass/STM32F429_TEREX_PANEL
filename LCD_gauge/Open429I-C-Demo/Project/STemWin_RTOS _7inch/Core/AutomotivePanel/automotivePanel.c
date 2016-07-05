@@ -197,7 +197,7 @@ static PICTOGRAM picto[PICTO_NUM]=
 };
 /***************************************************/
 #define AutomotivePanel_Task_PRIO    ( tskIDLE_PRIORITY +5 )
-#define AutomotivePanel_Task_STACK   ( 4096 )
+#define AutomotivePanel_Task_STACK   ( 3072 )
 xTaskHandle                   				AutomotivePanel_Task_Handle;
 
 extern  xQueueHandle ProtocolDataQueue;
@@ -284,8 +284,23 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 	}
 }
 
+
+#define RCC_CHANGE_DISPLAY_GPIO 	RCC_AHB1Periph_GPIOA
+#define CHANGE_DISPLAY_GPIO 			GPIOA
+#define CHANGE_DISPLAY_PIN				GPIO_Pin_0
+
 void AutomotivePanel_Init(void)
 {
+	GPIO_InitTypeDef GPIO_InitStruct; 
+	RCC_AHB1PeriphClockCmd(RCC_CHANGE_DISPLAY_GPIO, ENABLE);
+
+	GPIO_InitStruct.GPIO_Pin = CHANGE_DISPLAY_PIN ; 
+	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN; 			
+	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;		
+	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;			
+	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;			
+	GPIO_Init(CHANGE_DISPLAY_GPIO, &GPIO_InitStruct);	
+	
 	GUI_Init();
 	GUI_SelectLayer(0);
   GUI_SetBkColor(GUI_BLACK);
@@ -335,12 +350,18 @@ void Automotive_Panel_ChangeDisplay(enDisplay display)
 		{
 			Set_Pictogram_State(i,(!(picto[i].state))&0x1);		
 		}
+		
+		if(display == DISPLAY_1)
+		{
+				_Draw_MotorHours(0);
+		}
 }
 
 static void AutomotivePanel_Task(void * pvParameters)
 {
 	float       aAngleOld[NUM_SCALES];
   uint8_t          i;
+	uint8_t 		ButtonState_Current=1, ButtonState_Last=1;
 	
 	/******************INIT********************/
 
@@ -348,21 +369,30 @@ static void AutomotivePanel_Task(void * pvParameters)
 
 	while(1)
 	{
-			//Automotive_Panel_ChangeDisplay(DISPLAY_1);	
-			if(xQueueReceive( ProtocolDataQueue, &( ProtocolData ), ( portTickType ) 0 ))
-			{
-					for(i=0;i<PICTO_NUM;i++)
-					{
-							if(((ProtocolData.pictoState>>i)&0x1)!=picto[i].state)
-							{
-									Set_Pictogram_State(i,(!(picto[i].state))&0x1);		
-							}
-					}
-			}
 	
-			if(currentDisplay == DISPLAY_1)
+//			if(xQueueReceive( ProtocolDataQueue, &( ProtocolData ), ( portTickType ) 0 ))
+//			{
+//					for(i=0;i<PICTO_NUM;i++)
+//					{
+//							if(((ProtocolData.pictoState>>i)&0x1)!=picto[i].state)
+//							{
+//									Set_Pictogram_State(i,(!(picto[i].state))&0x1);		
+//							}
+//					}
+//					
+//					if(currentDisplay == DISPLAY_1)
+//					{
+//							_Draw_MotorHours(ProtocolData.motoHours);
+//					}
+//			}
+	
+			ButtonState_Last=ButtonState_Current;
+			ButtonState_Current=GPIO_ReadInputDataBit(CHANGE_DISPLAY_GPIO, CHANGE_DISPLAY_PIN);
+			
+			if(ButtonState_Current<ButtonState_Last)
 			{
-					_Draw_MotorHours(ProtocolData.motoHours);
+				currentDisplay=0x1&(!currentDisplay);
+				Automotive_Panel_ChangeDisplay(currentDisplay);		
 			}
 			
 			Set_ScaleValue(SCALE_TAHOMETER,   ProtocolData.RPM);
