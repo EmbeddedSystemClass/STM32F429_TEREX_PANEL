@@ -178,7 +178,7 @@ void Proto_Init(void) //
 		//----------------------------------------
 
 	
-		xTaskCreate(ProtoTask,(signed char*)"PROTO",128,NULL, tskIDLE_PRIORITY , NULL);
+		xTaskCreate(ProtoTask,(signed char*)"PROTO",128,NULL, tskIDLE_PRIORITY+5 , NULL);
 
 		return;
 }

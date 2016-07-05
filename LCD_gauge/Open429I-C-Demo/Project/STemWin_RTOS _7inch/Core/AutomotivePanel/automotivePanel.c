@@ -196,7 +196,7 @@ static PICTOGRAM picto[PICTO_NUM]=
 {{110,410},&bmpicto_H51,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1}
 };
 /***************************************************/
-#define AutomotivePanel_Task_PRIO    ( tskIDLE_PRIORITY +5 )
+#define AutomotivePanel_Task_PRIO    ( tskIDLE_PRIORITY +1 )
 #define AutomotivePanel_Task_STACK   ( 3072 )
 xTaskHandle                   				AutomotivePanel_Task_Handle;
 
@@ -370,21 +370,21 @@ static void AutomotivePanel_Task(void * pvParameters)
 	while(1)
 	{
 	
-//			if(xQueueReceive( ProtocolDataQueue, &( ProtocolData ), ( portTickType ) 0 ))
-//			{
-//					for(i=0;i<PICTO_NUM;i++)
-//					{
-//							if(((ProtocolData.pictoState>>i)&0x1)!=picto[i].state)
-//							{
-//									Set_Pictogram_State(i,(!(picto[i].state))&0x1);		
-//							}
-//					}
-//					
-//					if(currentDisplay == DISPLAY_1)
-//					{
-//							_Draw_MotorHours(ProtocolData.motoHours);
-//					}
-//			}
+			if(xQueueReceive( ProtocolDataQueue, &( ProtocolData ), ( portTickType ) 0 ))
+			{
+					for(i=0;i<PICTO_NUM;i++)
+					{
+							if(((ProtocolData.pictoState>>i)&0x1)!=picto[i].state)
+							{
+									Set_Pictogram_State(i,(!(picto[i].state))&0x1);		
+							}
+					}
+					
+					if(currentDisplay == DISPLAY_1)
+					{
+							_Draw_MotorHours(ProtocolData.motoHours);
+					}
+			}
 	
 			ButtonState_Last=ButtonState_Current;
 			ButtonState_Current=GPIO_ReadInputDataBit(CHANGE_DISPLAY_GPIO, CHANGE_DISPLAY_PIN);
