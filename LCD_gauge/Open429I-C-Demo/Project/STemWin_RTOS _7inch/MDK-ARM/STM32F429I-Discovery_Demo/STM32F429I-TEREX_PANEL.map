@@ -5218,112 +5218,112 @@ Image Symbol Table
     _aAddr                                   0x0800fd24   Data           8  guidrv.o(.constdata)
     .constdata                               0x0800fd2c   Section    87725  automotivepanel.o(.constdata)
     _actahometerScale                        0x0800fd2c   Data       87725  automotivepanel.o(.constdata)
-    .constdata                               0x080253d9   Section    87725  automotivepanel.o(.constdata)
-    _acspeedometerScale                      0x080253d9   Data       87725  automotivepanel.o(.constdata)
-    .constdata                               0x0803aa86   Section    17100  automotivepanel.o(.constdata)
-    _acfuelScale                             0x0803aa86   Data       17100  automotivepanel.o(.constdata)
-    .constdata                               0x0803ed52   Section    17100  automotivepanel.o(.constdata)
-    _actemperatureScale                      0x0803ed52   Data       17100  automotivepanel.o(.constdata)
-    .constdata                               0x0804301e   Section      516  automotivepanel.o(.constdata)
-    .constdata                               0x08043222   Section      516  automotivepanel.o(.constdata)
-    .constdata                               0x08043426   Section      516  automotivepanel.o(.constdata)
-    .constdata                               0x0804362a   Section      516  automotivepanel.o(.constdata)
-    .constdata                               0x0804382e   Section      516  automotivepanel.o(.constdata)
-    .constdata                               0x08043a32   Section      516  automotivepanel.o(.constdata)
-    .constdata                               0x08043c36   Section      516  automotivepanel.o(.constdata)
-    .constdata                               0x08043e3a   Section      516  automotivepanel.o(.constdata)
-    .constdata                               0x0804403e   Section      516  automotivepanel.o(.constdata)
-    .constdata                               0x08044242   Section      516  automotivepanel.o(.constdata)
-    .constdata                               0x08044448   Section       80  automotivepanel.o(.constdata)
-    .constdata                               0x08044498   Section       12  automotivepanel.o(.constdata)
-    .constdata                               0x080444a4   Section       36  automotivepanel.o(.constdata)
-    .constdata                               0x080444c8   Section     3200  picto.o(.constdata)
-    _acpicto_H19                             0x080444c8   Data        3200  picto.o(.constdata)
-    .constdata                               0x08045148   Section     3200  picto.o(.constdata)
-    _acpicto_H20                             0x08045148   Data        3200  picto.o(.constdata)
-    .constdata                               0x08045dc8   Section     3200  picto.o(.constdata)
-    _acpicto_H21                             0x08045dc8   Data        3200  picto.o(.constdata)
-    .constdata                               0x08046a48   Section     3200  picto.o(.constdata)
-    _acpicto_H24                             0x08046a48   Data        3200  picto.o(.constdata)
-    .constdata                               0x080476c8   Section     3200  picto.o(.constdata)
-    _acpicto_H35                             0x080476c8   Data        3200  picto.o(.constdata)
-    .constdata                               0x08048348   Section     3200  picto.o(.constdata)
-    _acpicto_H36                             0x08048348   Data        3200  picto.o(.constdata)
-    .constdata                               0x08048fc8   Section     3520  picto.o(.constdata)
-    _acpicto_H37                             0x08048fc8   Data        3520  picto.o(.constdata)
-    .constdata                               0x08049d88   Section     3200  picto.o(.constdata)
-    _acpicto_H38                             0x08049d88   Data        3200  picto.o(.constdata)
-    .constdata                               0x0804aa08   Section     3200  picto.o(.constdata)
-    _acpicto_H39                             0x0804aa08   Data        3200  picto.o(.constdata)
-    .constdata                               0x0804b688   Section     3200  picto.o(.constdata)
-    _acpicto_H40                             0x0804b688   Data        3200  picto.o(.constdata)
-    .constdata                               0x0804c308   Section     3200  picto.o(.constdata)
-    _acpicto_H41                             0x0804c308   Data        3200  picto.o(.constdata)
-    .constdata                               0x0804cf88   Section     3200  picto.o(.constdata)
-    _acpicto_H42                             0x0804cf88   Data        3200  picto.o(.constdata)
-    .constdata                               0x0804dc08   Section     3200  picto.o(.constdata)
-    _acpicto_H43                             0x0804dc08   Data        3200  picto.o(.constdata)
-    .constdata                               0x0804e888   Section     3200  picto.o(.constdata)
-    _acpicto_H44                             0x0804e888   Data        3200  picto.o(.constdata)
-    .constdata                               0x0804f508   Section     3200  picto.o(.constdata)
-    _acpicto_H45                             0x0804f508   Data        3200  picto.o(.constdata)
-    .constdata                               0x08050188   Section     3200  picto.o(.constdata)
-    _acpicto_H46                             0x08050188   Data        3200  picto.o(.constdata)
-    .constdata                               0x08050e08   Section     3200  picto.o(.constdata)
-    _acpicto_H47                             0x08050e08   Data        3200  picto.o(.constdata)
-    .constdata                               0x08051a88   Section     3200  picto.o(.constdata)
-    _acpicto_H48                             0x08051a88   Data        3200  picto.o(.constdata)
-    .constdata                               0x08052708   Section     3200  picto.o(.constdata)
-    _acpicto_H49                             0x08052708   Data        3200  picto.o(.constdata)
-    .constdata                               0x08053388   Section     3200  picto.o(.constdata)
-    _acpicto_H51                             0x08053388   Data        3200  picto.o(.constdata)
-    .constdata                               0x08054008   Section       24  guicc_1616i.o(.constdata)
-    .constdata                               0x08054020   Section       24  guicc_8666.o(.constdata)
-    .constdata                               0x08054038   Section       24  guicc_88666i.o(.constdata)
-    .constdata                               0x08054050   Section       24  guicc_m1555i.o(.constdata)
-    .constdata                               0x08054068   Section       24  guicc_m4444i.o(.constdata)
-    .constdata                               0x08054080   Section       24  guicc_m565.o(.constdata)
-    .constdata                               0x08054098   Section       24  guicc_m8888i.o(.constdata)
-    .constdata                               0x080540b0   Section        8  gui_core.o(.constdata)
-    _HL_APIList                              0x080540b0   Data           8  gui_core.o(.constdata)
-    .constdata                               0x080540b8   Section        8  gui_device.o(.constdata)
-    _aBelongsToTask                          0x080540b8   Data           8  gui_device.o(.constdata)
-    .constdata                               0x080540c0   Section       24  guicc_m888.o(.constdata)
-    .constdata                               0x080540d8   Section       12  lcd.o(.constdata)
-    _SetColorAPI                             0x080540d8   Data          12  lcd.o(.constdata)
-    .constdata                               0x080540e4   Section       52  guidrv_lin_16.o(.constdata)
-    .constdata                               0x08054118   Section       24  guicc_16.o(.constdata)
-    .constdata                               0x08054130   Section       16  gui__divtbl_15_255.o(.constdata)
-    .constdata                               0x08054140   Section      256  gui__divtbl_255_15.o(.constdata)
-    .constdata                               0x08054240   Section      256  gui__divtbl_255_31.o(.constdata)
-    .constdata                               0x08054340   Section      256  gui__divtbl_255_63.o(.constdata)
-    .constdata                               0x08054440   Section       32  gui__divtbl_31_255.o(.constdata)
-    .constdata                               0x08054460   Section       64  gui__divtbl_63_255.o(.constdata)
-    .constdata                               0x080544a0   Section      364  gui__sinhq.o(.constdata)
-    _aSin                                    0x080544a0   Data         364  gui__sinhq.o(.constdata)
-    .constdata                               0x0805460c   Section       40  gui_adddecshift.o(.constdata)
-    .constdata                               0x08054634   Section       16  gui_uc_encodenone.o(.constdata)
-    .constdata                               0x08054644   Section       24  guicc_0.o(.constdata)
-    .constdata                               0x0805465c   Section      256  lcd_mirror.o(.constdata)
-    .constdata                               0x0805475c   Section     1304  f6x8.o(.constdata)
-    GUI_acFont6x8                            0x0805475c   Data        1304  f6x8.o(.constdata)
-    .constdata                               0x08054c74   Section      448  f6x8.o(.constdata)
-    GUI_F6x8_TL8859_1                        0x08054c74   Data         448  f6x8.o(.constdata)
-    .constdata                               0x08054e34   Section        8  f6x8.o(.constdata)
-    GUI_F6x8_TI8859_1                        0x08054e34   Data           8  f6x8.o(.constdata)
-    .constdata                               0x08054e3c   Section       20  f6x8.o(.constdata)
-    GUI_F6x8_Mono                            0x08054e3c   Data          20  f6x8.o(.constdata)
-    .constdata                               0x08054e50   Section       36  f6x8.o(.constdata)
-    .constdata                               0x08054e74   Section      116  guidev_16.o(.constdata)
-    aID                                      0x08054e74   Data          64  guidev_16.o(.constdata)
-    .constdata                               0x08054ee8   Section       52  guidev_measure.o(.constdata)
-    _MeasDev_API                             0x08054ee8   Data          52  guidev_measure.o(.constdata)
-    .constdata                               0x08054f1c   Section        8  guidev_writetoactiveopaque.o(.constdata)
-    .constdata                               0x08054f24   Section       24  guicc_8888.o(.constdata)
-    .constdata                               0x08054f3c   Section      116  guidev_32.o(.constdata)
-    aID                                      0x08054f3c   Data          64  guidev_32.o(.constdata)
-    .constdata                               0x08054fb0   Section       24  guidev_usagebm.o(.constdata)
-    API                                      0x08054fb0   Data          24  guidev_usagebm.o(.constdata)
+    .constdata                               0x080253d9   Section    85995  automotivepanel.o(.constdata)
+    _acspeedometerScale                      0x080253d9   Data       85995  automotivepanel.o(.constdata)
+    .constdata                               0x0803a3c4   Section    17100  automotivepanel.o(.constdata)
+    _acfuelScale                             0x0803a3c4   Data       17100  automotivepanel.o(.constdata)
+    .constdata                               0x0803e690   Section    17100  automotivepanel.o(.constdata)
+    _actemperatureScale                      0x0803e690   Data       17100  automotivepanel.o(.constdata)
+    .constdata                               0x0804295c   Section      516  automotivepanel.o(.constdata)
+    .constdata                               0x08042b60   Section      516  automotivepanel.o(.constdata)
+    .constdata                               0x08042d64   Section      516  automotivepanel.o(.constdata)
+    .constdata                               0x08042f68   Section      516  automotivepanel.o(.constdata)
+    .constdata                               0x0804316c   Section      516  automotivepanel.o(.constdata)
+    .constdata                               0x08043370   Section      516  automotivepanel.o(.constdata)
+    .constdata                               0x08043574   Section      516  automotivepanel.o(.constdata)
+    .constdata                               0x08043778   Section      516  automotivepanel.o(.constdata)
+    .constdata                               0x0804397c   Section      516  automotivepanel.o(.constdata)
+    .constdata                               0x08043b80   Section      516  automotivepanel.o(.constdata)
+    .constdata                               0x08043d84   Section       80  automotivepanel.o(.constdata)
+    .constdata                               0x08043dd4   Section       12  automotivepanel.o(.constdata)
+    .constdata                               0x08043de0   Section       36  automotivepanel.o(.constdata)
+    .constdata                               0x08043e04   Section     3200  picto.o(.constdata)
+    _acpicto_H19                             0x08043e04   Data        3200  picto.o(.constdata)
+    .constdata                               0x08044a84   Section     3200  picto.o(.constdata)
+    _acpicto_H20                             0x08044a84   Data        3200  picto.o(.constdata)
+    .constdata                               0x08045704   Section     3200  picto.o(.constdata)
+    _acpicto_H21                             0x08045704   Data        3200  picto.o(.constdata)
+    .constdata                               0x08046384   Section     3200  picto.o(.constdata)
+    _acpicto_H24                             0x08046384   Data        3200  picto.o(.constdata)
+    .constdata                               0x08047004   Section     3200  picto.o(.constdata)
+    _acpicto_H35                             0x08047004   Data        3200  picto.o(.constdata)
+    .constdata                               0x08047c84   Section     3200  picto.o(.constdata)
+    _acpicto_H36                             0x08047c84   Data        3200  picto.o(.constdata)
+    .constdata                               0x08048904   Section     3520  picto.o(.constdata)
+    _acpicto_H37                             0x08048904   Data        3520  picto.o(.constdata)
+    .constdata                               0x080496c4   Section     3200  picto.o(.constdata)
+    _acpicto_H38                             0x080496c4   Data        3200  picto.o(.constdata)
+    .constdata                               0x0804a344   Section     3200  picto.o(.constdata)
+    _acpicto_H39                             0x0804a344   Data        3200  picto.o(.constdata)
+    .constdata                               0x0804afc4   Section     3200  picto.o(.constdata)
+    _acpicto_H40                             0x0804afc4   Data        3200  picto.o(.constdata)
+    .constdata                               0x0804bc44   Section     3200  picto.o(.constdata)
+    _acpicto_H41                             0x0804bc44   Data        3200  picto.o(.constdata)
+    .constdata                               0x0804c8c4   Section     3200  picto.o(.constdata)
+    _acpicto_H42                             0x0804c8c4   Data        3200  picto.o(.constdata)
+    .constdata                               0x0804d544   Section     3200  picto.o(.constdata)
+    _acpicto_H43                             0x0804d544   Data        3200  picto.o(.constdata)
+    .constdata                               0x0804e1c4   Section     3200  picto.o(.constdata)
+    _acpicto_H44                             0x0804e1c4   Data        3200  picto.o(.constdata)
+    .constdata                               0x0804ee44   Section     3200  picto.o(.constdata)
+    _acpicto_H45                             0x0804ee44   Data        3200  picto.o(.constdata)
+    .constdata                               0x0804fac4   Section     3200  picto.o(.constdata)
+    _acpicto_H46                             0x0804fac4   Data        3200  picto.o(.constdata)
+    .constdata                               0x08050744   Section     3200  picto.o(.constdata)
+    _acpicto_H47                             0x08050744   Data        3200  picto.o(.constdata)
+    .constdata                               0x080513c4   Section     3200  picto.o(.constdata)
+    _acpicto_H48                             0x080513c4   Data        3200  picto.o(.constdata)
+    .constdata                               0x08052044   Section     3200  picto.o(.constdata)
+    _acpicto_H49                             0x08052044   Data        3200  picto.o(.constdata)
+    .constdata                               0x08052cc4   Section     3200  picto.o(.constdata)
+    _acpicto_H51                             0x08052cc4   Data        3200  picto.o(.constdata)
+    .constdata                               0x08053944   Section       24  guicc_1616i.o(.constdata)
+    .constdata                               0x0805395c   Section       24  guicc_8666.o(.constdata)
+    .constdata                               0x08053974   Section       24  guicc_88666i.o(.constdata)
+    .constdata                               0x0805398c   Section       24  guicc_m1555i.o(.constdata)
+    .constdata                               0x080539a4   Section       24  guicc_m4444i.o(.constdata)
+    .constdata                               0x080539bc   Section       24  guicc_m565.o(.constdata)
+    .constdata                               0x080539d4   Section       24  guicc_m8888i.o(.constdata)
+    .constdata                               0x080539ec   Section        8  gui_core.o(.constdata)
+    _HL_APIList                              0x080539ec   Data           8  gui_core.o(.constdata)
+    .constdata                               0x080539f4   Section        8  gui_device.o(.constdata)
+    _aBelongsToTask                          0x080539f4   Data           8  gui_device.o(.constdata)
+    .constdata                               0x080539fc   Section       24  guicc_m888.o(.constdata)
+    .constdata                               0x08053a14   Section       12  lcd.o(.constdata)
+    _SetColorAPI                             0x08053a14   Data          12  lcd.o(.constdata)
+    .constdata                               0x08053a20   Section       52  guidrv_lin_16.o(.constdata)
+    .constdata                               0x08053a54   Section       24  guicc_16.o(.constdata)
+    .constdata                               0x08053a6c   Section       16  gui__divtbl_15_255.o(.constdata)
+    .constdata                               0x08053a7c   Section      256  gui__divtbl_255_15.o(.constdata)
+    .constdata                               0x08053b7c   Section      256  gui__divtbl_255_31.o(.constdata)
+    .constdata                               0x08053c7c   Section      256  gui__divtbl_255_63.o(.constdata)
+    .constdata                               0x08053d7c   Section       32  gui__divtbl_31_255.o(.constdata)
+    .constdata                               0x08053d9c   Section       64  gui__divtbl_63_255.o(.constdata)
+    .constdata                               0x08053ddc   Section      364  gui__sinhq.o(.constdata)
+    _aSin                                    0x08053ddc   Data         364  gui__sinhq.o(.constdata)
+    .constdata                               0x08053f48   Section       40  gui_adddecshift.o(.constdata)
+    .constdata                               0x08053f70   Section       16  gui_uc_encodenone.o(.constdata)
+    .constdata                               0x08053f80   Section       24  guicc_0.o(.constdata)
+    .constdata                               0x08053f98   Section      256  lcd_mirror.o(.constdata)
+    .constdata                               0x08054098   Section     1304  f6x8.o(.constdata)
+    GUI_acFont6x8                            0x08054098   Data        1304  f6x8.o(.constdata)
+    .constdata                               0x080545b0   Section      448  f6x8.o(.constdata)
+    GUI_F6x8_TL8859_1                        0x080545b0   Data         448  f6x8.o(.constdata)
+    .constdata                               0x08054770   Section        8  f6x8.o(.constdata)
+    GUI_F6x8_TI8859_1                        0x08054770   Data           8  f6x8.o(.constdata)
+    .constdata                               0x08054778   Section       20  f6x8.o(.constdata)
+    GUI_F6x8_Mono                            0x08054778   Data          20  f6x8.o(.constdata)
+    .constdata                               0x0805478c   Section       36  f6x8.o(.constdata)
+    .constdata                               0x080547b0   Section      116  guidev_16.o(.constdata)
+    aID                                      0x080547b0   Data          64  guidev_16.o(.constdata)
+    .constdata                               0x08054824   Section       52  guidev_measure.o(.constdata)
+    _MeasDev_API                             0x08054824   Data          52  guidev_measure.o(.constdata)
+    .constdata                               0x08054858   Section        8  guidev_writetoactiveopaque.o(.constdata)
+    .constdata                               0x08054860   Section       24  guicc_8888.o(.constdata)
+    .constdata                               0x08054878   Section      116  guidev_32.o(.constdata)
+    aID                                      0x08054878   Data          64  guidev_32.o(.constdata)
+    .constdata                               0x080548ec   Section       24  guidev_usagebm.o(.constdata)
+    API                                      0x080548ec   Data          24  guidev_usagebm.o(.constdata)
     .data                                    0x20000000   Section       12  stm32xxx_it.o(.data)
     TimingDelay                              0x20000008   Data           4  stm32xxx_it.o(.data)
     .data                                    0x2000000c   Section       20  system_stm32f4xx.o(.data)
@@ -6146,45 +6146,45 @@ Image Symbol Table
     GPIO_PIN                                 0x0800fd14   Data           4  stm32f429i_lib.o(.constdata)
     BUTTON_CLK                               0x0800fd18   Data           4  stm32f429i_lib.o(.constdata)
     GPIO_CLK                                 0x0800fd1c   Data           8  stm32f429i_lib.o(.constdata)
-    acGUI_Fontfont_mhours_0030               0x0804301e   Data         516  automotivepanel.o(.constdata)
-    acGUI_Fontfont_mhours_0031               0x08043222   Data         516  automotivepanel.o(.constdata)
-    acGUI_Fontfont_mhours_0032               0x08043426   Data         516  automotivepanel.o(.constdata)
-    acGUI_Fontfont_mhours_0033               0x0804362a   Data         516  automotivepanel.o(.constdata)
-    acGUI_Fontfont_mhours_0034               0x0804382e   Data         516  automotivepanel.o(.constdata)
-    acGUI_Fontfont_mhours_0035               0x08043a32   Data         516  automotivepanel.o(.constdata)
-    acGUI_Fontfont_mhours_0036               0x08043c36   Data         516  automotivepanel.o(.constdata)
-    acGUI_Fontfont_mhours_0037               0x08043e3a   Data         516  automotivepanel.o(.constdata)
-    acGUI_Fontfont_mhours_0038               0x0804403e   Data         516  automotivepanel.o(.constdata)
-    acGUI_Fontfont_mhours_0039               0x08044242   Data         516  automotivepanel.o(.constdata)
-    GUI_Fontfont_mhours_CharInfo             0x08044448   Data          80  automotivepanel.o(.constdata)
-    GUI_Fontfont_mhours_Prop1                0x08044498   Data          12  automotivepanel.o(.constdata)
-    GUI_Fontfont_mhours                      0x080444a4   Data          36  automotivepanel.o(.constdata)
-    LCD_API_ColorConv_1616I                  0x08054008   Data          24  guicc_1616i.o(.constdata)
-    LCD_API_ColorConv_8666                   0x08054020   Data          24  guicc_8666.o(.constdata)
-    LCD_API_ColorConv_88666I                 0x08054038   Data          24  guicc_88666i.o(.constdata)
-    LCD_API_ColorConv_M1555I                 0x08054050   Data          24  guicc_m1555i.o(.constdata)
-    LCD_API_ColorConv_M4444I                 0x08054068   Data          24  guicc_m4444i.o(.constdata)
-    LCD_API_ColorConv_M565                   0x08054080   Data          24  guicc_m565.o(.constdata)
-    LCD_API_ColorConv_M8888I                 0x08054098   Data          24  guicc_m8888i.o(.constdata)
-    LCD_API_ColorConv_M888                   0x080540c0   Data          24  guicc_m888.o(.constdata)
-    GUIDRV_Lin_16_API                        0x080540e4   Data          52  guidrv_lin_16.o(.constdata)
-    LCD_API_ColorConv_16                     0x08054118   Data          24  guicc_16.o(.constdata)
-    GUI__aConvert_15_255                     0x08054130   Data          16  gui__divtbl_15_255.o(.constdata)
-    GUI__aConvert_255_15                     0x08054140   Data         256  gui__divtbl_255_15.o(.constdata)
-    GUI__aConvert_255_31                     0x08054240   Data         256  gui__divtbl_255_31.o(.constdata)
-    GUI__aConvert_255_63                     0x08054340   Data         256  gui__divtbl_255_63.o(.constdata)
-    GUI__aConvert_31_255                     0x08054440   Data          32  gui__divtbl_31_255.o(.constdata)
-    GUI__aConvert_63_255                     0x08054460   Data          64  gui__divtbl_63_255.o(.constdata)
-    GUI_Pow10                                0x0805460c   Data          40  gui_adddecshift.o(.constdata)
-    GUI_UC_None                              0x08054634   Data          16  gui_uc_encodenone.o(.constdata)
-    LCD_API_ColorConv_0                      0x08054644   Data          24  guicc_0.o(.constdata)
-    LCD_aMirror                              0x0805465c   Data         256  lcd_mirror.o(.constdata)
-    GUI_Font6x8                              0x08054e50   Data          36  f6x8.o(.constdata)
-    GUI_MEMDEV_DEVICE_16                     0x08054eb4   Data          52  guidev_16.o(.constdata)
-    LCD_API_ColorConv_8888                   0x08054f24   Data          24  guicc_8888.o(.constdata)
-    GUI_MEMDEV_DEVICE_32                     0x08054f7c   Data          52  guidev_32.o(.constdata)
-    Region$$Table$$Base                      0x08054fc8   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08054fe8   Number         0  anon$$obj.o(Region$$Table)
+    acGUI_Fontfont_mhours_0030               0x0804295c   Data         516  automotivepanel.o(.constdata)
+    acGUI_Fontfont_mhours_0031               0x08042b60   Data         516  automotivepanel.o(.constdata)
+    acGUI_Fontfont_mhours_0032               0x08042d64   Data         516  automotivepanel.o(.constdata)
+    acGUI_Fontfont_mhours_0033               0x08042f68   Data         516  automotivepanel.o(.constdata)
+    acGUI_Fontfont_mhours_0034               0x0804316c   Data         516  automotivepanel.o(.constdata)
+    acGUI_Fontfont_mhours_0035               0x08043370   Data         516  automotivepanel.o(.constdata)
+    acGUI_Fontfont_mhours_0036               0x08043574   Data         516  automotivepanel.o(.constdata)
+    acGUI_Fontfont_mhours_0037               0x08043778   Data         516  automotivepanel.o(.constdata)
+    acGUI_Fontfont_mhours_0038               0x0804397c   Data         516  automotivepanel.o(.constdata)
+    acGUI_Fontfont_mhours_0039               0x08043b80   Data         516  automotivepanel.o(.constdata)
+    GUI_Fontfont_mhours_CharInfo             0x08043d84   Data          80  automotivepanel.o(.constdata)
+    GUI_Fontfont_mhours_Prop1                0x08043dd4   Data          12  automotivepanel.o(.constdata)
+    GUI_Fontfont_mhours                      0x08043de0   Data          36  automotivepanel.o(.constdata)
+    LCD_API_ColorConv_1616I                  0x08053944   Data          24  guicc_1616i.o(.constdata)
+    LCD_API_ColorConv_8666                   0x0805395c   Data          24  guicc_8666.o(.constdata)
+    LCD_API_ColorConv_88666I                 0x08053974   Data          24  guicc_88666i.o(.constdata)
+    LCD_API_ColorConv_M1555I                 0x0805398c   Data          24  guicc_m1555i.o(.constdata)
+    LCD_API_ColorConv_M4444I                 0x080539a4   Data          24  guicc_m4444i.o(.constdata)
+    LCD_API_ColorConv_M565                   0x080539bc   Data          24  guicc_m565.o(.constdata)
+    LCD_API_ColorConv_M8888I                 0x080539d4   Data          24  guicc_m8888i.o(.constdata)
+    LCD_API_ColorConv_M888                   0x080539fc   Data          24  guicc_m888.o(.constdata)
+    GUIDRV_Lin_16_API                        0x08053a20   Data          52  guidrv_lin_16.o(.constdata)
+    LCD_API_ColorConv_16                     0x08053a54   Data          24  guicc_16.o(.constdata)
+    GUI__aConvert_15_255                     0x08053a6c   Data          16  gui__divtbl_15_255.o(.constdata)
+    GUI__aConvert_255_15                     0x08053a7c   Data         256  gui__divtbl_255_15.o(.constdata)
+    GUI__aConvert_255_31                     0x08053b7c   Data         256  gui__divtbl_255_31.o(.constdata)
+    GUI__aConvert_255_63                     0x08053c7c   Data         256  gui__divtbl_255_63.o(.constdata)
+    GUI__aConvert_31_255                     0x08053d7c   Data          32  gui__divtbl_31_255.o(.constdata)
+    GUI__aConvert_63_255                     0x08053d9c   Data          64  gui__divtbl_63_255.o(.constdata)
+    GUI_Pow10                                0x08053f48   Data          40  gui_adddecshift.o(.constdata)
+    GUI_UC_None                              0x08053f70   Data          16  gui_uc_encodenone.o(.constdata)
+    LCD_API_ColorConv_0                      0x08053f80   Data          24  guicc_0.o(.constdata)
+    LCD_aMirror                              0x08053f98   Data         256  lcd_mirror.o(.constdata)
+    GUI_Font6x8                              0x0805478c   Data          36  f6x8.o(.constdata)
+    GUI_MEMDEV_DEVICE_16                     0x080547f0   Data          52  guidev_16.o(.constdata)
+    LCD_API_ColorConv_8888                   0x08054860   Data          24  guicc_8888.o(.constdata)
+    GUI_MEMDEV_DEVICE_32                     0x080548b8   Data          52  guidev_32.o(.constdata)
+    Region$$Table$$Base                      0x08054904   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08054924   Number         0  anon$$obj.o(Region$$Table)
     ButtonPressed                            0x20000000   Data           4  stm32xxx_it.o(.data)
     tmpCC4                                   0x20000004   Data           4  stm32xxx_it.o(.data)
     SystemCoreClock                          0x2000000c   Data           4  system_stm32f4xx.o(.data)
@@ -6304,9 +6304,9 @@ Memory Map of the image
 
   Image Entry point : 0x080001ad
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00055b48, Max: 0x00200000, ABSOLUTE, COMPRESSED[0x00055370])
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00055484, Max: 0x00200000, ABSOLUTE, COMPRESSED[0x00054cec])
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00054fe8, Max: 0x00200000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00054924, Max: 0x00200000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -6989,82 +6989,81 @@ Memory Map of the image
     0x0800fd0c   0x00000018   Data   RO         4473    .constdata          stm32f429i_lib.o
     0x0800fd24   0x00000008   Data   RO         4578    .constdata          guidrv.o
     0x0800fd2c   0x000156ad   Data   RO         5202    .constdata          automotivepanel.o
-    0x080253d9   0x000156ad   Data   RO         5203    .constdata          automotivepanel.o
-    0x0803aa86   0x000042cc   Data   RO         5204    .constdata          automotivepanel.o
-    0x0803ed52   0x000042cc   Data   RO         5205    .constdata          automotivepanel.o
-    0x0804301e   0x00000204   Data   RO         5206    .constdata          automotivepanel.o
-    0x08043222   0x00000204   Data   RO         5207    .constdata          automotivepanel.o
-    0x08043426   0x00000204   Data   RO         5208    .constdata          automotivepanel.o
-    0x0804362a   0x00000204   Data   RO         5209    .constdata          automotivepanel.o
-    0x0804382e   0x00000204   Data   RO         5210    .constdata          automotivepanel.o
-    0x08043a32   0x00000204   Data   RO         5211    .constdata          automotivepanel.o
-    0x08043c36   0x00000204   Data   RO         5212    .constdata          automotivepanel.o
-    0x08043e3a   0x00000204   Data   RO         5213    .constdata          automotivepanel.o
-    0x0804403e   0x00000204   Data   RO         5214    .constdata          automotivepanel.o
-    0x08044242   0x00000204   Data   RO         5215    .constdata          automotivepanel.o
-    0x08044446   0x00000002   PAD
-    0x08044448   0x00000050   Data   RO         5216    .constdata          automotivepanel.o
-    0x08044498   0x0000000c   Data   RO         5217    .constdata          automotivepanel.o
-    0x080444a4   0x00000024   Data   RO         5218    .constdata          automotivepanel.o
-    0x080444c8   0x00000c80   Data   RO         5315    .constdata          picto.o
-    0x08045148   0x00000c80   Data   RO         5316    .constdata          picto.o
-    0x08045dc8   0x00000c80   Data   RO         5317    .constdata          picto.o
-    0x08046a48   0x00000c80   Data   RO         5318    .constdata          picto.o
-    0x080476c8   0x00000c80   Data   RO         5319    .constdata          picto.o
-    0x08048348   0x00000c80   Data   RO         5320    .constdata          picto.o
-    0x08048fc8   0x00000dc0   Data   RO         5321    .constdata          picto.o
-    0x08049d88   0x00000c80   Data   RO         5322    .constdata          picto.o
-    0x0804aa08   0x00000c80   Data   RO         5323    .constdata          picto.o
-    0x0804b688   0x00000c80   Data   RO         5324    .constdata          picto.o
-    0x0804c308   0x00000c80   Data   RO         5325    .constdata          picto.o
-    0x0804cf88   0x00000c80   Data   RO         5326    .constdata          picto.o
-    0x0804dc08   0x00000c80   Data   RO         5327    .constdata          picto.o
-    0x0804e888   0x00000c80   Data   RO         5328    .constdata          picto.o
-    0x0804f508   0x00000c80   Data   RO         5329    .constdata          picto.o
-    0x08050188   0x00000c80   Data   RO         5330    .constdata          picto.o
-    0x08050e08   0x00000c80   Data   RO         5331    .constdata          picto.o
-    0x08051a88   0x00000c80   Data   RO         5332    .constdata          picto.o
-    0x08052708   0x00000c80   Data   RO         5333    .constdata          picto.o
-    0x08053388   0x00000c80   Data   RO         5334    .constdata          picto.o
-    0x08054008   0x00000018   Data   RO         5431    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_1616i.o)
-    0x08054020   0x00000018   Data   RO         5440    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_8666.o)
-    0x08054038   0x00000018   Data   RO         5449    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_88666i.o)
-    0x08054050   0x00000018   Data   RO         5461    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_m1555i.o)
-    0x08054068   0x00000018   Data   RO         5475    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_m4444i.o)
-    0x08054080   0x00000018   Data   RO         5488    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_m565.o)
-    0x08054098   0x00000018   Data   RO         5501    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_m8888i.o)
-    0x080540b0   0x00000008   Data   RO         5600    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui_core.o)
-    0x080540b8   0x00000008   Data   RO         5626    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui_device.o)
-    0x080540c0   0x00000018   Data   RO         5715    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_m888.o)
-    0x080540d8   0x0000000c   Data   RO         5740    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(lcd.o)
-    0x080540e4   0x00000034   Data   RO         5928    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guidrv_lin_16.o)
-    0x08054118   0x00000018   Data   RO         5967    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_16.o)
-    0x08054130   0x00000010   Data   RO         5971    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui__divtbl_15_255.o)
-    0x08054140   0x00000100   Data   RO         5972    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui__divtbl_255_15.o)
-    0x08054240   0x00000100   Data   RO         5973    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui__divtbl_255_31.o)
-    0x08054340   0x00000100   Data   RO         5974    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui__divtbl_255_63.o)
-    0x08054440   0x00000020   Data   RO         5975    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui__divtbl_31_255.o)
-    0x08054460   0x00000040   Data   RO         5976    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui__divtbl_63_255.o)
-    0x080544a0   0x0000016c   Data   RO         5985    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui__sinhq.o)
-    0x0805460c   0x00000028   Data   RO         5993    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui_adddecshift.o)
-    0x08054634   0x00000010   Data   RO         6059    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui_uc_encodenone.o)
-    0x08054644   0x00000018   Data   RO         6070    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_0.o)
-    0x0805465c   0x00000100   Data   RO         6097    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(lcd_mirror.o)
-    0x0805475c   0x00000518   Data   RO         6108    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(f6x8.o)
-    0x08054c74   0x000001c0   Data   RO         6109    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(f6x8.o)
-    0x08054e34   0x00000008   Data   RO         6110    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(f6x8.o)
-    0x08054e3c   0x00000014   Data   RO         6111    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(f6x8.o)
-    0x08054e50   0x00000024   Data   RO         6112    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(f6x8.o)
-    0x08054e74   0x00000074   Data   RO         6126    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guidev_16.o)
-    0x08054ee8   0x00000034   Data   RO         6164    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guidev_measure.o)
-    0x08054f1c   0x00000008   Data   RO         6473    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guidev_writetoactiveopaque.o)
-    0x08054f24   0x00000018   Data   RO         6677    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_8888.o)
-    0x08054f3c   0x00000074   Data   RO         6702    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guidev_32.o)
-    0x08054fb0   0x00000018   Data   RO         6731    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guidev_usagebm.o)
-    0x08054fc8   0x00000020   Data   RO         6910    Region$$Table       anon$$obj.o
+    0x080253d9   0x00014feb   Data   RO         5203    .constdata          automotivepanel.o
+    0x0803a3c4   0x000042cc   Data   RO         5204    .constdata          automotivepanel.o
+    0x0803e690   0x000042cc   Data   RO         5205    .constdata          automotivepanel.o
+    0x0804295c   0x00000204   Data   RO         5206    .constdata          automotivepanel.o
+    0x08042b60   0x00000204   Data   RO         5207    .constdata          automotivepanel.o
+    0x08042d64   0x00000204   Data   RO         5208    .constdata          automotivepanel.o
+    0x08042f68   0x00000204   Data   RO         5209    .constdata          automotivepanel.o
+    0x0804316c   0x00000204   Data   RO         5210    .constdata          automotivepanel.o
+    0x08043370   0x00000204   Data   RO         5211    .constdata          automotivepanel.o
+    0x08043574   0x00000204   Data   RO         5212    .constdata          automotivepanel.o
+    0x08043778   0x00000204   Data   RO         5213    .constdata          automotivepanel.o
+    0x0804397c   0x00000204   Data   RO         5214    .constdata          automotivepanel.o
+    0x08043b80   0x00000204   Data   RO         5215    .constdata          automotivepanel.o
+    0x08043d84   0x00000050   Data   RO         5216    .constdata          automotivepanel.o
+    0x08043dd4   0x0000000c   Data   RO         5217    .constdata          automotivepanel.o
+    0x08043de0   0x00000024   Data   RO         5218    .constdata          automotivepanel.o
+    0x08043e04   0x00000c80   Data   RO         5315    .constdata          picto.o
+    0x08044a84   0x00000c80   Data   RO         5316    .constdata          picto.o
+    0x08045704   0x00000c80   Data   RO         5317    .constdata          picto.o
+    0x08046384   0x00000c80   Data   RO         5318    .constdata          picto.o
+    0x08047004   0x00000c80   Data   RO         5319    .constdata          picto.o
+    0x08047c84   0x00000c80   Data   RO         5320    .constdata          picto.o
+    0x08048904   0x00000dc0   Data   RO         5321    .constdata          picto.o
+    0x080496c4   0x00000c80   Data   RO         5322    .constdata          picto.o
+    0x0804a344   0x00000c80   Data   RO         5323    .constdata          picto.o
+    0x0804afc4   0x00000c80   Data   RO         5324    .constdata          picto.o
+    0x0804bc44   0x00000c80   Data   RO         5325    .constdata          picto.o
+    0x0804c8c4   0x00000c80   Data   RO         5326    .constdata          picto.o
+    0x0804d544   0x00000c80   Data   RO         5327    .constdata          picto.o
+    0x0804e1c4   0x00000c80   Data   RO         5328    .constdata          picto.o
+    0x0804ee44   0x00000c80   Data   RO         5329    .constdata          picto.o
+    0x0804fac4   0x00000c80   Data   RO         5330    .constdata          picto.o
+    0x08050744   0x00000c80   Data   RO         5331    .constdata          picto.o
+    0x080513c4   0x00000c80   Data   RO         5332    .constdata          picto.o
+    0x08052044   0x00000c80   Data   RO         5333    .constdata          picto.o
+    0x08052cc4   0x00000c80   Data   RO         5334    .constdata          picto.o
+    0x08053944   0x00000018   Data   RO         5431    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_1616i.o)
+    0x0805395c   0x00000018   Data   RO         5440    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_8666.o)
+    0x08053974   0x00000018   Data   RO         5449    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_88666i.o)
+    0x0805398c   0x00000018   Data   RO         5461    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_m1555i.o)
+    0x080539a4   0x00000018   Data   RO         5475    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_m4444i.o)
+    0x080539bc   0x00000018   Data   RO         5488    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_m565.o)
+    0x080539d4   0x00000018   Data   RO         5501    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_m8888i.o)
+    0x080539ec   0x00000008   Data   RO         5600    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui_core.o)
+    0x080539f4   0x00000008   Data   RO         5626    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui_device.o)
+    0x080539fc   0x00000018   Data   RO         5715    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_m888.o)
+    0x08053a14   0x0000000c   Data   RO         5740    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(lcd.o)
+    0x08053a20   0x00000034   Data   RO         5928    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guidrv_lin_16.o)
+    0x08053a54   0x00000018   Data   RO         5967    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_16.o)
+    0x08053a6c   0x00000010   Data   RO         5971    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui__divtbl_15_255.o)
+    0x08053a7c   0x00000100   Data   RO         5972    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui__divtbl_255_15.o)
+    0x08053b7c   0x00000100   Data   RO         5973    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui__divtbl_255_31.o)
+    0x08053c7c   0x00000100   Data   RO         5974    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui__divtbl_255_63.o)
+    0x08053d7c   0x00000020   Data   RO         5975    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui__divtbl_31_255.o)
+    0x08053d9c   0x00000040   Data   RO         5976    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui__divtbl_63_255.o)
+    0x08053ddc   0x0000016c   Data   RO         5985    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui__sinhq.o)
+    0x08053f48   0x00000028   Data   RO         5993    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui_adddecshift.o)
+    0x08053f70   0x00000010   Data   RO         6059    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(gui_uc_encodenone.o)
+    0x08053f80   0x00000018   Data   RO         6070    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_0.o)
+    0x08053f98   0x00000100   Data   RO         6097    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(lcd_mirror.o)
+    0x08054098   0x00000518   Data   RO         6108    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(f6x8.o)
+    0x080545b0   0x000001c0   Data   RO         6109    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(f6x8.o)
+    0x08054770   0x00000008   Data   RO         6110    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(f6x8.o)
+    0x08054778   0x00000014   Data   RO         6111    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(f6x8.o)
+    0x0805478c   0x00000024   Data   RO         6112    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(f6x8.o)
+    0x080547b0   0x00000074   Data   RO         6126    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guidev_16.o)
+    0x08054824   0x00000034   Data   RO         6164    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guidev_measure.o)
+    0x08054858   0x00000008   Data   RO         6473    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guidev_writetoactiveopaque.o)
+    0x08054860   0x00000018   Data   RO         6677    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guicc_8888.o)
+    0x08054878   0x00000074   Data   RO         6702    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guidev_32.o)
+    0x080548ec   0x00000018   Data   RO         6731    .constdata          STemWin522_4x9i_CM4_OS_Keil.lib(guidev_usagebm.o)
+    0x08054904   0x00000020   Data   RO         6910    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00011538, Max: 0x00030000, ABSOLUTE, COMPRESSED[0x00000388])
+    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00011538, Max: 0x00030000, ABSOLUTE, COMPRESSED[0x000003c8])
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -7219,7 +7218,7 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-      1060         84     214938       1296         16      14789   automotivepanel.o
+      1060         84     213208       1296         16      14789   automotivepanel.o
         42          0          0          0          0     396993   bsp.o
        108         14          0          8          0       4007   gui_x_freertos.o
         16          6          0          0    5242880       1416   guiconf.o
@@ -7252,9 +7251,9 @@ Image component sizes
       1376        134          0         56        300      17251   tasks.o
 
     ----------------------------------------------------------------------
-     13710       1190     284312       2364    5310344     643970   Object Totals
+     13710       1190     282580       2364    5310344     643970   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        26          0          2          0          0          0   (incl. Padding)
+        26          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -7430,15 +7429,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     59792       3200     288344       2912    5310936     638254   Grand Totals
-     59792       3200     288344        904    5310936     638254   ELF Image Totals (compressed)
-     59792       3200     288344        904          0          0   ROM Totals
+     59792       3200     286612       2912    5310936     638254   Grand Totals
+     59792       3200     286612        968    5310936     638254   ELF Image Totals (compressed)
+     59792       3200     286612        968          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)               348136 ( 339.98kB)
+    Total RO  Size (Code + RO Data)               346404 ( 338.29kB)
     Total RW  Size (RW Data + ZI Data)           5313848 (5189.30kB)
-    Total ROM Size (Code + RO Data + RW Data)     349040 ( 340.86kB)
+    Total ROM Size (Code + RO Data + RW Data)     347372 ( 339.23kB)
 
 ==============================================================================
 
