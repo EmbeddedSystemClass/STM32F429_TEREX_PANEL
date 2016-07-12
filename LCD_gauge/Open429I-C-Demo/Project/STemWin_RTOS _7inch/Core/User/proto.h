@@ -11,7 +11,7 @@ typedef struct
 		uint16_t fuelLevel;
 		uint16_t oilPressure;
 		uint16_t coolantTemperature;
-		uint16_t pictoState;
+		uint32_t pictoState;
 } stProtocolData;
 #pragma pack() 
 void Proto_Init(void);

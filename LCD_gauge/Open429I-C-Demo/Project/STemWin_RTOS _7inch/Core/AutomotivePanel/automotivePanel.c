@@ -201,11 +201,12 @@ static PICTOGRAM picto[PICTO_NUM]=
 xTaskHandle                   				AutomotivePanel_Task_Handle;
 
 extern  xQueueHandle ProtocolDataQueue;
-
+xQueueHandle KeyQueue;
 
 static stProtocolData ProtocolData;
 
 static void AutomotivePanel_Task(void * pvParameters);
+static void Key_Task(void * pvParameters);
 
 #define FONT_MOTOHOURS &GUI_Fontfont_mhours
 
@@ -318,12 +319,20 @@ void AutomotivePanel_Init(void)
 	GUI_AA_EnableHiRes();
   GUI_AA_SetFactor(MAG);
 	
+	KeyQueue = xQueueCreate( 2, sizeof( uint8_t ) );
 	
 	xTaskCreate(AutomotivePanel_Task,
 						(signed char const*)"BK_GND",
 						AutomotivePanel_Task_STACK,
 						NULL,
 						AutomotivePanel_Task_PRIO,
+						NULL);
+						
+		xTaskCreate(Key_Task,
+						(signed char const*)"KEY",
+						128,
+						NULL,
+						(tskIDLE_PRIORITY +2),
 						NULL);
 }
 
@@ -368,9 +377,7 @@ static void AutomotivePanel_Task(void * pvParameters)
 {
 	float       aAngleOld[NUM_SCALES];
   uint8_t          i;
-	uint8_t 		ButtonState_Current=1, ButtonState_Last=1;
-
-
+	uint8_t key=0;
 	
 	/******************INIT********************/
 
@@ -391,19 +398,18 @@ static void AutomotivePanel_Task(void * pvParameters)
 					
 					if((currentDisplay == DISPLAY_1)&&(ProtocolData.motoHours!=last_mhours))
 					{
-							_Draw_MotorHours(ProtocolData.motoHours);
-						  last_mhours=ProtocolData.motoHours;
+							_Draw_MotorHours(ProtocolData.motoHours);						  
 					}
+					last_mhours=ProtocolData.motoHours;
 			}
-	
-			ButtonState_Last=ButtonState_Current;
-			ButtonState_Current=GPIO_ReadInputDataBit(CHANGE_DISPLAY_GPIO, CHANGE_DISPLAY_PIN);
 			
-			if(ButtonState_Current<ButtonState_Last)
+			if(xQueueReceive( KeyQueue, &( key ), ( portTickType ) 0 ))
 			{
-				currentDisplay=0x1&(!currentDisplay);
-				Automotive_Panel_ChangeDisplay(currentDisplay);		
+						currentDisplay=0x1&(!currentDisplay);
+						Automotive_Panel_ChangeDisplay(currentDisplay);		
 			}
+			
+
 			
 			Set_ScaleValue(SCALE_TAHOMETER,   ProtocolData.RPM);
 			Set_ScaleValue(SCALE_FUEL, 		 		ProtocolData.fuelLevel);
@@ -431,6 +437,33 @@ static void AutomotivePanel_Task(void * pvParameters)
     GUI_MEMDEV_DeleteAuto(&scales[i].param.aAutoDev);
   }
 }
+
+#define BUTTON_COUNTER_PRESSED 3
+#define KEY_PRESSED	0x1
+static void Key_Task(void * pvParameters)
+{
+	uint32_t		ButtonCounter=0;
+	uint8_t key=0;
+	while(1)
+	{
+			if(GPIO_ReadInputDataBit(CHANGE_DISPLAY_GPIO, CHANGE_DISPLAY_PIN)==0)
+			{
+					ButtonCounter++;
+					if(ButtonCounter==BUTTON_COUNTER_PRESSED)
+					{
+						key=KEY_PRESSED;
+						xQueueSend( KeyQueue, ( void * )(&key), ( portTickType ) 0 );
+					}
+			}
+			else
+			{
+					ButtonCounter=0;
+			}
+			
+			vTaskDelay(20);
+	}
+}
+
 
 float ScaleFilter(FILTER *filter, float in)
 {

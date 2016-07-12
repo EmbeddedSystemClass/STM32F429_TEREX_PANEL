@@ -35,7 +35,7 @@
 
 #define START_SYMBOL		0x55
 
-#define USART_PANEL_FRAME_LEN	19
+#define USART_PANEL_FRAME_LEN	21
 
 //-------------------------------------------------------------------
 typedef enum
