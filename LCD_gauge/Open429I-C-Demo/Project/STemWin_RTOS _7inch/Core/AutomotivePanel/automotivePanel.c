@@ -43,7 +43,7 @@ extern  GUI_COLOR _Colorspicto_red[];
 extern  GUI_COLOR _Colorspicto_green[];
 extern  GUI_COLOR _Colorspicto_blue[];
 
-static enDisplay currentDisplay=DISPLAY_1;
+static enDisplay currentScreen=SCREEN_1;
 
 #define MAG         3
 #define NUM_SCALES  4
@@ -153,10 +153,10 @@ static NEEDLE _aNeedle[2] = {
 
 static SCALE scales[NUM_SCALES]=
 {
-	{&bmtahometerScale	,{250,  0},&_aNeedle[0],{513,251},{0},{{0},{0},270.0,270.0, 90.0,0.0,0.0,65535.0},&TahometerScaleFilter		,SCALE_STATE_DRAW,DISPLAY_0},
-	{&bmfuelScale				,{250,290},&_aNeedle[1],{450,455},{0},{{0},{0},270.0,270.0,198.0,0.0,0.0,65535.0},&FuelScaleFilter				,SCALE_STATE_DRAW,DISPLAY_0},
-	{&bmtemperatureScale,{570,290},&_aNeedle[1],{770,455},{0},{{0},{0},270.0,270.0,198.0,0.0,0.0,65535.0},&TemperatureScaleFilter	,SCALE_STATE_DRAW,DISPLAY_0},
-	{&bmspeedometerScale,{250,  0},&_aNeedle[0],{513,251},{0},{{0},{0},270.0,270.0, 90.0,0.0,0.0,65535.0},&SpeedometerScaleFilter	,SCALE_STATE_DRAW,DISPLAY_1},
+	{&bmtahometerScale	,{250,  0},&_aNeedle[0],{513,251},{0},{{0},{0},270.0,270.0, 90.0,0.0,0.0,2500.0},&TahometerScaleFilter		,SCALE_STATE_DRAW,SCREEN_0},
+	{&bmfuelScale				,{250,290},&_aNeedle[1],{450,455},{0},{{0},{0},270.0,270.0,198.0,0.0,0.0,65535.0},&FuelScaleFilter				,SCALE_STATE_DRAW,SCREEN_0},
+	{&bmtemperatureScale,{570,290},&_aNeedle[1],{770,455},{0},{{0},{0},270.0,270.0,198.0,0.0,0.0,65535.0},&TemperatureScaleFilter	,SCALE_STATE_DRAW,SCREEN_0},
+	{&bmspeedometerScale,{250,  0},&_aNeedle[0],{513,251},{0},{{0},{0},270.0,270.0, 90.0,0.0,0.0,4500.0},&SpeedometerScaleFilter	,SCALE_STATE_DRAW,SCREEN_1},
 };
 /***************************************************/
 
@@ -174,26 +174,26 @@ PICTOGRAM;
 #define PICTO_NUM	20
 static PICTOGRAM picto[PICTO_NUM]=
 {
-{{120, 10},&bmpicto_H19,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
-{{ 90,110},&bmpicto_H20,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
-{{ 60,210},&bmpicto_H21,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
-{{ 30,310},&bmpicto_H24,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
-{{ 10,410},&bmpicto_H35,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
-{{220, 10},&bmpicto_H36,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
-{{190,110},&bmpicto_H37,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
-{{160,210},&bmpicto_H38,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
-{{130,310},&bmpicto_H39,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
-{{110,410},&bmpicto_H40,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_0},
-{{120, 10},&bmpicto_H41,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
-{{ 90,110},&bmpicto_H42,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
-{{ 60,210},&bmpicto_H43,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
-{{ 30,310},&bmpicto_H44,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
-{{ 10,410},&bmpicto_H45,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
-{{220, 10},&bmpicto_H46,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
-{{190,110},&bmpicto_H47,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
-{{160,210},&bmpicto_H48,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
-{{130,310},&bmpicto_H49,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1},
-{{110,410},&bmpicto_H51,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,DISPLAY_1}
+{{120, 10},&bmpicto_H19,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_0},
+{{ 90,110},&bmpicto_H20,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_0},
+{{ 60,210},&bmpicto_H21,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_0},
+{{ 30,310},&bmpicto_H24,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_0},
+{{ 10,410},&bmpicto_H35,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_0},
+{{220, 10},&bmpicto_H36,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_0},
+{{190,110},&bmpicto_H37,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_0},
+{{160,210},&bmpicto_H38,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_0},
+{{130,310},&bmpicto_H39,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_0},
+{{110,410},&bmpicto_H40,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_0},
+{{120, 10},&bmpicto_H41,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_1},
+{{ 90,110},&bmpicto_H42,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_1},
+{{ 60,210},&bmpicto_H43,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_1},
+{{ 30,310},&bmpicto_H44,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_1},
+{{ 10,410},&bmpicto_H45,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_1},
+{{220, 10},&bmpicto_H46,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_1},
+{{190,110},&bmpicto_H47,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_1},
+{{160,210},&bmpicto_H48,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_1},
+{{130,310},&bmpicto_H49,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_1},
+{{110,410},&bmpicto_H51,_Colorspicto_red,_Colorspicto_gray,PICTO_STATE_OFF,SCREEN_1}
 };
 /***************************************************/
 #define AutomotivePanel_Task_PRIO    ( tskIDLE_PRIORITY +1 )
@@ -286,28 +286,31 @@ void Set_Pictogram_State(enPictogram pictogram, enPictoState state)
 			picto[pictogram].picto->pPal->pPalEntries=picto[pictogram].palette_active_state;
 	}
 	
-	if(picto[pictogram].display==currentDisplay)
+	if(picto[pictogram].display==currentScreen)
 	{
 			GUI_DrawBitmap(picto[pictogram].picto, picto[pictogram].pos.x , picto[pictogram].pos.y );
 	}
 }
 
 
-#define RCC_CHANGE_DISPLAY_GPIO 	RCC_AHB1Periph_GPIOA
-#define CHANGE_DISPLAY_GPIO 			GPIOA
-#define CHANGE_DISPLAY_PIN				GPIO_Pin_0
+#define RCC_CHANGE_SCREEN_GPIO 	RCC_AHB1Periph_GPIOA
+#define CHANGE_SCREEN_GPIO 			GPIOA
+#define CHANGE_SCREEN_PIN				GPIO_Pin_0
 
 void AutomotivePanel_Init(void)
 {
 	GPIO_InitTypeDef GPIO_InitStruct; 
-	RCC_AHB1PeriphClockCmd(RCC_CHANGE_DISPLAY_GPIO, ENABLE);
+	
+	ProtocolData.screen=currentScreen;
+	
+	RCC_AHB1PeriphClockCmd(RCC_CHANGE_SCREEN_GPIO, ENABLE);
 
-	GPIO_InitStruct.GPIO_Pin = CHANGE_DISPLAY_PIN ; 
+	GPIO_InitStruct.GPIO_Pin = CHANGE_SCREEN_PIN ; 
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN; 			
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;		
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;			
 	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;			
-	GPIO_Init(CHANGE_DISPLAY_GPIO, &GPIO_InitStruct);	
+	GPIO_Init(CHANGE_SCREEN_GPIO, &GPIO_InitStruct);	
 	
 	GUI_Init();
 	GUI_SelectLayer(0);
@@ -343,7 +346,7 @@ void Automotive_Panel_ChangeDisplay(enDisplay display)
 		xSize=LCD_GetXSize();
 		ySize=LCD_GetYSize();
 		GUI_ClearRect (0 ,0, xSize - 1,ySize - 1);
-		currentDisplay=display;
+		currentScreen=display;
 	
 		for (i = 0; i < NUM_SCALES; i++) 
 		{
@@ -355,7 +358,7 @@ void Automotive_Panel_ChangeDisplay(enDisplay display)
 			//aAngleOld[i] = -1;	 
 			Set_ScaleValue(i,0);
 			GUI_MEMDEV_CreateAuto(&scales[i].param.aAutoDev);
-			if(scales[i].display==currentDisplay)
+			if(scales[i].display==currentScreen)
 			{
 				GUI_RotatePolygon(scales[i].needle_points, scales[i].needle->pPolygon, scales[i].needle->NumPoints, scales[i].param.Angle);
 				GUI_MEMDEV_DrawAuto(&scales[i].param.aAutoDev, &scales[i].param.AutoDevInfo, _pfDraw[i], &scales[i]);
@@ -367,7 +370,7 @@ void Automotive_Panel_ChangeDisplay(enDisplay display)
 			Set_Pictogram_State(i,(picto[i].state)&0x1);		
 		}
 		
-		if(display == DISPLAY_1)
+		if(display == SCREEN_1)
 		{
 				_Draw_MotorHours(last_mhours);
 		}
@@ -381,7 +384,7 @@ static void AutomotivePanel_Task(void * pvParameters)
 	
 	/******************INIT********************/
 
-	Automotive_Panel_ChangeDisplay(currentDisplay);	
+	Automotive_Panel_ChangeDisplay(currentScreen);	
 
 	while(1)
 	{
@@ -396,7 +399,14 @@ static void AutomotivePanel_Task(void * pvParameters)
 							}
 					}
 					
-					if((currentDisplay == DISPLAY_1)&&(ProtocolData.motoHours!=last_mhours))
+					if(currentScreen!=ProtocolData.screen)
+					{
+							currentScreen=0x1&(!currentScreen);
+							Automotive_Panel_ChangeDisplay(currentScreen);	
+					}
+					
+					
+					if((currentScreen == SCREEN_1)&&(ProtocolData.motoHours!=last_mhours))
 					{
 							_Draw_MotorHours(ProtocolData.motoHours);						  
 					}
@@ -405,8 +415,8 @@ static void AutomotivePanel_Task(void * pvParameters)
 			
 			if(xQueueReceive( KeyQueue, &( key ), ( portTickType ) 0 ))
 			{
-						currentDisplay=0x1&(!currentDisplay);
-						Automotive_Panel_ChangeDisplay(currentDisplay);		
+						currentScreen=0x1&(!currentScreen);
+						Automotive_Panel_ChangeDisplay(currentScreen);		
 			}
 			
 
@@ -421,7 +431,7 @@ static void AutomotivePanel_Task(void * pvParameters)
 				if (aAngleOld[i] != scales[i].param.Angle)
 				{
 					aAngleOld[i] = scales[i].param.Angle;
-					if(scales[i].display==currentDisplay)
+					if(scales[i].display==currentScreen)
 					{
 						GUI_RotatePolygon(scales[i].needle_points, scales[i].needle->pPolygon, scales[i].needle->NumPoints, scales[i].param.Angle);
 						GUI_MEMDEV_DrawAuto(&scales[i].param.aAutoDev, &scales[i].param.AutoDevInfo, _pfDraw[i], &scales[i]);
@@ -446,7 +456,7 @@ static void Key_Task(void * pvParameters)
 	uint8_t key=0;
 	while(1)
 	{
-			if(GPIO_ReadInputDataBit(CHANGE_DISPLAY_GPIO, CHANGE_DISPLAY_PIN)==0)
+			if(GPIO_ReadInputDataBit(CHANGE_SCREEN_GPIO, CHANGE_SCREEN_PIN)==0)
 			{
 					ButtonCounter++;
 					if(ButtonCounter==BUTTON_COUNTER_PRESSED)

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\STM32F429I-Discovery_Demo\STM32F429I-TEREX_PANEL.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\STM32F429I-Discovery_Demo\STM32F429I-TEREX_PANEL.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Tue Jul 12 18:03:36 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Thu Jul 14 12:27:03 2016
 <BR><P>
 <H3>Maximum Stack Usage =       1116 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -675,7 +675,7 @@ Global Symbols
 
 <P><STRONG><a name="[2df]"></a>__decompress1</STRONG> (Thumb, 86 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
 
-<P><STRONG><a name="[128]"></a>AutomotivePanel_Init</STRONG> (Thumb, 154 bytes, Stack size 32 bytes, automotivepanel.o(i.AutomotivePanel_Init))
+<P><STRONG><a name="[128]"></a>AutomotivePanel_Init</STRONG> (Thumb, 170 bytes, Stack size 32 bytes, automotivepanel.o(i.AutomotivePanel_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 488<LI>Call Chain = AutomotivePanel_Init &rArr; GUI_Init &rArr; WM_Init &rArr; WM_CreateWindowAsChild &rArr; WM__SendMessage &rArr; WM_DefaultProc &rArr; WM_InvalidateRect &rArr; WM__InvalidateRect &rArr;  WM__InvalidateRect (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
@@ -5096,7 +5096,7 @@ Local Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[2c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xPortStartScheduler
 </UL>
 
-<P><STRONG><a name="[6f]"></a>AutomotivePanel_Task</STRONG> (Thumb, 464 bytes, Stack size 24 bytes, automotivepanel.o(i.AutomotivePanel_Task))
+<P><STRONG><a name="[6f]"></a>AutomotivePanel_Task</STRONG> (Thumb, 514 bytes, Stack size 24 bytes, automotivepanel.o(i.AutomotivePanel_Task))
 <BR><BR>[Stack]<UL><LI>Max Depth = 1116<LI>Call Chain = AutomotivePanel_Task &rArr; GUI_Exec &rArr; WM_Exec &rArr; GUI_MEMDEV_Draw &rArr; GUI_MEMDEV_CopyToLCD &rArr; GUI_MEMDEV_CopyToLCDAt &rArr; GUI_MEMDEV__WriteToActiveOpaque &rArr; LCD__DrawBitmap_1bpp &rArr; LCD_FillRect
 </UL>
 <BR>[Calls]<UL><LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericReceive

@@ -33,12 +33,12 @@ typedef enum
 	PICTO_STATE_ON,
 }enPictoState;
 
-#define DISPLAY_NUM	2
+#define SCREEN_NUM	2
 
 typedef enum
 {
-		DISPLAY_0=0,
-		DISPLAY_1,
+		SCREEN_0=0,
+		SCREEN_1,
 }enDisplay;
 
 typedef enum
